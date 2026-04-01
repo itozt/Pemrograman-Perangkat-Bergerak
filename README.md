@@ -1,6 +1,6 @@
 <h3>Buat dari Awal</h3>
 
-```
+``` sh
 git init
 git add README.md
 git commit -m "first commit"
@@ -11,7 +11,7 @@ git push -u origin main
 
 <h3>Folder Baru Ditambahkan</h3>
 
-```
+``` sh
 git add "Pertemuan 7/"
 git commit -m "comment"
 git push -u origin main
