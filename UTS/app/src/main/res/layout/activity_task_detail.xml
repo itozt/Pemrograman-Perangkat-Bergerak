@@ -1,173 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_task_detail.xml -->
+<!-- activity_task_detail.xml - HCI-based redesign dengan green header dan back button -->
 <!-- Lokasi: app/src/main/res/layout/activity_task_detail.xml -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_light">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_task_detail"
+    <!-- Header dengan "Task Detail" title dan back button -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:background="@color/primary_teal"
-        android:elevation="4dp"
-        app:titleTextColor="@color/background_white" />
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:elevation="4dp">
 
+        <ImageButton
+            android:id="@+id/btn_back_task_detail"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_back"
+            android:tint="@color/background_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Task Detail"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/background_white"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+    <!-- Main Content -->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="16dp">
 
-            <EditText
-                android:id="@+id/edit_task_title_detail"
+            <!-- ========== TASK TITLE SECTION ========== -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:inputType="text"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="✏️  Task Title"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_teal"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/edit_task_title_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:hint="Task title"
+                    android:inputType="text"
+                    android:textSize="16sp"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_secondary"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/rounded_input_background"
+                    android:importantForAutofill="no"
+                    android:maxLength="100" />
+
+            </LinearLayout>
+
+            <!-- SECTION DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background_light"
                 android:layout_marginBottom="16dp" />
 
-            <TextView
+            <!-- ========== CATEGORY SECTION ========== -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/category"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
 
-            <Spinner
-                android:id="@+id/spinner_category_detail"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📂  Category"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_teal"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_category_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/rounded_input_background" />
+
+            </LinearLayout>
+
+            <!-- SECTION DIVIDER -->
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/background_light"
                 android:layout_marginBottom="16dp" />
 
-            <TextView
+            <!-- ========== DATE & TIME SECTION ========== -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/due_date"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
 
-            <TextView
-                android:id="@+id/text_due_date_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:background="@drawable/rounded_input_background"
-                android:layout_marginBottom="16dp"
-                android:clickable="true"
-                android:focusable="true" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📅  Date & Time"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_teal"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="8dp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/due_time"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                <!-- Date and Time in Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
 
-            <TextView
-                android:id="@+id/text_due_time_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:background="@drawable/rounded_input_background"
-                android:layout_marginBottom="16dp"
-                android:clickable="true"
-                android:focusable="true" />
+                    <TextView
+                        android:id="@+id/text_due_date_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:background="@drawable/rounded_input_background"
+                        android:text="Select Date"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_dark"
+                        android:layout_marginEnd="8dp" />
 
-            <CheckBox
-                android:id="@+id/checkbox_reminder_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/reminder"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp" />
+                    <TextView
+                        android:id="@+id/text_due_time_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:background="@drawable/rounded_input_background"
+                        android:text="Select Time"
+                        android:gravity="center_vertical"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_dark" />
 
-            <TextView
-                android:id="@+id/text_reminder_time_detail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:background="@drawable/rounded_input_background"
-                android:layout_marginBottom="16dp"
-                android:clickable="true"
-                android:focusable="true" />
+                </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/repeat"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+            </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spinner_repeat_type_detail"
+            <!-- SECTION DIVIDER -->
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="1dp"
+                android:background="@color/background_light"
                 android:layout_marginBottom="16dp" />
 
-            <TextView
+            <!-- ========== REMINDER SECTION ========== -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/notes"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
 
-            <EditText
-                android:id="@+id/edit_notes_detail"
+                <CheckBox
+                    android:id="@+id/checkbox_reminder_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="🔔  Enable Reminder"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_dark"
+                    android:textStyle="bold"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/text_reminder_time_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/rounded_input_background"
+                    android:text="Select Reminder Time"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_dark"
+                    android:visibility="gone"
+                    android:enabled="false" />
+
+            </LinearLayout>
+
+            <!-- SECTION DIVIDER -->
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:hint="@string/notes"
-                android:gravity="top"
-                android:inputType="textMultiLine" />
+                android:layout_height="1dp"
+                android:background="@color/background_light"
+                android:layout_marginBottom="16dp" />
+
+            <!-- ========== REPEAT SECTION ========== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔁  Repeat Pattern"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_teal"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_repeat_type_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:background="@drawable/rounded_input_background" />
+
+            </LinearLayout>
+
+            <!-- SECTION DIVIDER -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/background_light"
+                android:layout_marginBottom="16dp" />
+
+            <!-- ========== NOTES SECTION ========== -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📝  Notes"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_teal"
+                    android:letterSpacing="0.05"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/edit_notes_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:hint="Add notes (optional)"
+                    android:gravity="top"
+                    android:inputType="textMultiLine"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_dark"
+                    android:textColorHint="@color/text_secondary"
+                    android:background="@drawable/rounded_input_background"
+                    android:importantForAutofill="no"
+                    android:maxLength="500" />
+
+            </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
+    <!-- Action Buttons Bar - Only Delete and Save -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:gravity="center"
+        android:background="@color/background_white"
+        android:elevation="8dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_delete_task_detail"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:text="@string/delete"
-            android:background="@color/accent_red"
-            android:textColor="@color/background_white"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_teal"
+            android:backgroundTint="@color/background_white"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
-        <Button
-            android:id="@+id/btn_cancel_task_detail"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cancel"
-            android:layout_marginEnd="8dp" />
-
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_save_task_detail"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_weight="1"
             android:text="@string/save"
-            android:background="@color/primary_teal"
-            android:textColor="@color/background_white" />
+            android:backgroundTint="@color/primary_teal"
+            android:textColor="@color/background_white"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

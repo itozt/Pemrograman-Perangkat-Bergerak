@@ -8,11 +8,11 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter
  */
 class TaskDetailActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
+    private lateinit var buttonBack: ImageButton
     private lateinit var editTaskTitle: EditText
     private lateinit var spinnerCategory: Spinner
     private lateinit var textViewDueDate: TextView
@@ -33,7 +33,6 @@ class TaskDetailActivity : AppCompatActivity() {
     private lateinit var editNotes: EditText
     private lateinit var buttonSave: Button
     private lateinit var buttonDelete: Button
-    private lateinit var buttonCancel: Button
 
     private var taskId: String = ""
     private var task: Task? = null
@@ -65,13 +64,9 @@ class TaskDetailActivity : AppCompatActivity() {
             return
         }
 
-        toolbar = findViewById(R.id.toolbar_task_detail)
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.task_detail)
-        }
-        toolbar.setBackgroundColor(ThemeSettingsManager.getThemeColor(this))
+        // Back button handler
+        buttonBack = findViewById(R.id.btn_back_task_detail)
+        buttonBack.setOnClickListener { finish() }
 
         editTaskTitle = findViewById(R.id.edit_task_title_detail)
         spinnerCategory = findViewById(R.id.spinner_category_detail)
@@ -83,7 +78,6 @@ class TaskDetailActivity : AppCompatActivity() {
         editNotes = findViewById(R.id.edit_notes_detail)
         buttonSave = findViewById(R.id.btn_save_task_detail)
         buttonDelete = findViewById(R.id.btn_delete_task_detail)
-        buttonCancel = findViewById(R.id.btn_cancel_task_detail)
 
         setupCategorySpinner()
         setupRepeatTypeSpinner()
@@ -92,7 +86,6 @@ class TaskDetailActivity : AppCompatActivity() {
 
         buttonSave.setOnClickListener { updateTask() }
         buttonDelete.setOnClickListener { deleteTask() }
-        buttonCancel.setOnClickListener { finish() }
 
         savedInstanceState?.let { restoreState(it) }
         renderDateTimeValues()
@@ -380,15 +373,5 @@ class TaskDetailActivity : AppCompatActivity() {
             DateTimeFormatter.ofPattern("hh:mm a")
         }
         return time.format(formatter)
-    }
-
-    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
