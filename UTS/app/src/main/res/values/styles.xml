@@ -9,13 +9,16 @@
         <item name="android:textColorSecondary">@color/text_dark</item>
     </style>
 
-    <!-- Dialog Theme - NO TITLE for New Task Popup -->
-    <style name="Theme.ToDoListPersonal.Dialog" parent="Theme.MaterialComponents.Light.Dialog">
+    <!-- Dialog Theme - COMPLETE TITLE BAR REMOVAL for New Task Popup -->
+    <style name="Theme.ToDoListPersonal.Dialog" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary_teal</item>
         <item name="colorPrimaryDark">@color/primary_teal</item>
         <item name="colorAccent">@color/primary_teal_light</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
+        <item name="android:windowTitleSize">0dp</item>
+        <item name="windowActionBarOverlay">false</item>
+        <item name="android:windowFullscreen">false</item>
     </style>
 
     <!-- Navigation Menu Item Style - HCI friendly -->

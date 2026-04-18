@@ -1,21 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_settings.xml - Pengaturan aplikasi dengan toolbar dan improved contrast -->
+<!-- activity_settings.xml - Settings dengan custom header -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_white">
+    android:background="@color/background_light">
 
-    <!-- Toolbar dengan back button -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_settings"
+    <!-- Green Header dengan back button -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="72dp"
         android:background="@color/primary_teal"
-        android:elevation="4dp"
-        app:titleTextColor="@color/background_white"
-        app:title="@string/nav_settings" />
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btn_back_settings"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/background_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nav_settings"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/background_white"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"

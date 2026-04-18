@@ -8,8 +8,16 @@
         "source": "com.example.todolistpersonal.app-main-49:/drawable/calendar.xml"
     },
     {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_rounded_category_background.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/rounded_category_background.xml"
+    },
+    {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_activity_new_task.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/layout/activity_new_task.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_theme_color_blue.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/theme_color_blue.xml"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_nav_header.xml.flat",
@@ -18,6 +26,10 @@
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/drawable_ic_app_logo.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/drawable/ic_app_logo.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_theme_color_green.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/theme_color_green.xml"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/mipmap_ic_launcher.xml.flat",
@@ -32,12 +44,20 @@
         "source": "com.example.todolistpersonal.app-main-49:/drawable/rounded_input_background.xml"
     },
     {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_rounded_category_background_inactive.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/rounded_category_background_inactive.xml"
+    },
+    {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_fragment_tasks.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/layout/fragment_tasks.xml"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/drawable_ic_launcher_foreground.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_logo.png.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/logo.png"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/drawable_ic_launcher_background.xml.flat",
@@ -52,6 +72,10 @@
         "source": "com.example.todolistpersonal.app-main-49:/drawable/setting.xml"
     },
     {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_theme_color_teal.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/theme_color_teal.xml"
+    },
+    {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_activity_tasks.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/layout/activity_tasks.xml"
     },
@@ -60,20 +84,24 @@
         "source": "com.example.todolistpersonal.app-main-49:/layout/item_group.xml"
     },
     {
-        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_logo.xml.flat",
-        "source": "com.example.todolistpersonal.app-main-49:/drawable/logo.xml"
+        "merged": "com.example.todolistpersonal.app-debug-47:/layout_fragment_new_task_bottom_sheet.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/layout/fragment_new_task_bottom_sheet.xml"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/xml_data_extraction_rules.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.todolistpersonal.app-debug-47:/layout_item_category_chip.xml.flat",
-        "source": "com.example.todolistpersonal.app-main-49:/layout/item_category_chip.xml"
-    },
-    {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_item_task.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/layout/item_task.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_ic_check.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/ic_check.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/layout_item_category_chip.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/layout/item_category_chip.xml"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_activity_calendar.xml.flat",
@@ -90,6 +118,10 @@
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_fragment_groups.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/layout/fragment_groups.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_theme_selector_card.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/theme_selector_card.xml"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/drawable_notebook.xml.flat",

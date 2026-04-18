@@ -47,7 +47,7 @@ class TasksActivity : AppCompatActivity() {
             ThemeSettingsManager.getThemeColor(this)
         )
         fabAddTask.setOnClickListener {
-            startActivity(Intent(this, NewTaskActivity::class.java))
+            showNewTaskBottomSheet()
         }
 
         recyclerViewCategories = findViewById(R.id.rv_categories)
@@ -142,5 +142,10 @@ class TasksActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showNewTaskBottomSheet() {
+        val dialog = NewTaskBottomSheetFragment.newInstance()
+        dialog.show(supportFragmentManager, NewTaskBottomSheetFragment::class.java.simpleName)
     }
 }

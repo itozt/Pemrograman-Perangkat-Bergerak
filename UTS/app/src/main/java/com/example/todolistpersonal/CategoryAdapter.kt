@@ -23,12 +23,11 @@ class CategoryAdapter(
         fun bind(category: Category, isSelected: Boolean) {
             categoryTextView.text = category.name
 
-            // Set background color based on category or selection
             if (isSelected) {
-                categoryTextView.setBackgroundColor(Color.parseColor(category.color))
+                categoryTextView.setBackgroundResource(R.drawable.rounded_category_background)
                 categoryTextView.setTextColor(Color.WHITE)
             } else {
-                categoryTextView.setBackgroundColor(Color.parseColor("#e8e8e8"))
+                categoryTextView.setBackgroundResource(R.drawable.rounded_category_background_inactive)
                 categoryTextView.setTextColor(Color.parseColor("#666666"))
             }
 

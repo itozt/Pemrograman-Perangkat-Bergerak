@@ -55,7 +55,7 @@ class TasksFragment : Fragment() {
             ThemeSettingsManager.getThemeColor(requireContext())
         )
         fabAddTask.setOnClickListener {
-            startActivity(Intent(requireContext(), NewTaskActivity::class.java))
+            showNewTaskBottomSheet()
         }
 
         recyclerViewCategories = view.findViewById(R.id.rv_categories)
@@ -126,5 +126,10 @@ class TasksFragment : Fragment() {
                 refreshTasksDisplay()
             }
         }
+    }
+
+    private fun showNewTaskBottomSheet() {
+        val dialog = NewTaskBottomSheetFragment.newInstance()
+        dialog.show(parentFragmentManager, NewTaskBottomSheetFragment::class.java.simpleName)
     }
 }

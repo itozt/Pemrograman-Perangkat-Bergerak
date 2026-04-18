@@ -2,62 +2,71 @@ package com.example.todolistpersonal
 
 import android.os.Bundle
 import android.widget.ImageButton
-import android.widget.RadioButton
-import android.widget.RadioGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * ThemeActivity - Pengaturan tema warna aplikasi.
+ * ThemeActivity - Pengaturan tema warna aplikasi dengan grid color picker.
  */
 class ThemeActivity : AppCompatActivity() {
 
     private lateinit var buttonBack: ImageButton
-    private lateinit var radioGroupTheme: RadioGroup
-    private lateinit var radioBtnTealTheme: RadioButton
-    private lateinit var radioBtnBlueTheme: RadioButton
-    private lateinit var radioBtnGreenTheme: RadioButton
+    private lateinit var themeCardTeal: LinearLayout
+    private lateinit var themeCardBlue: LinearLayout
+    private lateinit var themeCardGreen: LinearLayout
+    private lateinit var checkTeal: ImageView
+    private lateinit var checkBlue: ImageView
+    private lateinit var checkGreen: ImageView
 
     /**
-     * onCreate - Setup pilihan tema dan sinkronkan dari preferensi.
+     * onCreate - Setup pilihan tema dengan grid dan sinkronkan dari preferensi.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theme)
 
-        // Back button handler
         buttonBack = findViewById(R.id.btn_back_theme)
         buttonBack.setOnClickListener { finish() }
 
-        radioGroupTheme = findViewById(R.id.radio_group_theme)
-        radioBtnTealTheme = findViewById(R.id.radio_theme_teal)
-        radioBtnBlueTheme = findViewById(R.id.radio_theme_blue)
-        radioBtnGreenTheme = findViewById(R.id.radio_theme_green)
+        themeCardTeal = findViewById(R.id.theme_card_teal)
+        themeCardBlue = findViewById(R.id.theme_card_blue)
+        themeCardGreen = findViewById(R.id.theme_card_green)
+        checkTeal = findViewById(R.id.check_teal)
+        checkBlue = findViewById(R.id.check_blue)
+        checkGreen = findViewById(R.id.check_green)
 
-        when (ThemeSettingsManager.getThemeName(this)) {
-            "blue" -> radioBtnBlueTheme.isChecked = true
-            "green" -> radioBtnGreenTheme.isChecked = true
-            else -> radioBtnTealTheme.isChecked = true
+        updateThemeSelection()
+
+        themeCardTeal.setOnClickListener {
+            ThemeSettingsManager.setThemeName(this, "teal")
+            updateThemeSelection()
         }
 
-        radioGroupTheme.setOnCheckedChangeListener { _, checkedId ->
-            val selected = when (checkedId) {
-                R.id.radio_theme_blue -> "blue"
-                R.id.radio_theme_green -> "green"
-                else -> "teal"
-            }
-            ThemeSettingsManager.setThemeName(this, selected)
+        themeCardBlue.setOnClickListener {
+            ThemeSettingsManager.setThemeName(this, "blue")
+            updateThemeSelection()
+        }
+
+        themeCardGreen.setOnClickListener {
+            ThemeSettingsManager.setThemeName(this, "green")
+            updateThemeSelection()
         }
     }
 
     /**
-     * onResume - Pastikan indikator radio sinkron dengan preferensi tersimpan.
+     * onResume - Pastikan indikator pilihan sinkron dengan preferensi tersimpan.
      */
     override fun onResume() {
         super.onResume()
-        when (ThemeSettingsManager.getThemeName(this)) {
-            "blue" -> radioBtnBlueTheme.isChecked = true
-            "green" -> radioBtnGreenTheme.isChecked = true
-            else -> radioBtnTealTheme.isChecked = true
-        }
+        updateThemeSelection()
+    }
+
+    private fun updateThemeSelection() {
+        val currentTheme = ThemeSettingsManager.getThemeName(this)
+
+        checkTeal.visibility = if (currentTheme == "teal") ImageView.VISIBLE else ImageView.GONE
+        checkBlue.visibility = if (currentTheme == "blue") ImageView.VISIBLE else ImageView.GONE
+        checkGreen.visibility = if (currentTheme == "green") ImageView.VISIBLE else ImageView.GONE
     }
 }

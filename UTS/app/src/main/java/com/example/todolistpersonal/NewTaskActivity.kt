@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.text.format.DateFormat
+import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
@@ -55,6 +56,11 @@ class NewTaskActivity : AppCompatActivity() {
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // Hide title bar completely using Window API
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        supportActionBar?.hide()
+
         setContentView(R.layout.activity_new_task)
         TaskManager.init(applicationContext)
 

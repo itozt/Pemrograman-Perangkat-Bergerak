@@ -1,21 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_theme.xml - Pengaturan tema dengan toolbar dan improved contrast -->
+<!-- activity_theme.xml - Theme selection dengan custom header -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_white">
+    android:background="@color/background_light">
 
-    <!-- Toolbar dengan back button -->
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_theme"
+    <!-- Green Header dengan back button -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="72dp"
         android:background="@color/primary_teal"
-        android:elevation="4dp"
-        app:titleTextColor="@color/background_white"
-        app:title="@string/nav_theme" />
+        android:padding="12dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btn_back_theme"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Back"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_back"
+            android:tint="@color/background_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/nav_theme"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/background_white"
+            android:gravity="center" />
+
+        <Space
+            android:layout_width="40dp"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -36,45 +62,124 @@
                 android:textColor="@color/text_dark"
                 android:layout_marginBottom="24dp" />
 
-            <RadioGroup
-                android:id="@+id/radio_group_theme"
+            <!-- Grid Color Theme Selection - Using Horizontal LinearLayout for simplicity -->
+            <LinearLayout
+                android:id="@+id/grid_theme_colors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:layout_marginBottom="24dp"
+                android:gravity="center">
 
-                <RadioButton
-                    android:id="@+id/radio_theme_teal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/theme_teal"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_dark"
-                    android:layout_marginBottom="16dp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
+                <!-- Teal Theme Card -->
+                <LinearLayout
+                    android:id="@+id/theme_card_teal"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/theme_selector_card"
+                    android:elevation="4dp">
 
-                <RadioButton
-                    android:id="@+id/radio_theme_blue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/theme_blue"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_dark"
-                    android:layout_marginBottom="16dp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/theme_color_teal" />
 
-                <RadioButton
-                    android:id="@+id/radio_theme_green"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/theme_green"
-                    android:textSize="16sp"
-                    android:textColor="@color/text_dark"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Teal"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_dark"
+                        android:layout_marginTop="8dp" />
 
-            </RadioGroup>
+                    <ImageView
+                        android:id="@+id/check_teal"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <!-- Blue Theme Card -->
+                <LinearLayout
+                    android:id="@+id/theme_card_blue"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/theme_selector_card"
+                    android:elevation="4dp">
+
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/theme_color_blue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blue"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_dark"
+                        android:layout_marginTop="8dp" />
+
+                    <ImageView
+                        android:id="@+id/check_blue"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <!-- Green Theme Card -->
+                <LinearLayout
+                    android:id="@+id/theme_card_green"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:background="@drawable/theme_selector_card"
+                    android:elevation="4dp">
+
+                    <View
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="@drawable/theme_color_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Green"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_dark"
+                        android:layout_marginTop="8dp" />
+
+                    <ImageView
+                        android:id="@+id/check_green"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_check"
+                        android:visibility="gone"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
