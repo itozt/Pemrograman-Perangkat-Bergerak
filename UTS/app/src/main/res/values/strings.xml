@@ -48,11 +48,6 @@
     <string name="theme_teal">Teal</string>
     <string name="theme_blue">Blue</string>
     <string name="theme_green">Green</string>
-    
-    <!-- Theme -->
-    <string name="theme_teal">Teal</string>
-    <string name="theme_blue">Blue</string>
-    <string name="theme_green">Green</string>
 
     <!-- Settings -->
     <string name="notifications">Notifications</string>
