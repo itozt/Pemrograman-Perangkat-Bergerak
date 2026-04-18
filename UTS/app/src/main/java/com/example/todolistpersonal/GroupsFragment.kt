@@ -164,7 +164,8 @@ class GroupsAdapter(
 
         fun bind(category: Category) {
             groupNameView.text = category.name
-            groupColorView.setBackgroundColor(Color.parseColor(category.color))
+            // Semua grup gunakan warna yang sama: primary_teal (#4DA8A3)
+            groupColorView.setBackgroundColor(itemView.context.getColor(R.color.primary_teal))
 
             // Count tasks for this category
             val taskCount = TaskManager.getTasksByCategory(category.id).size

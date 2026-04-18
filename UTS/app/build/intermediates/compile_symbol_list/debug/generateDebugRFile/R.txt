@@ -36,7 +36,6 @@ int id btn_create_group 0x0
 int id btn_delete_group 0x0
 int id btn_delete_task_detail 0x0
 int id btn_flag_task 0x0
-int id btn_help_new_task 0x0
 int id btn_save_task 0x0
 int id btn_save_task_detail 0x0
 int id calendar_view 0x0

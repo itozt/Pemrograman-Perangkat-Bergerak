@@ -76,13 +76,13 @@ class TaskListAdapter(
 
         private fun updateFlagButtonAppearance(isFlagged: Boolean) {
             if (isFlagged) {
-                // Flag is filled with green color
-                buttonFlag.setImageResource(android.R.drawable.ic_menu_manage)
-                buttonFlag.setColorFilter(itemView.context.getColor(R.color.accent_green))
+                // Flag is filled
+                buttonFlag.setImageResource(R.drawable.flag_finish_fill)
+                buttonFlag.clearColorFilter()
             } else {
-                // Flag is not filled, just outline in green
-                buttonFlag.setImageResource(android.R.drawable.ic_menu_manage)
-                buttonFlag.setColorFilter(itemView.context.getColor(R.color.accent_green))
+                // Flag is not filled
+                buttonFlag.setImageResource(R.drawable.flag_finish)
+                buttonFlag.clearColorFilter()
             }
         }
     }
