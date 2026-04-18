@@ -33,10 +33,12 @@ drawable setting
 id bottom_navigation
 id btn_cancel_task
 id btn_cancel_task_detail
+id btn_close_new_task
 id btn_create_group
 id btn_delete_group
 id btn_delete_task_detail
 id btn_flag_task
+id btn_help_new_task
 id btn_save_task
 id btn_save_task_detail
 id calendar_view
@@ -82,7 +84,6 @@ id text_reminder_time
 id text_reminder_time_detail
 id toolbar
 id toolbar_calendar
-id toolbar_new_task
 id toolbar_settings
 id toolbar_task_detail
 id toolbar_tasks

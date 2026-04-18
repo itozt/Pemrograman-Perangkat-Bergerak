@@ -31,10 +31,12 @@ int drawable setting 0x0
 int id bottom_navigation 0x0
 int id btn_cancel_task 0x0
 int id btn_cancel_task_detail 0x0
+int id btn_close_new_task 0x0
 int id btn_create_group 0x0
 int id btn_delete_group 0x0
 int id btn_delete_task_detail 0x0
 int id btn_flag_task 0x0
+int id btn_help_new_task 0x0
 int id btn_save_task 0x0
 int id btn_save_task_detail 0x0
 int id calendar_view 0x0
@@ -80,7 +82,6 @@ int id text_reminder_time 0x0
 int id text_reminder_time_detail 0x0
 int id toolbar 0x0
 int id toolbar_calendar 0x0
-int id toolbar_new_task 0x0
 int id toolbar_settings 0x0
 int id toolbar_task_detail 0x0
 int id toolbar_tasks 0x0
