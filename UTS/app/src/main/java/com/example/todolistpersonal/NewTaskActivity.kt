@@ -8,21 +8,21 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 
 /**
- * NewTaskActivity - Form pembuatan task baru.
+ * NewTaskActivity - Form pembuatan task baru dengan HCI-based UI.
  */
 class NewTaskActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
+    private lateinit var buttonClose: ImageButton
     private lateinit var editTaskTitle: EditText
     private lateinit var spinnerCategory: Spinner
     private lateinit var textViewDueDate: TextView
@@ -51,20 +51,16 @@ class NewTaskActivity : AppCompatActivity() {
     }
 
     /**
-     * onCreate - Setup form dan event handler.
+     * onCreate - Setup form dan event handler dengan HCI principles.
      */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_task)
         TaskManager.init(applicationContext)
 
-        toolbar = findViewById(R.id.toolbar_new_task)
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.new_task)
-        }
-        toolbar.setBackgroundColor(ThemeSettingsManager.getThemeColor(this))
+        // Close button handler
+        buttonClose = findViewById(R.id.btn_close_new_task)
+        buttonClose.setOnClickListener { finish() }
 
         editTaskTitle = findViewById(R.id.edit_task_title)
         spinnerCategory = findViewById(R.id.spinner_category)
@@ -341,15 +337,5 @@ class NewTaskActivity : AppCompatActivity() {
             DateTimeFormatter.ofPattern("hh:mm a")
         }
         return time.format(formatter)
-    }
-
-    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }
