@@ -1,0 +1,75 @@
+Saya akan membuat sebuah project aplikasi Android dengan nama "To-Do List" menggunakan aplikasi Android Studio. Aplikasi ini akan dibuild dan diplay di emulator pada aplikasi Android Studio.
+Tugasmu adalah membantu saya dalam membuat aplikasi ini. 
+
+Berikut saya jelaskan fitur-fitur dari aplikasi yang akan kita buat nanti :
+Dalam aplikasi ini, terdapat navigation di bagian bawah untuk berpindah menu dan untuk ikon side bar.
+Dalam aplikasi ini, terdapat 2 menu utama dan side bar.
+
+Menu Pertama : Tasks
+- Menu ini adalah halaman pertama (default) apabila user baru saja membuka aplikasi ini.
+- Dalam menu ini, terdapat :
+1. Horizontal Scroll List berupa kategori-kategori task yang sudah dibuat user. (Contoh : All, Work, Wishlist, Birthday, Sports).
+2. List Tasks. List tasks ini juga dibedakan antara task untuk hari ini (Today), tasks yang akan datang (Future), dan tasks yang selesai hari ini Completed Today). Di masing masing task, terdapat informasi : nama task, due date, dan ikon penanda (notifikasi, repeatable). Juga terdapat checkbox yang berguna untuk menandakan apakah tasks sudah selesai dikerjakan/dilakukan atau belum. Di masing-masing tasks juga terdapat fitur flag untuk menandakan task mana yang penting dan perlu ditandai. Apabila suatu task (Today) berhasil dikerjakan, maka task tersebut akan otomatis berpindah pada tasks di bagian Completed Today.
+3. Add Task Button (+) : Tombol ini berguna unutk memmbuat task baru. Ketika user mengklik tombol ini, maka akan muncul modul/pop up "New Task".
+Dalam pop up "New Task", user diberikan beberapa kolom/fitur untuk diinput sebagai berikut :
+- Input New Task Here : kolom teks untuk menuliskan nama task.
+- Category : user dapat memilih, task yang baru dibuat mau dimasukkan ke grup task yang mana. Di bagian category ini, user juga bisa mengcreate group task baru.
+- Due date : user dapat mengatur task yang baru dibuat ini akan dikerjakan kapan (due date). akan muncul tampilan kalender, lalu pilihan waktu (jam dan menit), dan repeatable atau tidak. Pilihan repeat task adalah hour, daily, weekly, monthlu, yearly, atau custom (setiap hari apa saja).
+4. JIka user mengklik/memilih salah satu task pada List Tasks, maka sistem akan menampilkan halaman "Task Detail". Dlaam halaman ini, berisi informasi berupa detail dari task tersebut yang bisa diedit. Informasinya berupa : nama task, group task tersebut, due date, time & reminder, repeat task, notes. Berikut saya jelaskan masing masing fiturnya
+- nama task : nama dari kegiatan/task tersebut.
+- group task : group dari task tersebut. task bisa dimasukkan ke dalam suatu group task yang sudah ada atau membuat group task yang baru.
+- Due Date : kapan task ini akan dikerjakan (user dapat memilih tanggal pada kalender yang ditampilkan).
+- Time & reminder : apakah task ini memerlukan reminder notifikasi atau tidak. jika ya, maka user dapat mengatur pukul berapa reminder dari task tersebut akan muncul.
+- Repeat task : apakah task ini dilakukan berulang-ulang. jika ya, diulang setiap apa. sistem memberikan pilihan : hour, daily, weekly, monthly, yearly, dan custom (setiap hari tertentu sesuai pilihan user).
+- notes : catatan tambahan berupa teks dari task tersebut.
+
+Menu Kedua : Calendar
+- menu ini menampilkan kalender informatif. kalender (default) menanmpilkan kalender di bulan saat ini, tetapi juga bisa diatur unutk melihat bulan yang lain.
+- user dapat mengklik/memilih salah satu tanggal pada kalender. Lalu, sistem akan menampilkan detail tasks yang ada pada tanggal tersebut, baik itu belum dikerjakan atau sudah completed. Jika user mengklik/memilih salah satu task yang ditampilkan, maka sistem akan menampilkan halaman "Task Detail" yang sama seperti yang ada di menu pertama sebelumnya.
+- di menu ini, juga terdapat Add Task Button (+) yang fungsi dan kegunaannya sama seprti yang sudah aku jelaskan sebelumnya.
+
+Side Bar :
+Berikut adalah pilihan-pilihan fitur yang ada pada side bar dan kegunaannya :
+1. Group (dropdown) : merupakan grup dari task task yang dibuat oleh user. sistem akan menampilkan list group yang sudah dibuat jika mengklik dropdown dari pilihan ini. dan di pilihan paling bawah, terdapat fitur "Create New" group.
+2. Theme : sistem akan menampilkan halaman "Theme". pada halaman ini berisi pilihan pilihan tema untuk dipakai di aplikasi ini. USer bisa menyesuaikan warna sesuai dengan keperluan pribadi.
+3. Setting : saya masih belum tau kegunaannya tapi buatkan saja.
+
+
+Saya sudah membuat tampilan untuk aplikasi ini berupa gambar png yang ada di D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\example. Jadi, kamu bisa pelajari disana.
+Aku juga sudah menyimpan beberapa asset dan color palette di "D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\assets" dan ""D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\color palette hex.txt".
+
+Sebagai AI Agent, kamu ditugaskan untuk menulis *source code* (XML dan Kotlin/Java) untuk aplikasi "To Do List Personal". Kode yang kamu hasilkan wajib mematuhi teori dasar *Android Architecture* dan *Activity Management* berikut ini secara ketat:
+
+1. Struktur Arsitektur & Komponen Dasar
+- Loosely Coupled: Aplikasi tidak boleh dibangun secara monolitik yang kaku. 
+- Setiap fitur layar (misal: Layar Daftar Tugas, Layar Input Tugas) harus menggunakan `Activity` yang berdiri sendiri.
+- Pemisahan Logika: Implementasikan arsitektur aplikasi yang memisahkan antara `View` (UI Layouts/Activities), `Controller` (App Logic/Event Handling), dan `Model` (Data/Database).
+- View System: Gunakan elemen visual UI (tombol, teks) yang dikontrol dengan baik oleh sistem.
+
+2. Pusat Pengatur: AndroidManifest.xml
+- Jadikan `AndroidManifest.xml` sebagai jantung pengatur interaksi aplikasi.
+- Penuhi kelima pilar informasi di dalam Manifest: 
+    - Metadata Aplikasi 
+    - Konfigurasi Hardware
+    - Kebutuhan Platform (Minimum Android OS) 
+    - Library Eksternal 
+    - Izin (Permissions) jika aplikasimu membutuhkan akses sistem khusus.
+
+3. Manajemen Activity Stack & Lifecycle (Sangat Krusial)
+- Layar aplikasi harus berkonsep satu layar fokus (satu Activity). Sistem akan menumpuk Activity menggunakan konsep LIFO (*Last In, First Out*). Implementasikan ketujuh metode *lifecycle* penggerak transisi berikut dengan tepat:
+* Kelahiran (Active/Running):
+    - `onCreate()`: Alokasikan memori awal dan siapkan layout UI.
+    - `onStart()`: Lakukan transisi visual saat layar mulai terlihat.
+    - `onResume()`: Pastikan aplikasi siap menerima input pengguna. Status ini harus sangat responsif karena aplikasi berada di visibilitas layar penuh.
+* Kehilangan Fokus & Tersembunyi (Paused & Stopped):
+    - `onPause()`: Tangani saat Activity kehilangan fokus (misal ada popup).
+    - `onStop()`: Perhatian Khusus! Saat tertutup total oleh layar lain, Activity masuk ke status *Stopped*. Di fase ini, risiko dihapus oleh sistem sangat tinggi. Kamu *wajib* menuliskan logika penyimpanan data otomatis (*save state*) agar input To-Do List pengguna tidak hilang jika sistem sepihak menghancurkan Activity.
+* Kebangkitan & Kematian:
+    - Gunakan `onRestart()` jika Activity dipanggil kembali.
+    - Sediakan pembersihan memori di `onDestroy()` sebelum Activity benar-benar dihancurkan dari sistem.
+
+4. Navigasi Ekosistem
+- Gunakan `Intent` secara eksplisit sebagai "kurir pesan" untuk menghubungkan dan memicu perpindahan antar `Activity` dalam aplikasi.
+
+Tolong berikan kode Android (UI dan Logika) yang rapi, *clean*, dan langsung dapat dijalankan di Android Studio tanpa *error*, serta sertakan sedikit komentar penjelas pada setiap metode *lifecycle* yang digunakan.
+File pengerjaan di D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\java\com\example\todolistpersonal\MainActivity.kt\

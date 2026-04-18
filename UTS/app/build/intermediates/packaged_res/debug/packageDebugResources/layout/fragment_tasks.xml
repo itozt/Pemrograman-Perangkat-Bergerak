@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- FRAGMENT_TASKS.XML - Fragment untuk TasksFragment -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background_white"
+    tools:context=".TasksFragment">
+
+    <!-- Categories horizontal scroll -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/categories"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_dark" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_categories"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:clipToPadding="false" />
+
+    <!-- Today tasks section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/today"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_dark"
+        android:layout_marginTop="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_today_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Future tasks section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/future"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_dark"
+        android:layout_marginTop="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_future_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- Completed tasks section -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/completed_today"
+        android:padding="16dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_dark"
+        android:layout_marginTop="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_completed_tasks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_task"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:src="@drawable/add"
+        android:backgroundTint="@color/primary_teal"
+        android:layout_gravity="bottom|end" />
+
+</LinearLayout>

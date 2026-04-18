@@ -1,0 +1,231 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.todolistpersonal"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-feature
+11-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:5:5-90
+12        android:name="android.hardware.touchscreen"
+12-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:5:19-62
+13        android:required="false" />
+13-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:5:63-87
+14
+15    <permission
+15-->[androidx.core:core:1.18.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\0c495fe5599e11e4c328819ef19e8500\workspace\transformed\core-1.18.0\AndroidManifest.xml:22:5-24:47
+16        android:name="com.example.todolistpersonal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+16-->[androidx.core:core:1.18.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\0c495fe5599e11e4c328819ef19e8500\workspace\transformed\core-1.18.0\AndroidManifest.xml:23:9-81
+17        android:protectionLevel="signature" />
+17-->[androidx.core:core:1.18.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\0c495fe5599e11e4c328819ef19e8500\workspace\transformed\core-1.18.0\AndroidManifest.xml:24:9-44
+18
+19    <uses-permission android:name="com.example.todolistpersonal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+19-->[androidx.core:core:1.18.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\0c495fe5599e11e4c328819ef19e8500\workspace\transformed\core-1.18.0\AndroidManifest.xml:26:5-97
+19-->[androidx.core:core:1.18.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\0c495fe5599e11e4c328819ef19e8500\workspace\transformed\core-1.18.0\AndroidManifest.xml:26:22-94
+20
+21    <application
+21-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:7:5-70:19
+22        android:name="com.example.todolistpersonal.ToDoApplication"
+22-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:8:9-40
+23        android:allowBackup="true"
+23-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:9:9-35
+24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+24-->[androidx.core:core:1.18.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\0c495fe5599e11e4c328819ef19e8500\workspace\transformed\core-1.18.0\AndroidManifest.xml:28:18-86
+25        android:dataExtractionRules="@xml/data_extraction_rules"
+25-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:10:9-65
+26        android:debuggable="true"
+27        android:extractNativeLibs="false"
+28        android:fullBackupContent="@xml/backup_rules"
+28-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:11:9-54
+29        android:icon="@mipmap/ic_launcher"
+29-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:12:9-43
+30        android:label="@string/app_name"
+30-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:13:9-41
+31        android:roundIcon="@mipmap/ic_launcher_round"
+31-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:14:9-54
+32        android:supportsRtl="true"
+32-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:15:9-35
+33        android:testOnly="true"
+34        android:theme="@style/Theme.ToDoListPersonal" >
+34-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:16:9-54
+35
+36        <!-- Main Activity - Launcher Activity dengan Drawer dan Bottom Navigation -->
+37        <activity
+37-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:18:9-27:20
+38            android:name="com.example.todolistpersonal.MainActivity"
+38-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:19:13-41
+39            android:exported="true"
+39-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:20:13-36
+40            android:label="@string/app_name"
+40-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:21:13-45
+41            android:theme="@style/Theme.ToDoListPersonal" >
+41-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:22:13-58
+42            <intent-filter>
+42-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:23:13-26:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:24:17-69
+43-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:24:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:25:17-77
+45-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:25:27-74
+46            </intent-filter>
+47        </activity>
+48
+49        <!-- Tasks Screen Activity -->
+50        <activity
+50-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:30:9-34:61
+51            android:name="com.example.todolistpersonal.TasksActivity"
+51-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:31:13-42
+52            android:exported="false"
+52-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:32:13-37
+53            android:label="Tasks"
+53-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:33:13-34
+54            android:theme="@style/Theme.ToDoListPersonal" />
+54-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:34:13-58
+55
+56        <!-- Calendar Screen Activity -->
+57        <activity
+57-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:37:9-41:61
+58            android:name="com.example.todolistpersonal.CalendarActivity"
+58-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:38:13-45
+59            android:exported="false"
+59-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:39:13-37
+60            android:label="Calendar"
+60-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:40:13-37
+61            android:theme="@style/Theme.ToDoListPersonal" />
+61-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:41:13-58
+62
+63        <!-- New Task Dialog Activity -->
+64        <activity
+64-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:44:9-48:68
+65            android:name="com.example.todolistpersonal.NewTaskActivity"
+65-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:45:13-44
+66            android:exported="false"
+66-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:46:13-37
+67            android:label="New Task"
+67-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:47:13-37
+68            android:theme="@style/Theme.ToDoListPersonal.Dialog" />
+68-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:48:13-65
+69
+70        <!-- Task Detail Screen Activity -->
+71        <activity
+71-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:51:9-55:61
+72            android:name="com.example.todolistpersonal.TaskDetailActivity"
+72-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:52:13-47
+73            android:exported="false"
+73-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:53:13-37
+74            android:label="Task Detail"
+74-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:54:13-40
+75            android:theme="@style/Theme.ToDoListPersonal" />
+75-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:55:13-58
+76
+77        <!-- Theme Selection Activity -->
+78        <activity
+78-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:58:9-62:61
+79            android:name="com.example.todolistpersonal.ThemeActivity"
+79-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:59:13-42
+80            android:exported="false"
+80-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:60:13-37
+81            android:label="Theme"
+81-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:61:13-34
+82            android:theme="@style/Theme.ToDoListPersonal" />
+82-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:62:13-58
+83
+84        <!-- Settings Activity -->
+85        <activity
+85-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:65:9-69:61
+86            android:name="com.example.todolistpersonal.SettingsActivity"
+86-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:66:13-45
+87            android:exported="false"
+87-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:67:13-37
+88            android:label="Settings"
+88-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:68:13-37
+89            android:theme="@style/Theme.ToDoListPersonal" />
+89-->D:\Kuliah\Semester 6\Pemrograman Perangkat Bergerak\UTS\app\src\main\AndroidManifest.xml:69:13-58
+90        <activity
+90-->[androidx.compose.ui:ui-tooling-android:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\4b90ca95beeb1277d14ffc5699ba313d\workspace\transformed\ui-tooling\AndroidManifest.xml:23:9-25:39
+91            android:name="androidx.compose.ui.tooling.PreviewActivity"
+91-->[androidx.compose.ui:ui-tooling-android:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\4b90ca95beeb1277d14ffc5699ba313d\workspace\transformed\ui-tooling\AndroidManifest.xml:24:13-71
+92            android:exported="true" />
+92-->[androidx.compose.ui:ui-tooling-android:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\4b90ca95beeb1277d14ffc5699ba313d\workspace\transformed\ui-tooling\AndroidManifest.xml:25:13-36
+93        <activity
+93-->[androidx.compose.ui:ui-test-manifest:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\2c9f5c937df94def10c7f2d12eda70ab\workspace\transformed\ui-test-manifest-1.9.2\AndroidManifest.xml:23:9-26:79
+94            android:name="androidx.activity.ComponentActivity"
+94-->[androidx.compose.ui:ui-test-manifest:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\2c9f5c937df94def10c7f2d12eda70ab\workspace\transformed\ui-test-manifest-1.9.2\AndroidManifest.xml:24:13-63
+95            android:exported="true"
+95-->[androidx.compose.ui:ui-test-manifest:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\2c9f5c937df94def10c7f2d12eda70ab\workspace\transformed\ui-test-manifest-1.9.2\AndroidManifest.xml:25:13-36
+96            android:theme="@android:style/Theme.Material.Light.NoActionBar" />
+96-->[androidx.compose.ui:ui-test-manifest:1.9.2] C:\Users\USER\.gradle\caches\9.2.1\transforms\2c9f5c937df94def10c7f2d12eda70ab\workspace\transformed\ui-test-manifest-1.9.2\AndroidManifest.xml:26:13-76
+97
+98        <provider
+98-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:24:9-32:20
+99            android:name="androidx.startup.InitializationProvider"
+99-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:25:13-67
+100            android:authorities="com.example.todolistpersonal.androidx-startup"
+100-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:26:13-68
+101            android:exported="false" >
+101-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:27:13-37
+102            <meta-data
+102-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:29:13-31:52
+103                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+103-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:30:17-75
+104                android:value="androidx.startup" />
+104-->[androidx.emoji2:emoji2:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\af754afe7fe4330de5ecdb1b976d210e\workspace\transformed\emoji2-1.4.0\AndroidManifest.xml:31:17-49
+105            <meta-data
+105-->[androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\81f5eb0071c1b4c7164b23dc2ca7f8de\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:29:13-31:52
+106                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+106-->[androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\81f5eb0071c1b4c7164b23dc2ca7f8de\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:30:17-78
+107                android:value="androidx.startup" />
+107-->[androidx.lifecycle:lifecycle-process:2.10.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\81f5eb0071c1b4c7164b23dc2ca7f8de\workspace\transformed\lifecycle-process-2.10.0\AndroidManifest.xml:31:17-49
+108            <meta-data
+108-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:29:13-31:52
+109                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+109-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:30:17-85
+110                android:value="androidx.startup" />
+110-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:31:17-49
+111        </provider>
+112
+113        <receiver
+113-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:34:9-52:20
+114            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+114-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:35:13-76
+115            android:directBootAware="false"
+115-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:36:13-44
+116            android:enabled="true"
+116-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:37:13-35
+117            android:exported="true"
+117-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:38:13-36
+118            android:permission="android.permission.DUMP" >
+118-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:39:13-57
+119            <intent-filter>
+119-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:40:13-42:29
+120                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+120-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:17-91
+120-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:41:25-88
+121            </intent-filter>
+122            <intent-filter>
+122-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:43:13-45:29
+123                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:17-85
+123-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:44:25-82
+124            </intent-filter>
+125            <intent-filter>
+125-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:46:13-48:29
+126                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+126-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:17-88
+126-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:47:25-85
+127            </intent-filter>
+128            <intent-filter>
+128-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:49:13-51:29
+129                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+129-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:17-95
+129-->[androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\USER\.gradle\caches\9.2.1\transforms\51e7e9c614bcc14b6b64e2264f068e02\workspace\transformed\profileinstaller-1.4.0\AndroidManifest.xml:50:25-92
+130            </intent-filter>
+131        </receiver>
+132    </application>
+133
+134</manifest>

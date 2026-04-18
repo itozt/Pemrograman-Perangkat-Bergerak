@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">To Do List Personal</string>
+    
+    <!-- Navigation -->
+    <string name="nav_open">Open Navigation Drawer</string>
+    <string name="nav_close">Close Navigation Drawer</string>
+    <string name="nav_groups">Groups</string>
+    <string name="nav_theme">Theme</string>
+    <string name="nav_settings">Settings</string>
+    
+    <!-- Bottom Menu -->
+    <string name="menu_tasks">Tasks</string>
+    <string name="menu_calendar">Calendar</string>
+    
+    <!-- Tasks Screen -->
+    <string name="today">Today</string>
+    <string name="future">Future</string>
+    <string name="completed_today">Completed Today</string>
+    <string name="categories">Categories</string>
+    
+    <!-- Buttons -->
+    <string name="add_task">Add Task</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="create">Create</string>
+    
+    <!-- New Task Dialog -->
+    <string name="new_task">New Task</string>
+    <string name="task_title_hint">Enter task title</string>
+    <string name="category">Category</string>
+    <string name="due_date">Due Date</string>
+    <string name="due_time">Due Time</string>
+    <string name="reminder">Reminder</string>
+    <string name="repeat">Repeat</string>
+    <string name="notes">Notes</string>
+    <string name="task_detail">Task Detail</string>
+    <string name="flag_task">Flag task</string>
+    <string name="error_empty_task_title">Task title cannot be empty</string>
+    <string name="create_new_group">Create New Group</string>
+    <string name="enter_group_name">Enter group name</string>
+    <string name="create_new_category_inline">+ Create New Group</string>
+    <string name="task_count_format">%1$d tasks</string>
+    <string name="my_groups">My Groups</string>
+    <string name="create_new_group_button">+ Create New Group</string>
+    
+    <!-- Theme -->
+    <string name="theme_teal">Teal</string>
+    <string name="theme_blue">Blue</string>
+    <string name="theme_green">Green</string>
+    
+    <!-- Theme -->
+    <string name="theme_teal">Teal</string>
+    <string name="theme_blue">Blue</string>
+    <string name="theme_green">Green</string>
+
+    <!-- Settings -->
+    <string name="notifications">Notifications</string>
+    <string name="dark_mode">Dark Mode</string>
+
+    <!-- Error and Success Messages (HCI) -->
+    <string name="success_task_created">Task created successfully</string>
+    <string name="success_task_updated">Task updated successfully</string>
+    <string name="success_task_deleted">Task deleted successfully</string>
+    <string name="success_group_created">Group created successfully</string>
+    <string name="error_empty_task">Task title cannot be empty</string>
+    <string name="error_task_too_long">Task title too long (max 100 characters)</string>
+    <string name="error_empty_group">Group name cannot be empty</string>
+    <string name="error_group_too_long">Group name too long (max 50 characters)</string>
+    <string name="error_notes_too_long">Notes too long (max 500 characters)</string>
+    <string name="error_saving_task">Failed to save task</string>
+    <string name="error_deleting_task">Failed to delete task</string>
+    <string name="error_creating_group">Failed to create group</string>
+    <string name="confirm_delete_task">Delete this task? This action cannot be undone.</string>
+    <string name="confirm_delete_group">Delete this group? This action cannot be undone.</string>
+
+    <!-- Hints and Labels -->
+    <string name="hint_task_title">What do you need to do?</string>
+    <string name="hint_notes">Add any additional notes or details...</string>
+    <string name="label_select_category">Select a category or create a new one</string>
+    <string name="label_select_date">Tap to pick a date</string>
+    <string name="label_select_time">Tap to pick a time</string>
+    <string name="label_no_tasks">No tasks yet. Create one to get started!</string>
+    <string name="label_no_groups">No groups yet. Create one to organize your tasks!</string>
+    <string name="label_overdue">Overdue</string>
+    <string name="label_due_today">Due today</string>
+    <string name="label_completed">Completed</string>
+
+</resources>

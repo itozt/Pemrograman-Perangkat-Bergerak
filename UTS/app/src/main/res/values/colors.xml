@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors - Tombol, hiasan, grafis -->
+    <color name="primary_teal">#4da8a3</color>
+    <color name="primary_teal_light">#67b3b1</color>
+    <color name="primary_teal_lighter">#8ec6c3</color>
+    <color name="primary_teal_ultra_light">#b9dbda</color>
+    <color name="primary_teal_ultra_light_2">#dbeded</color>
+
+    <!-- Text Color -->
+    <color name="text_dark">#96a2ac</color>
+
+    <!-- Background -->
+    <color name="background_white">#ffffff</color>
+    <color name="background_light">#fafafa</color>
+
+    <!-- Logo Colors -->
+    <color name="logo_blue">#bbc8f2</color>
+    <color name="logo_blue_dark">#a2c5ec</color>
+    <color name="logo_pink">#dbbec3</color>
+
+    <!-- Additional colors for UI -->
+    <color name="accent_green">#4CAF50</color>
+    <color name="accent_red">#ff5252</color>
+    <color name="accent_orange">#ff9800</color>
+    <color name="accent_blue">#2196F3</color>
+    <color name="accent_yellow">#FFC107</color>
+
+    <!-- Transparency variants -->
+    <color name="primary_teal_transparent">#804da8a3</color>
+</resources>

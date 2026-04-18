@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ITEM_TASK.XML - Layout untuk task item -->
+<!-- Improved dengan better spacing, elevation, dan visual hierarchy -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:background="@drawable/rounded_input_background"
+    android:elevation="2dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="12dp">
+
+    <CheckBox
+        android:id="@+id/cb_task_complete"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="centerInside"
+        android:contentDescription="Mark task complete" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_task_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="Task title"
+            android:textColor="#2F3A44"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tv_task_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:text="Category • 2026-04-18 10:30"
+            android:textColor="#667786"
+            android:textSize="13sp"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tv_task_indicators"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:text="Reminder 09:45 | Repeat Weekly"
+            android:textColor="@color/primary_teal"
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/btn_flag_task"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Flag task"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/btn_star_big_off"
+        android:tint="@color/primary_teal" />
+
+</LinearLayout>

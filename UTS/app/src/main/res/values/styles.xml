@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base Theme - Material 3 with no built-in ActionBar -->
+    <style name="Theme.ToDoListPersonal" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_teal</item>
+        <item name="colorPrimaryDark">@color/primary_teal</item>
+        <item name="colorAccent">@color/primary_teal_light</item>
+        <item name="android:textColorPrimary">@color/text_dark</item>
+        <item name="android:textColorSecondary">@color/text_dark</item>
+    </style>
+
+    <!-- Dialog Theme -->
+    <style name="Theme.ToDoListPersonal.Dialog" parent="Theme.MaterialComponents.Light.Dialog">
+        <item name="colorPrimary">@color/primary_teal</item>
+        <item name="colorPrimaryDark">@color/primary_teal</item>
+        <item name="colorAccent">@color/primary_teal_light</item>
+    </style>
+</resources>

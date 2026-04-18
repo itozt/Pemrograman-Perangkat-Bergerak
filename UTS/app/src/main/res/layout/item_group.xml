@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ITEM_GROUP.XML - Layout untuk group item dalam RecyclerView -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:layout_margin="4dp"
+    android:background="@drawable/rounded_input_background"
+    android:gravity="center_vertical">
+
+    <!-- Color indicator -->
+    <View
+        android:id="@+id/view_group_color"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_margin="8dp"
+        android:background="@color/primary_teal" />
+
+    <!-- Group name -->
+    <TextView
+        android:id="@+id/tv_group_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Group Name"
+        android:textSize="16sp"
+        android:textColor="@color/text_dark"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp" />
+
+    <!-- Task count -->
+    <TextView
+        android:id="@+id/tv_task_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0 tasks"
+        android:textSize="12sp"
+        android:textColor="@color/primary_teal"
+        android:paddingEnd="8dp" />
+
+</LinearLayout>

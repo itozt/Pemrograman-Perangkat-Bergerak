@@ -1,0 +1,18 @@
+Tombol, hiasan, grafis
+#4da8a3
+#67b3b1
+#8ec6c3
+#b9dbda
+#dbeded
+
+Teks 
+#96a2ac
+
+Background Dasar Putih
+#ffffff
+#fafafa
+
+Logo
+#bbc8f2
+#a2c5ec
+#dbbec3
