@@ -58,19 +58,39 @@ class GroupsFragment : Fragment() {
 
     private fun setupGroupsRecyclerView() {
         val groups = TaskManager.getAllCategories().filter { it.id != "cat_all" }
-        groupsAdapter = GroupsAdapter(groups) { category ->
-            // When group clicked, navigate to TasksFragment with category filter
-            val fragment = TasksFragment()
-            val bundle = Bundle()
-            bundle.putString("category_id", category.id)
-            bundle.putString("category_name", category.name)
-            fragment.arguments = bundle
+        groupsAdapter = GroupsAdapter(
+            groups,
+            onGroupClick = { category ->
+                // When group clicked, navigate to TasksFragment with category filter
+                val fragment = TasksFragment()
+                val bundle = Bundle()
+                bundle.putString("category_id", category.id)
+                bundle.putString("category_name", category.name)
+                fragment.arguments = bundle
 
-            requireActivity().supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .addToBackStack(null)
-                .commit()
-        }
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit()
+            },
+            onGroupDelete = { category ->
+                // Show confirmation dialog before delete
+                UIHelper.showDeleteConfirmation(
+                    requireContext(),
+                    title = "Delete Group",
+                    message = "Are you sure you want to delete \"${category.name}\"?\nAll tasks in this group will be moved to default category.",
+                    onConfirm = {
+                        try {
+                            TaskManager.deleteCategory(category.id)
+                            setupGroupsRecyclerView()
+                            UIHelper.showToast(requireContext(), "Group \"${category.name}\" deleted successfully")
+                        } catch (e: Exception) {
+                            UIHelper.showErrorDialog(requireContext(), "Error", "Failed to delete group: ${e.message}")
+                        }
+                    }
+                )
+            }
+        )
 
         recyclerViewGroups.apply {
             layoutManager = LinearLayoutManager(requireContext())
@@ -132,24 +152,31 @@ class GroupsFragment : Fragment() {
  */
 class GroupsAdapter(
     private val groups: List<Category>,
-    private val onGroupClick: (Category) -> Unit
+    private val onGroupClick: (Category) -> Unit,
+    private val onGroupDelete: (Category) -> Unit
 ) : RecyclerView.Adapter<GroupsAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val groupNameView = itemView.findViewById<TextView>(R.id.tv_group_name)
         private val groupColorView = itemView.findViewById<View>(R.id.view_group_color)
         private val taskCountView = itemView.findViewById<TextView>(R.id.tv_task_count)
+        private val deleteButton = itemView.findViewById<android.widget.ImageButton>(R.id.btn_delete_group)
 
         fun bind(category: Category) {
             groupNameView.text = category.name
             groupColorView.setBackgroundColor(Color.parseColor(category.color))
-            
+
             // Count tasks for this category
             val taskCount = TaskManager.getTasksByCategory(category.id).size
             taskCountView.text = itemView.context.getString(R.string.task_count_format, taskCount)
 
             itemView.setOnClickListener {
                 onGroupClick(category)
+            }
+
+            // Delete button handler
+            deleteButton.setOnClickListener {
+                onGroupDelete(category)
             }
         }
     }

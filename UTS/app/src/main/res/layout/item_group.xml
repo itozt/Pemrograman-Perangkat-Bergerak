@@ -36,7 +36,18 @@
         android:layout_height="wrap_content"
         android:text="0 tasks"
         android:textSize="12sp"
-        android:textColor="@color/primary_teal"
-        android:paddingEnd="8dp" />
+        android:textColor="@color/text_secondary"
+        android:paddingEnd="12dp" />
+
+    <!-- Delete button -->
+    <ImageButton
+        android:id="@+id/btn_delete_group"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Delete group"
+        android:scaleType="centerInside"
+        android:src="@android:drawable/ic_menu_delete"
+        android:tint="@color/accent_red" />
 
 </LinearLayout>

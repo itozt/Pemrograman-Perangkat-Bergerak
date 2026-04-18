@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_settings.xml -->
-<!-- Lokasi: app/src/main/res/layout/activity_settings.xml -->
+<!-- activity_settings.xml - Pengaturan aplikasi dengan toolbar dan improved contrast -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/background_white">
 
+    <!-- Toolbar dengan back button -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_settings"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:background="@color/primary_teal"
         android:elevation="4dp"
-        app:titleTextColor="@color/background_white" />
+        app:titleTextColor="@color/background_white"
+        app:title="@string/nav_settings" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,19 +27,24 @@
             android:orientation="vertical"
             android:padding="24dp">
 
+            <!-- Notifications Setting -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="24dp"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/notifications"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/text_dark"
+                    android:textStyle="bold" />
 
                 <Switch
                     android:id="@+id/switch_notifications"
@@ -46,18 +53,23 @@
 
             </LinearLayout>
 
+            <!-- Dark Mode Setting -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:paddingBottom="16dp"
+                android:paddingTop="8dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="@string/dark_mode"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:textColor="@color/text_dark"
+                    android:textStyle="bold" />
 
                 <Switch
                     android:id="@+id/switch_dark_mode"

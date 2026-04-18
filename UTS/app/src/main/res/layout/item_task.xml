@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="Task title"
-            android:textColor="#2F3A44"
+            android:textColor="@color/text_dark"
             android:textSize="16sp"
             android:textStyle="bold"
             android:ellipsize="end" />
@@ -45,7 +45,7 @@
             android:layout_marginTop="4dp"
             android:maxLines="1"
             android:text="Category • 2026-04-18 10:30"
-            android:textColor="#667786"
+            android:textColor="@color/text_secondary"
             android:textSize="13sp"
             android:ellipsize="end" />
 
