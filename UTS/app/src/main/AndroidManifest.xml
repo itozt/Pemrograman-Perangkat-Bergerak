@@ -44,7 +44,7 @@
         <activity
             android:name=".NewTaskActivity"
             android:exported="false"
-            android:theme="@style/Theme.ToDoListPersonal" />
+            android:theme="@style/Theme.ToDoListPersonal.Dialog" />
 
         <!-- Task Detail Screen Activity -->
         <activity
