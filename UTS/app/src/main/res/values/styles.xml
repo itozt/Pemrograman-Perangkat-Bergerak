@@ -15,4 +15,11 @@
         <item name="colorPrimaryDark">@color/primary_teal</item>
         <item name="colorAccent">@color/primary_teal_light</item>
     </style>
+
+    <!-- Navigation Menu Item Style - HCI friendly -->
+    <style name="NavMenuItemStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>
