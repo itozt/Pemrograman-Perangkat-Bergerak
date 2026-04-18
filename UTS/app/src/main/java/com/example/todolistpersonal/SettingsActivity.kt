@@ -1,16 +1,16 @@
 package com.example.todolistpersonal
 
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.Switch
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 
 /**
  * SettingsActivity - Pengaturan global aplikasi.
  */
 class SettingsActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
+    private lateinit var buttonBack: ImageButton
     private lateinit var switchNotifications: Switch
     private lateinit var switchDarkMode: Switch
 
@@ -21,13 +21,9 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-        toolbar = findViewById(R.id.toolbar_settings)
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.nav_settings)
-        }
-        toolbar.setBackgroundColor(ThemeSettingsManager.getThemeColor(this))
+        // Back button handler
+        buttonBack = findViewById(R.id.btn_back_settings)
+        buttonBack.setOnClickListener { finish() }
 
         switchNotifications = findViewById(R.id.switch_notifications)
         switchDarkMode = findViewById(R.id.switch_dark_mode)
@@ -51,22 +47,5 @@ class SettingsActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         ThemeSettingsManager.setNotificationsEnabled(this, switchNotifications.isChecked)
-    }
-
-    /**
-     * onDestroy - Cleanup akhir layar settings.
-     */
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
-    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
     }
 }

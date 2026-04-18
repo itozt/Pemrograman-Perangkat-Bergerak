@@ -9,11 +9,13 @@
         <item name="android:textColorSecondary">@color/text_dark</item>
     </style>
 
-    <!-- Dialog Theme -->
+    <!-- Dialog Theme - NO TITLE for New Task Popup -->
     <style name="Theme.ToDoListPersonal.Dialog" parent="Theme.MaterialComponents.Light.Dialog">
         <item name="colorPrimary">@color/primary_teal</item>
         <item name="colorPrimaryDark">@color/primary_teal</item>
         <item name="colorAccent">@color/primary_teal_light</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
     </style>
 
     <!-- Navigation Menu Item Style - HCI friendly -->

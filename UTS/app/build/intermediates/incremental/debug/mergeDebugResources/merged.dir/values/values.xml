@@ -5748,6 +5748,11 @@
     <item name="android:layout_gravity">center</item>
     <item name="android:textAlignment" ns1:ignore="NewApi">center</item>
   </style>
+    <style name="NavMenuItemStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textStyle">normal</item>
+    </style>
     <style name="Platform.AppCompat" parent="android:Theme.Holo">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>

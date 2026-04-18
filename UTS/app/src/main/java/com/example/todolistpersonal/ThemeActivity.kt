@@ -1,17 +1,17 @@
 package com.example.todolistpersonal
 
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 
 /**
  * ThemeActivity - Pengaturan tema warna aplikasi.
  */
 class ThemeActivity : AppCompatActivity() {
 
-    private lateinit var toolbar: Toolbar
+    private lateinit var buttonBack: ImageButton
     private lateinit var radioGroupTheme: RadioGroup
     private lateinit var radioBtnTealTheme: RadioButton
     private lateinit var radioBtnBlueTheme: RadioButton
@@ -24,13 +24,9 @@ class ThemeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_theme)
 
-        toolbar = findViewById(R.id.toolbar_theme)
-        setSupportActionBar(toolbar)
-        supportActionBar?.apply {
-            setDisplayHomeAsUpEnabled(true)
-            title = getString(R.string.nav_theme)
-        }
-        toolbar.setBackgroundColor(ThemeSettingsManager.getThemeColor(this))
+        // Back button handler
+        buttonBack = findViewById(R.id.btn_back_theme)
+        buttonBack.setOnClickListener { finish() }
 
         radioGroupTheme = findViewById(R.id.radio_group_theme)
         radioBtnTealTheme = findViewById(R.id.radio_theme_teal)
@@ -50,7 +46,6 @@ class ThemeActivity : AppCompatActivity() {
                 else -> "teal"
             }
             ThemeSettingsManager.setThemeName(this, selected)
-            toolbar.setBackgroundColor(ThemeSettingsManager.getThemeColor(this))
         }
     }
 
@@ -63,17 +58,6 @@ class ThemeActivity : AppCompatActivity() {
             "blue" -> radioBtnBlueTheme.isChecked = true
             "green" -> radioBtnGreenTheme.isChecked = true
             else -> radioBtnTealTheme.isChecked = true
-        }
-        toolbar.setBackgroundColor(ThemeSettingsManager.getThemeColor(this))
-    }
-
-    override fun onOptionsItemSelected(item: android.view.MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                finish()
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
         }
     }
 }

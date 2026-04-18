@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_flag_finish.png.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/flag_finish.png"
+    },
+    {
         "merged": "com.example.todolistpersonal.app-debug-47:/drawable_calendar.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/drawable/calendar.xml"
     },
@@ -92,6 +96,10 @@
         "source": "com.example.todolistpersonal.app-main-49:/drawable/notebook.xml"
     },
     {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_ic_arrow_back.xml.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/ic_arrow_back.xml"
+    },
+    {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_fragment_calendar.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/layout/fragment_calendar.xml"
     },
@@ -102,6 +110,10 @@
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/drawable_ic_feedback.xml.flat",
         "source": "com.example.todolistpersonal.app-main-49:/drawable/ic_feedback.xml"
+    },
+    {
+        "merged": "com.example.todolistpersonal.app-debug-47:/drawable_flag_finish_fill.png.flat",
+        "source": "com.example.todolistpersonal.app-main-49:/drawable/flag_finish_fill.png"
     },
     {
         "merged": "com.example.todolistpersonal.app-debug-47:/layout_activity_task_detail.xml.flat",

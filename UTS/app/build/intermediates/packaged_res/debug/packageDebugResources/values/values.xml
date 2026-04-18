@@ -82,6 +82,11 @@
     <string name="theme_green">Green</string>
     <string name="theme_teal">Teal</string>
     <string name="today">Today</string>
+    <style name="NavMenuItemStyle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_dark</item>
+        <item name="android:textStyle">normal</item>
+    </style>
     <style name="Theme.ToDoListPersonal" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/primary_teal</item>
         <item name="colorPrimaryDark">@color/primary_teal</item>

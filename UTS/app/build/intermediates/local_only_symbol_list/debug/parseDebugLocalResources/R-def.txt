@@ -21,7 +21,10 @@ color text_light
 color text_secondary
 drawable add
 drawable calendar
+drawable flag_finish
+drawable flag_finish_fill
 drawable ic_app_logo
+drawable ic_arrow_back
 drawable ic_feedback
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -31,8 +34,8 @@ drawable notebook
 drawable rounded_input_background
 drawable setting
 id bottom_navigation
+id btn_back_task_detail
 id btn_cancel_task
-id btn_cancel_task_detail
 id btn_close_new_task
 id btn_create_group
 id btn_delete_group
@@ -84,7 +87,6 @@ id text_reminder_time_detail
 id toolbar
 id toolbar_calendar
 id toolbar_settings
-id toolbar_task_detail
 id toolbar_tasks
 id toolbar_theme
 id tv_category_chip
@@ -175,6 +177,7 @@ string theme_blue
 string theme_green
 string theme_teal
 string today
+style NavMenuItemStyle
 style Theme.ToDoListPersonal
 style Theme.ToDoListPersonal.Dialog
 xml backup_rules

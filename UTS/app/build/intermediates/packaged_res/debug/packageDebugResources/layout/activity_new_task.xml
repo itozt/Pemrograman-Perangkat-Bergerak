@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- activity_new_task.xml - HCI-based redesign dengan header yang proper -->
+<!-- activity_new_task.xml - HCI-based redesign dengan header hijau di paling atas -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_white">
+    android:background="@color/background_light">
 
     <!-- Header dengan "New Task" title dan close button -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:background="@color/primary_teal"
         android:padding="12dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:elevation="4dp">
+        android:elevation="4dp"
+        android:minHeight="56dp">
 
         <ImageButton
             android:id="@+id/btn_close_new_task"
@@ -346,7 +347,7 @@
         android:orientation="horizontal"
         android:padding="16dp"
         android:gravity="center"
-        android:background="@color/background_light"
+        android:background="@color/background_white"
         android:elevation="8dp">
 
         <com.google.android.material.button.MaterialButton
