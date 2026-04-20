@@ -23,6 +23,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.BorderStroke
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
@@ -116,6 +117,18 @@ fun AddTaskDialog(
             Calendar.THURSDAY to "Thu",
             Calendar.FRIDAY to "Fri",
             Calendar.SATURDAY to "Sat"
+        )
+    }
+
+    val daysOfWeekIndonesian = remember {
+        mapOf(
+            "Sun" to "Minggu",
+            "Mon" to "Senin",
+            "Tue" to "Selasa",
+            "Wed" to "Rabu",
+            "Thu" to "Kamis",
+            "Fri" to "Jumat",
+            "Sat" to "Sabtu"
         )
     }
 
@@ -258,25 +271,7 @@ fun AddTaskDialog(
                     }
                 }
 
-                // Section 2: Category (Placeholder)
-                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    TaskSectionHeader(icon = "📁", title = "Pilih Kategori")
-                    OutlinedTextField(
-                        value = "General",
-                        onValueChange = { },
-                        modifier = Modifier.fillMaxWidth(),
-                        singleLine = true,
-                        shape = RoundedCornerShape(10.dp),
-                        enabled = false,
-                        colors = OutlinedTextFieldDefaults.colors(
-                            disabledBorderColor = MaterialTheme.colorScheme.outline,
-                            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
-                        ),
-                        textStyle = MaterialTheme.typography.bodyMedium
-                    )
-                }
-
-                // Section 3: Deadline
+                // Section 2: Deadline
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     TaskSectionHeader(icon = "📅", title = "Kapan Anda ingin menyelesaikannya?")
                     Row(
@@ -393,7 +388,7 @@ fun AddTaskDialog(
                     )
                 }
 
-                // Section 4: Repeat Pattern (only if deadline is set)
+                // Section 3: Repeat Pattern (only if deadline is set)
                 if (selectedDateMillis != null && initialTask == null) {
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         TaskSectionHeader(icon = "🔁", title = "Pola Pengulangan")
@@ -470,21 +465,25 @@ fun AddTaskDialog(
                             // Custom days selector
                             if (repeatMode == com.example.todolist.domain.model.RepeatMode.CUSTOM_DAYS) {
                                 val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-                                val dayInitials = listOf("M", "T", "W", "T", "F", "S", "S")
-                                Row(
+                                val daysDisplay = daysOfWeek.map { daysOfWeekIndonesian[it] ?: it }
+                                Column(
                                     modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                    verticalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
-                                    daysOfWeek.forEachIndexed { index, day ->
-                                        val isSelected = customDays.contains(day)
-                                        Box(
-                                            modifier = Modifier
-                                                .size(38.dp)
-                                                .background(
-                                                    color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surfaceVariant,
-                                                    shape = CircleShape
-                                                )
-                                                .clickable {
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        repeat(4) { i ->
+                                            val day = daysOfWeek[i]
+                                            val dayDisplay = daysDisplay[i]
+                                            val isSelected = customDays.contains(day)
+                                            DaySelectionButton(
+                                                day = day,
+                                                dayDisplay = dayDisplay,
+                                                isSelected = isSelected,
+                                                modifier = Modifier.weight(1f),
+                                                onToggle = {
                                                     if (isSelected) {
                                                         val newCustomDays = customDays - day
                                                         customDays = newCustomDays
@@ -508,18 +507,46 @@ fun AddTaskDialog(
                                                         customDays = customDays + day
                                                     }
                                                 }
-                                                .border(
-                                                    width = if (isSelected) 0.dp else 1.dp,
-                                                    color = MaterialTheme.colorScheme.outline,
-                                                    shape = CircleShape
-                                                ),
-                                            contentAlignment = Alignment.Center
-                                        ) {
-                                            Text(
-                                                text = dayInitials[index],
-                                                fontSize = 11.sp,
-                                                fontWeight = FontWeight.Bold,
-                                                color = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurfaceVariant
+                                            )
+                                        }
+                                    }
+                                    Row(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        repeat(3) { i ->
+                                            val day = daysOfWeek[i + 4]
+                                            val dayDisplay = daysDisplay[i + 4]
+                                            val isSelected = customDays.contains(day)
+                                            DaySelectionButton(
+                                                day = day,
+                                                dayDisplay = dayDisplay,
+                                                isSelected = isSelected,
+                                                modifier = Modifier.weight(1f),
+                                                onToggle = {
+                                                    if (isSelected) {
+                                                        val newCustomDays = customDays - day
+                                                        customDays = newCustomDays
+
+                                                        selectedDateMillis?.let { dateMillis ->
+                                                            val cal = Calendar.getInstance().apply { timeInMillis = dateMillis }
+                                                            val currentDayStr = daysOfWeekMap[cal.get(Calendar.DAY_OF_WEEK)]
+
+                                                            if (currentDayStr == day && newCustomDays.isNotEmpty()) {
+                                                                val searchCal = Calendar.getInstance().apply { timeInMillis = dateMillis }
+                                                                for (i in 0..6) {
+                                                                    if (newCustomDays.contains(daysOfWeekMap[searchCal.get(Calendar.DAY_OF_WEEK)])) {
+                                                                        selectedDateMillis = searchCal.timeInMillis
+                                                                        break
+                                                                    }
+                                                                    searchCal.add(Calendar.DAY_OF_YEAR, 1)
+                                                                }
+                                                            }
+                                                        }
+                                                    } else {
+                                                        customDays = customDays + day
+                                                    }
+                                                }
                                             )
                                         }
                                     }
@@ -534,7 +561,7 @@ fun AddTaskDialog(
                     }
                 }
 
-                // Section 5: Add Notes
+                // Section 4: Add Notes
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     TaskSectionHeader(icon = "📝", title = "Tambah Catatan (Opsional)")
                     OutlinedTextField(
@@ -651,6 +678,37 @@ private fun TaskSectionHeader(icon: String, title: String) {
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+
+@Composable
+private fun DaySelectionButton(
+    day: String,
+    dayDisplay: String,
+    isSelected: Boolean,
+    modifier: Modifier = Modifier,
+    onToggle: () -> Unit
+) {
+    OutlinedButton(
+        onClick = onToggle,
+        modifier = modifier
+            .height(48.dp)
+            .fillMaxWidth(),
+        colors = ButtonDefaults.outlinedButtonColors(
+            containerColor = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
+            contentColor = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
+        ),
+        border = androidx.compose.material3.BorderStroke(
+            width = 1.dp,
+            color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
+        ),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Text(
+            text = dayDisplay,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Medium
         )
     }
 }
