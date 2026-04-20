@@ -5,6 +5,7 @@ import android.app.TimePickerDialog
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -466,63 +468,25 @@ fun AddTaskDialog(
                             if (repeatMode == com.example.todolist.domain.model.RepeatMode.CUSTOM_DAYS) {
                                 val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
                                 val daysDisplay = daysOfWeek.map { daysOfWeekIndonesian[it] ?: it }
+                                val horizontalScrollState = remember { rememberScrollState() }
                                 Column(
                                     modifier = Modifier.fillMaxWidth(),
                                     verticalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
                                     Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .horizontalScroll(horizontalScrollState),
+                                        horizontalArrangement = Arrangement.spacedBy(6.dp)
                                     ) {
-                                        repeat(4) { i ->
-                                            val day = daysOfWeek[i]
-                                            val dayDisplay = daysDisplay[i]
+                                        daysOfWeek.forEachIndexed { index, day ->
+                                            val dayDisplay = daysDisplay[index]
                                             val isSelected = customDays.contains(day)
                                             DaySelectionButton(
                                                 day = day,
                                                 dayDisplay = dayDisplay,
                                                 isSelected = isSelected,
-                                                modifier = Modifier.weight(1f),
-                                                onToggle = {
-                                                    if (isSelected) {
-                                                        val newCustomDays = customDays - day
-                                                        customDays = newCustomDays
-
-                                                        selectedDateMillis?.let { dateMillis ->
-                                                            val cal = Calendar.getInstance().apply { timeInMillis = dateMillis }
-                                                            val currentDayStr = daysOfWeekMap[cal.get(Calendar.DAY_OF_WEEK)]
-
-                                                            if (currentDayStr == day && newCustomDays.isNotEmpty()) {
-                                                                val searchCal = Calendar.getInstance().apply { timeInMillis = dateMillis }
-                                                                for (i in 0..6) {
-                                                                    if (newCustomDays.contains(daysOfWeekMap[searchCal.get(Calendar.DAY_OF_WEEK)])) {
-                                                                        selectedDateMillis = searchCal.timeInMillis
-                                                                        break
-                                                                    }
-                                                                    searchCal.add(Calendar.DAY_OF_YEAR, 1)
-                                                                }
-                                                            }
-                                                        }
-                                                    } else {
-                                                        customDays = customDays + day
-                                                    }
-                                                }
-                                            )
-                                        }
-                                    }
-                                    Row(
-                                        modifier = Modifier.fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                    ) {
-                                        repeat(3) { i ->
-                                            val day = daysOfWeek[i + 4]
-                                            val dayDisplay = daysDisplay[i + 4]
-                                            val isSelected = customDays.contains(day)
-                                            DaySelectionButton(
-                                                day = day,
-                                                dayDisplay = dayDisplay,
-                                                isSelected = isSelected,
-                                                modifier = Modifier.weight(1f),
+                                                modifier = Modifier.width(56.dp),
                                                 onToggle = {
                                                     if (isSelected) {
                                                         val newCustomDays = customDays - day
@@ -552,7 +516,7 @@ fun AddTaskDialog(
                                     }
                                 }
                                 Text(
-                                    text = "Pilih hari pengulangan",
+                                    text = "Pilih hari pengulangan (geser untuk melihat semua hari)",
                                     fontSize = 11.sp,
                                     color = MaterialTheme.colorScheme.outlineVariant
                                 )
