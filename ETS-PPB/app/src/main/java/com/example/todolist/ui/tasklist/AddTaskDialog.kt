@@ -479,8 +479,9 @@ fun AddTaskDialog(
                                 ) {
                                     Row(
                                         modifier = Modifier
-                                            .fillMaxWidth(),
-                                        horizontalArrangement = Arrangement.SpaceEvenly,
+                                            .fillMaxWidth()
+                                            .padding(horizontal = 8.dp),
+                                        horizontalArrangement = Arrangement.spacedBy(6.dp),
                                         verticalAlignment = Alignment.CenterVertically
                                     ) {
                                         daysOfWeek.forEachIndexed { index, day ->
@@ -491,6 +492,7 @@ fun AddTaskDialog(
                                                 dayInitial = dayInitial,
                                                 isSelected = isSelected,
                                                 isSunday = isSunday,
+                                                modifier = Modifier.weight(1f),
                                                 onToggle = {
                                                     if (isSelected) {
                                                         val newCustomDays = customDays - day
@@ -655,9 +657,10 @@ private fun DaySelectionCircleButton(
     dayInitial: String,
     isSelected: Boolean,
     isSunday: Boolean,
+    modifier: Modifier = Modifier,
     onToggle: () -> Unit
 ) {
-    val buttonSize = 44.dp
+    val buttonSize = 38.dp
     val textColor = when {
         isSelected && isSunday -> MaterialTheme.colorScheme.error
         isSelected -> MaterialTheme.colorScheme.onPrimary
@@ -672,14 +675,15 @@ private fun DaySelectionCircleButton(
     }
 
     Box(
-        modifier = Modifier
-            .size(buttonSize)
+        modifier = modifier
+            .aspectRatio(1f)
+            .heightIn(max = buttonSize)
             .background(
                 color = backgroundColor,
                 shape = CircleShape
             )
             .border(
-                width = 1.5.dp,
+                width = 1.2.dp,
                 color = if (isSunday) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
                 shape = CircleShape
             )
@@ -688,7 +692,7 @@ private fun DaySelectionCircleButton(
     ) {
         Text(
             text = dayInitial,
-            fontSize = 16.sp,
+            fontSize = 14.sp,
             fontWeight = FontWeight.Bold,
             color = textColor,
             textAlign = TextAlign.Center
