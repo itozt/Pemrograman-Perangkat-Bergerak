@@ -668,16 +668,19 @@ private fun DaySelectionCircleButton(
     // Text color: white when selected, colored when unselected
     val textColor = when {
         isSelected -> Color.White
-        isSunday -> MaterialTheme.colorScheme.error
-        else -> MaterialTheme.colorScheme.onSurface
+        isSunday -> Color(0xFFC62828)  // Dark red for visibility on light background
+        else -> Color(0xFF1565C0)       // Dark blue for visibility on light background
     }
     
-    // Background color: softer colors when selected
+    // Background color: soft/muda colors for both selected and unselected
     val backgroundColor = if (isSelected) {
-        if (isSunday) Color(0xFFE57373) else Color(0xFFB3E5FC)  // Soft red and soft blue
+        if (isSunday) Color(0xFFE57373) else Color(0xFFB3E5FC)  // Medium soft red and blue when selected
     } else {
-        MaterialTheme.colorScheme.surface
+        if (isSunday) Color(0xFFFFEBEE) else Color(0xFFE3F2FD)  // Very light (pale) red and blue when unselected
     }
+    
+    // Border color: softer, matches background theme
+    val borderColor = if (isSunday) Color(0xFFEF5350) else Color(0xFF90CAF9)
 
     Box(
         modifier = modifier
@@ -689,7 +692,7 @@ private fun DaySelectionCircleButton(
             )
             .border(
                 width = 1.2.dp,
-                color = if (isSunday) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
+                color = borderColor,
                 shape = CircleShape
             )
             .clickable(onClick = onToggle),
