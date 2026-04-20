@@ -50,6 +50,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -663,15 +664,17 @@ private fun DaySelectionCircleButton(
     onToggle: () -> Unit
 ) {
     val buttonSize = 38.dp
+    
+    // Text color: white when selected, colored when unselected
     val textColor = when {
-        isSelected && isSunday -> MaterialTheme.colorScheme.error
-        isSelected -> MaterialTheme.colorScheme.onPrimary
+        isSelected -> Color.White
         isSunday -> MaterialTheme.colorScheme.error
         else -> MaterialTheme.colorScheme.onSurface
     }
     
+    // Background color: softer colors when selected
     val backgroundColor = if (isSelected) {
-        if (isSunday) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+        if (isSunday) Color(0xFFE57373) else Color(0xFFB3E5FC)  // Soft red and soft blue
     } else {
         MaterialTheme.colorScheme.surface
     }
