@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">To-Do Planner</string>
+    <string name="judul_tugas_harian">Tugas Harian</string>
+    <string name="tambah_tugas">Tambah tugas</string>
+    <string name="empty_tugas">Belum ada tugas. Tekan tombol + untuk menambahkan tugas baru.</string>
+    <string name="filter_semua">Semua</string>
+    <string name="filter_aktif">Aktif</string>
+    <string name="filter_selesai">Selesai</string>
+    <string name="hapus">Hapus</string>
+    <string name="tugas_dihapus">Tugas dihapus</string>
+    <string name="batal">Batal</string>
+    <string name="deadline">Deadline</string>
+    <string name="tanpa_deadline">Tanpa deadline</string>
+    <string name="dialog_tambah_tugas">Tambah tugas</string>
+    <string name="judul">Judul</string>
+    <string name="catatan_opsional">Catatan (opsional)</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="jam">Jam</string>
+    <string name="belum_dipilih">Belum dipilih</string>
+    <string name="opsional">Opsional</string>
+    <string name="pilih_tanggal">Pilih tanggal</string>
+    <string name="pilih_jam">Pilih jam</string>
+    <string name="hapus_deadline">Hapus deadline</string>
+    <string name="simpan">Simpan</string>
+    <string name="tandai_penting">Tandai sebagai penting</string>
+</resources>
