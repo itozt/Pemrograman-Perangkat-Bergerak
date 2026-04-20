@@ -52,8 +52,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.PaddingValues
 import com.example.todolist.R
 import com.example.todolist.domain.model.RepeatMode
 import com.example.todolist.domain.model.Task
@@ -488,7 +490,7 @@ fun AddTaskDialog(
                                                 day = day,
                                                 dayDisplay = dayDisplay,
                                                 isSelected = isSelected,
-                                                modifier = Modifier.width(56.dp),
+                                                modifier = Modifier.width(70.dp),
                                                 onToggle = {
                                                     if (isSelected) {
                                                         val newCustomDays = customDays - day
@@ -659,22 +661,25 @@ private fun DaySelectionButton(
     OutlinedButton(
         onClick = onToggle,
         modifier = modifier
-            .height(48.dp)
+            .height(56.dp)
             .fillMaxWidth(),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
             contentColor = if (isSelected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onSurface
         ),
         border = BorderStroke(
-            width = 1.dp,
+            width = 1.5.dp,
             color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
         ),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(8.dp),
+        contentPadding = PaddingValues(horizontal = 4.dp, vertical = 2.dp)
     ) {
         Text(
             text = dayDisplay,
-            fontSize = 12.sp,
-            fontWeight = FontWeight.Medium
+            fontSize = 13.sp,
+            fontWeight = FontWeight.SemiBold,
+            maxLines = 2,
+            textAlign = TextAlign.Center
         )
     }
 }
