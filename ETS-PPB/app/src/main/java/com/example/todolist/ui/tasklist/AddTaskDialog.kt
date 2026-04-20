@@ -661,7 +661,7 @@ private fun DaySelectionButton(
     OutlinedButton(
         onClick = onToggle,
         modifier = modifier
-            .height(44.dp)
+            .height(40.dp)
             .fillMaxWidth(),
         colors = ButtonDefaults.outlinedButtonColors(
             containerColor = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.surface,
@@ -672,7 +672,7 @@ private fun DaySelectionButton(
             color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline
         ),
         shape = RoundedCornerShape(8.dp),
-        contentPadding = PaddingValues(horizontal = 2.dp, vertical = 0.dp)
+        contentPadding = PaddingValues(horizontal = 0.dp, vertical = 0.dp)
     ) {
         Text(
             text = dayDisplay,
@@ -680,7 +680,7 @@ private fun DaySelectionButton(
             fontWeight = FontWeight.SemiBold,
             maxLines = 2,
             textAlign = TextAlign.Center,
-            lineHeight = 14.sp
+            lineHeight = 13.sp
         )
     }
 }
