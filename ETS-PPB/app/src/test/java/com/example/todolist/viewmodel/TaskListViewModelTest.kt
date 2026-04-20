@@ -126,7 +126,8 @@ private class FakeTaskRepository : TaskRepository {
         deadlineMillis: Long?,
         deadlineHasTime: Boolean,
         repeatMode: com.example.todolist.domain.model.RepeatMode,
-        repeatDays: String?
+        repeatDays: String?,
+        groupId: String?
     ): Long {
         val id = nextId++
         val now = System.currentTimeMillis()
@@ -140,7 +141,8 @@ private class FakeTaskRepository : TaskRepository {
             createdAtMillis = now,
             updatedAtMillis = now,
             repeatMode = repeatMode,
-            repeatDays = repeatDays
+            repeatDays = repeatDays,
+            groupId = groupId
         )
         tasks.value = tasks.value + task
         return id
