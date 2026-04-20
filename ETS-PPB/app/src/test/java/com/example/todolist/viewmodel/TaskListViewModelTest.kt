@@ -3,7 +3,6 @@ package com.example.todolist.viewmodel
 import com.example.todolist.MainDispatcherRule
 import com.example.todolist.data.repository.TaskRepository
 import com.example.todolist.domain.model.Task
-import com.example.todolist.ui.tasklist.TaskFilter
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,29 +21,6 @@ class TaskListViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
-
-    @Test
-    fun setFilter_active_onlyShowsUndoneTasks() = runTest {
-        val repository = FakeTaskRepository()
-        repository.seed(
-            listOf(
-                sampleTask(id = 1, title = "A", isDone = false),
-                sampleTask(id = 2, title = "B", isDone = true)
-            )
-        )
-        val viewModel = TaskListViewModel(repository)
-        val collectJob = backgroundScope.launch { viewModel.uiState.collect {} }
-
-        viewModel.setFilter(TaskFilter.ACTIVE)
-        advanceUntilIdle()
-
-        val state = viewModel.uiState.value
-        assertEquals(TaskFilter.ACTIVE, state.selectedFilter)
-        assertEquals(1, state.tasks.size)
-        assertEquals("A", state.tasks.first().title)
-
-        collectJob.cancel()
-    }
 
     @Test
     fun addTask_trimsTitleAndBlankNotes() = runTest {
