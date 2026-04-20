@@ -93,6 +93,8 @@ fun AddTaskDialog(
     var repeatCountText by remember { mutableStateOf("") }
     var showDeleteConfirmation by remember { mutableStateOf(false) }
 
+    val horizontalScrollState = remember { rememberScrollState() }
+
     val context = LocalContext.current
     val locale = Locale.forLanguageTag("id-ID")
     val addTitleLabel = if (initialTask == null) "Tugas Baru" else "Edit Tugas"
@@ -468,7 +470,6 @@ fun AddTaskDialog(
                             if (repeatMode == com.example.todolist.domain.model.RepeatMode.CUSTOM_DAYS) {
                                 val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
                                 val daysDisplay = daysOfWeek.map { daysOfWeekIndonesian[it] ?: it }
-                                val horizontalScrollState = remember { rememberScrollState() }
                                 Column(
                                     modifier = Modifier.fillMaxWidth(),
                                     verticalArrangement = Arrangement.spacedBy(8.dp)
