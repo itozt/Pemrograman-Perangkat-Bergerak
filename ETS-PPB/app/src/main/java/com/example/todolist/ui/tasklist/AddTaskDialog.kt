@@ -472,25 +472,25 @@ fun AddTaskDialog(
                             // Custom days selector
                             if (repeatMode == com.example.todolist.domain.model.RepeatMode.CUSTOM_DAYS) {
                                 val daysOfWeek = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
-                                val daysDisplay = daysOfWeek.map { daysOfWeekIndonesian[it] ?: it }
+                                val daysInitials = listOf("S", "S", "R", "K", "J", "S", "M")
                                 Column(
                                     modifier = Modifier.fillMaxWidth(),
                                     verticalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
                                     Row(
                                         modifier = Modifier
-                                            .fillMaxWidth()
-                                            .horizontalScroll(horizontalScrollState),
-                                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                            .fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.SpaceEvenly,
+                                        verticalAlignment = Alignment.CenterVertically
                                     ) {
                                         daysOfWeek.forEachIndexed { index, day ->
-                                            val dayDisplay = daysDisplay[index]
+                                            val dayInitial = daysInitials[index]
                                             val isSelected = customDays.contains(day)
-                                            DaySelectionButton(
-                                                day = day,
-                                                dayDisplay = dayDisplay,
+                                            val isSunday = (day == "Sun")
+                                            DaySelectionCircleButton(
+                                                dayInitial = dayInitial,
                                                 isSelected = isSelected,
-                                                modifier = Modifier.width(70.dp),
+                                                isSunday = isSunday,
                                                 onToggle = {
                                                     if (isSelected) {
                                                         val newCustomDays = customDays - day
@@ -520,7 +520,7 @@ fun AddTaskDialog(
                                     }
                                 }
                                 Text(
-                                    text = "Pilih hari pengulangan (geser untuk melihat semua hari)",
+                                    text = "Pilih hari pengulangan",
                                     fontSize = 11.sp,
                                     color = MaterialTheme.colorScheme.outlineVariant
                                 )
@@ -646,6 +646,52 @@ private fun TaskSectionHeader(icon: String, title: String) {
             fontSize = 13.sp,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.primary
+        )
+    }
+}
+
+@Composable
+private fun DaySelectionCircleButton(
+    dayInitial: String,
+    isSelected: Boolean,
+    isSunday: Boolean,
+    onToggle: () -> Unit
+) {
+    val buttonSize = 44.dp
+    val textColor = when {
+        isSelected && isSunday -> MaterialTheme.colorScheme.error
+        isSelected -> MaterialTheme.colorScheme.onPrimary
+        isSunday -> MaterialTheme.colorScheme.error
+        else -> MaterialTheme.colorScheme.onSurface
+    }
+    
+    val backgroundColor = if (isSelected) {
+        if (isSunday) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.primary
+    } else {
+        MaterialTheme.colorScheme.surface
+    }
+
+    Box(
+        modifier = Modifier
+            .size(buttonSize)
+            .background(
+                color = backgroundColor,
+                shape = CircleShape
+            )
+            .border(
+                width = 1.5.dp,
+                color = if (isSunday) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline,
+                shape = CircleShape
+            )
+            .clickable(onClick = onToggle),
+        contentAlignment = Alignment.Center
+    ) {
+        Text(
+            text = dayInitial,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            color = textColor,
+            textAlign = TextAlign.Center
         )
     }
 }
