@@ -52,6 +52,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -102,6 +104,8 @@ fun AddTaskDialog(
     val horizontalScrollState = remember { ScrollState(0) }
 
     val context = LocalContext.current
+    val focusManager = LocalFocusManager.current
+    val keyboardController = LocalSoftwareKeyboardController.current
     val locale = Locale.forLanguageTag("id-ID")
     val addTitleLabel = if (initialTask == null) "Tugas Baru" else "Edit Tugas"
     val saveLabel = stringResource(id = R.string.simpan)
@@ -150,6 +154,12 @@ fun AddTaskDialog(
                 customDays = customDays + dayStr
             }
         }
+    }
+
+    // Helper function to close keyboard
+    val closeKeyboard = {
+        keyboardController?.hide()
+        focusManager.clearFocus()
     }
 
     // Delete confirmation dialog
@@ -296,6 +306,7 @@ fun AddTaskDialog(
                                 .clip(RoundedCornerShape(10.dp))
                                 .background(MaterialTheme.colorScheme.surface)
                                 .clickable {
+                                    closeKeyboard()
                                     val calendar = Calendar.getInstance()
                                     selectedDateMillis?.let { calendar.timeInMillis = it }
                                     DatePickerDialog(
@@ -337,6 +348,7 @@ fun AddTaskDialog(
                                     else MaterialTheme.colorScheme.surfaceVariant
                                 )
                                 .clickable(enabled = selectedDateMillis != null) {
+                                    closeKeyboard()
                                     val now = Calendar.getInstance()
                                     TimePickerDialog(
                                         context,
@@ -366,6 +378,7 @@ fun AddTaskDialog(
                         // Clear deadline button (X icon)
                         androidx.compose.material3.IconButton(
                             onClick = {
+                                closeKeyboard()
                                 selectedDateMillis = null
                                 selectedHourMinute = null
                             },
@@ -407,7 +420,10 @@ fun AddTaskDialog(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clip(RoundedCornerShape(10.dp))
-                                .clickable { repeatDropdownExpanded = true }
+                                .clickable { 
+                                    closeKeyboard()
+                                    repeatDropdownExpanded = true 
+                                }
                                 .background(MaterialTheme.colorScheme.surfaceVariant)
                                 .border(
                                     width = 1.dp,
@@ -497,6 +513,7 @@ fun AddTaskDialog(
                                                 isSunday = isSunday,
                                                 modifier = Modifier.weight(1f),
                                                 onToggle = {
+                                                    closeKeyboard()
                                                     if (isSelected) {
                                                         val newCustomDays = customDays - day
                                                         customDays = newCustomDays
