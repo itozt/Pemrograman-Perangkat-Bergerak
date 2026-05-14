@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Siswa — Penjelasan Aplikasi</title>
+    <style>
+        /* Container utama */
+        .blog-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        /* Bagian Profil/Detail Diri */
+        .student-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-left: 4px solid #b8860b;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .student-info p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        .student-info span {
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+
+        /* Tabel Perkembangan Teknologi */
+        .tech-table-container {
+            overflow-x: auto;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            border: 1px solid #b8860b;
+        }
+        .tech-table thead {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid #b8860b;
+        }
+        .tech-table th {
+            padding: 12px 15px;
+            text-align: left;
+            color: #ffd700;
+            border: 1px solid #b8860b;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .tech-table td {
+            padding: 12px 15px;
+            border: 1px solid #b8860b;
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        .tech-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .tech-table tbody tr:hover {
+            background-color: rgba(184, 134, 11, 0.2);
+            transition: 0.3s;
+        }
+
+        /* Gambar di dalam tabel */
+        .table-img {
+            max-width: 100px;
+            max-height: 100px;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            border: 1px solid #b8860b;
+            background-color: rgba(255,255,255,0.05);
+        }
+      	h1, h2, h3 {
+            color: #b6a271;
+        }
+    </style>
+</head>
+<body>
+  
+  <div class="blog-wrapper">
+    <div class="student-info">
+        <p><span>Nama :</span> Christoforus Indra Bagus Pratama</p>
+        <p><span>NRP :</span> 5025231124</p>
+        <p><span>Mata Kuliah :</span> Pemrograman Perangkat Bergerak (C)</p>
+        <p><span>Tanggal :</span> 6 Mei 2026</p>
+        <p><span>Pertemuan :</span> 11</p>
+      <p><span>Link :</span><a href="https://github.com/itozt/Pemrograman-Perangkat-Bergerak/blob/main/Pertemuan%2011/app/src/main/java/com/example/pertemuan11/MainActivity.kt" target="_blank"> Github</a></p>
+    </div>
+</div>
+<div class="blog-wrapper">
+
+    <h1>Market Siswa — Aplikasi Marketplace untuk Pelajar</h1>
+    <p style="text-align: justify; text-indent: 40px;">
+        Market Siswa adalah aplikasi Android yang dibuat sebagai tugas mata kuliah <strong>Mobile Programming</strong>.
+        Aplikasi ini dirancang sebagai platform jual-beli sederhana yang ditujukan untuk siswa di lingkungan sekolah.
+        Dengan Market Siswa, siswa bisa menampilkan produk yang mereka jual, menambahkan produk baru, hingga mengelola
+        daftar produk mereka — semua dari satu aplikasi yang ringan dan mudah digunakan.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Aplikasi ini dibangun menggunakan <strong>Jetpack Compose</strong>, yaitu toolkit modern dari Google untuk membangun
+        tampilan aplikasi Android secara deklaratif. Selain itu, aplikasi ini menerapkan prinsip-prinsip
+        <strong>Material Design 3 (Material You)</strong> untuk menghasilkan tampilan yang bersih, konsisten, dan nyaman digunakan.
+    </p>
+
+    <hr style="border-color: #b8860b; margin: 30px 0;">
+
+    <!-- ==================== FITUR ==================== -->
+    <h2>Fitur-Fitur Aplikasi</h2>
+
+    <!-- Fitur 1 -->
+    <h3>1. Halaman Beranda (Home Screen)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Halaman utama aplikasi menampilkan seluruh daftar produk yang sudah ditambahkan. Di bagian atas terdapat
+        <em>greeting card</em> berwarna biru yang menyapa pengguna dan menampilkan jumlah produk yang sedang aktif.
+        Di bawahnya, produk-produk ditampilkan satu per satu dalam bentuk <em>card</em> yang memuat nama produk,
+        deskripsi singkat, kategori, dan harga. Tampilan ini menggunakan <code>LazyColumn</code> agar daftar produk
+        bisa di-scroll dengan lancar meski jumlahnya banyak.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Jika belum ada produk sama sekali, halaman beranda akan menampilkan tampilan <em>empty state</em> —
+        sebuah card khusus yang memberitahu pengguna bahwa daftar produk masih kosong dan mengajak mereka
+        untuk mulai menambahkan produk.
+    </p>
+
+    <!-- Tempat screenshot -->
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwXFX7e_pmVVqUKbaKGcK3a65SQk50u9APwOMW5VpQjtNQ8fXm7xL2NhsBSk-xxx1AoJ0NsjBGy8dwzm-JbRWhNIlIA3pT7KBRZYD2sgkeCkbjhXOAfnCNsJYJwG4KZDMU5Fk77O17xga2ZMsrNP2kRf6PLylt3a2ZH65v_bb9ftYE55M2chpRvfY29lA/s2424/Beranda%20Terisi.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="2424" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiwXFX7e_pmVVqUKbaKGcK3a65SQk50u9APwOMW5VpQjtNQ8fXm7xL2NhsBSk-xxx1AoJ0NsjBGy8dwzm-JbRWhNIlIA3pT7KBRZYD2sgkeCkbjhXOAfnCNsJYJwG4KZDMU5Fk77O17xga2ZMsrNP2kRf6PLylt3a2ZH65v_bb9ftYE55M2chpRvfY29lA/s600/Beranda%20Terisi.png"/></a></div></td>
+                    <td>Halaman Beranda dengan daftar produk dan greeting card di bagian atas.</td>
+                </tr>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGLxV4Qd4ywEV6hsnik1JMuK3mYOAW4aRJRV3tP3oV_UX7QLTQfoqFjtn71p0p2dRe0Nfz61vmfoUWxkT_92hhEVQ59VQOP_bJOmeXM9EAlgESS8vfxGxJqvOw5_stR7mHySfKG_vl7oiiiP9_CnRH_yxZ4uZBxvnapriGqiyjqmT3WQFiftMDWo1kgxo/s2424/Beranda%20Kosong.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="2424" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhGLxV4Qd4ywEV6hsnik1JMuK3mYOAW4aRJRV3tP3oV_UX7QLTQfoqFjtn71p0p2dRe0Nfz61vmfoUWxkT_92hhEVQ59VQOP_bJOmeXM9EAlgESS8vfxGxJqvOw5_stR7mHySfKG_vl7oiiiP9_CnRH_yxZ4uZBxvnapriGqiyjqmT3WQFiftMDWo1kgxo/s600/Beranda%20Kosong.png"/></a></div></td>
+                    <td>Tampilan empty state saat belum ada produk yang ditambahkan.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fitur 2 -->
+    <h3>2. Product Card — Tampilan Produk</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Setiap produk ditampilkan dalam sebuah <em>card</em> tersendiri. Di sisi kiri card terdapat kotak berwarna
+        biru yang menampilkan inisial (huruf pertama) dari nama produk sebagai avatar. Di sebelah kanannya terdapat
+        nama produk, deskripsi singkat, label kategori, dan harga yang ditampilkan dengan warna biru terang agar
+        mudah dilihat.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Di pojok kanan card terdapat ikon titik tiga (more options). Jika ditekan, akan muncul dialog konfirmasi
+        sebelum produk benar-benar dihapus. Ini dilakukan untuk mencegah pengguna tidak sengaja menghapus produk.
+    </p>
+
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixOyzzK3GpOn3JlFm01dzgj2tALZ0XX3qCiqPiwQXo_A18MJgX9M9h9n9uCz9g-0w84FxY_k61ljxoESgeanRj11e0KJ1GoESf1Uio9J6LbTgjF7UWDV4mOADKdyoXpRzVEPjKI3ygs_WipPyRxOyMK_ZUT3EGWftee70Q5ixgjUjdmhVrWybn7VV8O5k/s1080/Product%20Card.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="369" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEixOyzzK3GpOn3JlFm01dzgj2tALZ0XX3qCiqPiwQXo_A18MJgX9M9h9n9uCz9g-0w84FxY_k61ljxoESgeanRj11e0KJ1GoESf1Uio9J6LbTgjF7UWDV4mOADKdyoXpRzVEPjKI3ygs_WipPyRxOyMK_ZUT3EGWftee70Q5ixgjUjdmhVrWybn7VV8O5k/s600/Product%20Card.png"/></a></div></td>
+                    <td>Tampilan card produk dengan informasi nama, deskripsi, kategori, dan harga.</td>
+                </tr>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqn6Nt9uwhxhmqSz1BRm-wOaT3FNGX_pdYIOUuFsabsH1nWezAULLJUIOwIMhFBaMVVswu9nYrFbNOlH67Gix-rnxS-GqVUtXTVhW2Nmt31j-cKFTrrZWaK69sHMRZ1MVXhi4Dw-jZg47MhhNTJOJlNGExm1hewDfAINeWMCK2q_0uHKqo61SpilW-w7M/s1080/Hapus%20Konfirmasi.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="592" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhqn6Nt9uwhxhmqSz1BRm-wOaT3FNGX_pdYIOUuFsabsH1nWezAULLJUIOwIMhFBaMVVswu9nYrFbNOlH67Gix-rnxS-GqVUtXTVhW2Nmt31j-cKFTrrZWaK69sHMRZ1MVXhi4Dw-jZg47MhhNTJOJlNGExm1hewDfAINeWMCK2q_0uHKqo61SpilW-w7M/s600/Hapus%20Konfirmasi.png"/></a></div></td>
+                    <td>Dialog konfirmasi yang muncul sebelum produk dihapus.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fitur 3 -->
+    <h3>3. Tambah Produk (Add Product Screen)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Halaman ini adalah tempat pengguna mengisi detail produk yang ingin dijual. Terdapat tiga field yang wajib
+        diisi, yaitu nama produk, harga, dan deskripsi. Selain itu, pengguna juga bisa memilih kategori produk
+        menggunakan chip yang bisa diklik — pilihan kategori yang tersedia adalah Makanan, Fashion, Jasa, Elektronik,
+        dan Umum.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Form ini dilengkapi dengan validasi secara langsung (<em>real-time validation</em>). Misalnya, jika nama
+        produk kurang dari 3 karakter, akan muncul pesan error di bawah field tersebut. Untuk field harga,
+        keyboard yang muncul otomatis adalah keyboard angka sehingga pengguna tidak bisa memasukkan huruf.
+        Harga yang diketik juga langsung ditampilkan dalam format Rupiah di bawah field sebagai pratinjau.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Tombol simpan hanya bisa ditekan jika semua field sudah terisi dengan benar. Saat tombol ditekan,
+        akan muncul animasi loading selama sekitar 1 detik sebagai simulasi proses penyimpanan, sebelum
+        pengguna diarahkan kembali ke halaman beranda.
+    </p>
+
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDhv169w391ZePPaV6UD5QRWT9pIrVHRUcD2bYncaGA3jsRHOvmopkf0k-g4rVIXEVIrGhYMj7FHwNSWTm03hd7p-DGMMR78B-1OPWu7HQio-lSr5kUg6VLczya-EGmqUObLYlDfESYQ5ZZKBv1tdqCL6hXuHFnO_d_miA2CCdvLVkYY_EjOVpOnv3OTU/s2424/Tambah%20Produk.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="2424" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjDhv169w391ZePPaV6UD5QRWT9pIrVHRUcD2bYncaGA3jsRHOvmopkf0k-g4rVIXEVIrGhYMj7FHwNSWTm03hd7p-DGMMR78B-1OPWu7HQio-lSr5kUg6VLczya-EGmqUObLYlDfESYQ5ZZKBv1tdqCL6hXuHFnO_d_miA2CCdvLVkYY_EjOVpOnv3OTU/s600/Tambah%20Produk.png"/></a></div></td>
+                    <td>Halaman form tambah produk dengan field nama, harga, kategori, dan deskripsi.</td>
+                </tr>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaBH86yiBzmBMzGtrCrd3kAdUkXuPltp-2hfQr1jfI4RFhs030IJe8CyryhtfxUWu7hnrjLI-Kfm4JQQzjLcN34JIL_dXxfT4BaKX4qtgrqSEoaXmfWfQdcex1-6jlYEsfCHv0Mk5-GF4g3sEYBfOd2VJ5MIqmURmCNE-PRAsL6A4QkIWQZpdy-lrcUO0/s2424/Tambah%20Produk%20-%20Tidak%20Valid.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="2424" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaBH86yiBzmBMzGtrCrd3kAdUkXuPltp-2hfQr1jfI4RFhs030IJe8CyryhtfxUWu7hnrjLI-Kfm4JQQzjLcN34JIL_dXxfT4BaKX4qtgrqSEoaXmfWfQdcex1-6jlYEsfCHv0Mk5-GF4g3sEYBfOd2VJ5MIqmURmCNE-PRAsL6A4QkIWQZpdy-lrcUO0/s600/Tambah%20Produk%20-%20Tidak%20Valid.png"/></a></div></td>
+                    <td>Contoh tampilan validasi real-time saat input tidak memenuhi syarat.</td>
+                </tr>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZqt3P1maGABuX9oldwrtjoylTRI9JKc40HBR5qHQSyJl_gVHklBOfybrgn-pvxB8_Qy1jkRGLBvQ7KEY1PcmRGEt3983OyPpeywx0GcMI17DNeZeh8yVkn33lv-6rQiiHwUDkfEkfZazy4jbbPzp95FVDDpRgWXXdlAH2rPNyKksrUrJVqnBE9MCdEvw/s2424/Tambah%20Produk%20-%20Loading.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="2424" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgZqt3P1maGABuX9oldwrtjoylTRI9JKc40HBR5qHQSyJl_gVHklBOfybrgn-pvxB8_Qy1jkRGLBvQ7KEY1PcmRGEt3983OyPpeywx0GcMI17DNeZeh8yVkn33lv-6rQiiHwUDkfEkfZazy4jbbPzp95FVDDpRgWXXdlAH2rPNyKksrUrJVqnBE9MCdEvw/s600/Tambah%20Produk%20-%20Loading.png"/></a></div></td>
+                    <td>Animasi loading pada tombol simpan saat produk sedang diproses.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fitur 4 -->
+    <h3>4. Bottom Navigation — Navigasi Antar Halaman</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Di bagian bawah layar terdapat <em>navigation bar</em> yang berisi dua menu utama: Beranda dan Profil.
+        Ikon yang ditampilkan akan berubah antara versi solid (terpilih) dan versi outline (tidak terpilih)
+        untuk memberikan tanda visual yang jelas kepada pengguna tentang halaman mana yang sedang aktif.
+        Navigation bar ini selalu terlihat di semua halaman kecuali halaman tambah produk.
+    </p>
+
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilpscx-dbjbrA0QvyegDhKs50EEogCog-2CzKHkFC5LIFlED6Ywt4tcNMo1DNLTwrcPhqR7UgaV8kjKyeuxsZKWZmn7CHf8PYSFQy7d6WCTOc7U8UgQL9-M2SKLaMhagty10VSa2Ani3lbWkMNEq9R9QJycG3Kvyg4W0KKnuB0pItP6Ebn83a2uKpIfns/s1080/Nav%20Bar.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="230" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEilpscx-dbjbrA0QvyegDhKs50EEogCog-2CzKHkFC5LIFlED6Ywt4tcNMo1DNLTwrcPhqR7UgaV8kjKyeuxsZKWZmn7CHf8PYSFQy7d6WCTOc7U8UgQL9-M2SKLaMhagty10VSa2Ani3lbWkMNEq9R9QJycG3Kvyg4W0KKnuB0pItP6Ebn83a2uKpIfns/s600/Nav%20Bar.png"/></a></div></td>
+                    <td>Bottom navigation bar dengan indikator tab yang sedang aktif.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fitur 5 -->
+    <h3>5. Floating Action Button (FAB) — Jual Produk</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Di halaman beranda terdapat tombol besar berwarna biru di pojok kanan bawah bertuliskan "Jual Produk".
+        Tombol ini adalah <em>Extended FAB</em>, artinya tombol ini menampilkan ikon sekaligus teks agar tujuannya
+        lebih jelas. FAB hanya muncul di halaman beranda dan berfungsi untuk membawa pengguna ke halaman tambah produk.
+    </p>
+
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhObbk6mA05Tshzlp_ixFkmOlU8l44T78r_V8DxLOBRGe8T-Me3gocXg5oHUKA6_LG-Ns6EyxCDXDCxTnzqVF1MTp9t6ikwUuIq4Zpy6j_5Vg7bGNRcnbitqifmE4BYcHK5mS3VqjmwgXvN8R4MsRUDxCBq6-xwga4TyF6nVRlAvkgSXn59Z1GsHiIGz4w/s407/FAB.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="173" data-original-width="407" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhObbk6mA05Tshzlp_ixFkmOlU8l44T78r_V8DxLOBRGe8T-Me3gocXg5oHUKA6_LG-Ns6EyxCDXDCxTnzqVF1MTp9t6ikwUuIq4Zpy6j_5Vg7bGNRcnbitqifmE4BYcHK5mS3VqjmwgXvN8R4MsRUDxCBq6-xwga4TyF6nVRlAvkgSXn59Z1GsHiIGz4w/s600/FAB.png"/></a></div></td>
+                    <td>Extended FAB "Jual Produk" di pojok kanan bawah halaman beranda.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fitur 6 -->
+    <h3>6. Snackbar — Notifikasi Aksi</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Setiap kali pengguna berhasil menambahkan atau menghapus produk, akan muncul <em>snackbar</em> di bagian
+        bawah layar. Snackbar ini berwarna gelap dengan ikon centang hijau di sebelah kiri pesan. Tampilannya
+        muncul sebentar lalu hilang sendiri, sehingga tidak mengganggu pengalaman pengguna.
+    </p>
+
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmL8oPZ-9TgHwX1kqDFXHwlfLrd_bVRpZ7__myu_t7ULG6LpMfhp6Ov00IQntEjOAK5x7QsauQ2mXQ3axKMmQ_o6uT5oI0TdjzBYlGXRFQiX2G5ItGS7FhReDUFG2pLLqigkU3U6lpnsw2O6RLLTvsmRmX96d297ml5WGVhRTfaICv5jODVNIRMKA9djI/s1080/snack%20bar.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="148" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmL8oPZ-9TgHwX1kqDFXHwlfLrd_bVRpZ7__myu_t7ULG6LpMfhp6Ov00IQntEjOAK5x7QsauQ2mXQ3axKMmQ_o6uT5oI0TdjzBYlGXRFQiX2G5ItGS7FhReDUFG2pLLqigkU3U6lpnsw2O6RLLTvsmRmX96d297ml5WGVhRTfaICv5jODVNIRMKA9djI/s600/snack%20bar.png"/></a></div></td>
+                    <td>Snackbar notifikasi yang muncul setelah produk berhasil ditambahkan.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Fitur 7 -->
+    <h3>7. Halaman Profil (Profile Screen)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Halaman profil menampilkan informasi pengguna berupa avatar inisial, nama, dan kelas. Di bawahnya terdapat
+        dua kartu statistik yang menampilkan jumlah produk yang dimiliki dan jumlah produk terjual. Terdapat juga
+        daftar menu pengaturan seperti Edit Profil, Notifikasi, Bantuan, dan Tentang Aplikasi — masing-masing
+        dengan ikon dan panah ke kanan sebagai petunjuk bahwa menu tersebut bisa ditekan.
+        Di paling bawah terdapat tombol Keluar berwarna merah.
+    </p>
+
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Screenshot</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnvjjZKvA32hjiy9MCcPJS2KKVE_QiHmyOEhngPiT3984EfrpYn153JEnb825fBSZ-MsIqZRrL8RVh3cR7Vbh2D3XAXZ-5WbJtT7JQMVTCFBpyRGckZquA_9BItiVilkpbi1LchukpccOhWzxWVvfWO1JVQSEnVHlUk4ejwQRECvxRTypkpQ8SoVKFao8/s2424/profil.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="600" data-original-height="2424" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhnvjjZKvA32hjiy9MCcPJS2KKVE_QiHmyOEhngPiT3984EfrpYn153JEnb825fBSZ-MsIqZRrL8RVh3cR7Vbh2D3XAXZ-5WbJtT7JQMVTCFBpyRGckZquA_9BItiVilkpbi1LchukpccOhWzxWVvfWO1JVQSEnVHlUk4ejwQRECvxRTypkpQ8SoVKFao8/s600/profil.png"/></a></div></td>
+                    <td>Halaman profil lengkap dengan avatar, statistik produk, dan menu pengaturan.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr style="border-color: #b8860b; margin: 30px 0;">
+
+    <!-- ==================== MATERI DOSEN ==================== -->
+  <h2>Penerapan Materi Kuliah dalam Aplikasi</h2>
+    <h3>1. Material Design 3 (Material You)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Aplikasi ini menggunakan <strong>Material Theme 3</strong> dari Jetpack Compose yang merupakan wujud nyata dari
+        paradigma Material You. Warna-warna yang digunakan bukan hanya dipilih secara sembarangan, melainkan diatur
+        dalam sebuah <em>color scheme</em> yang menyeluruh — mulai dari warna utama (biru Google), warna sekunder
+        (hijau Google), warna latar belakang, hingga warna untuk kondisi error (merah). Semua warna ini terdaftar
+        dalam function <code>MarketSiswaTheme</code> dan kemudian dipakai secara konsisten di seluruh aplikasi.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Hal ini sesuai dengan prinsip <em>"Material is the metaphor"</em> — tampilan card memiliki bentuk dan bayangan
+        yang membuat elemen-elemen di layar terasa memiliki kedalaman seperti benda nyata.
+    </p>
+
+    <h3>2. Tiga Pilar Utama Material Design</h3>
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Pilar</th>
+                    <th>Penerapan dalam Aplikasi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Material is the metaphor</strong></td>
+                    <td>Card produk menggunakan <code>elevation</code> dan sudut melengkung (<code>RoundedCornerShape</code>) yang memberikan kesan lapisan di atas latar belakang, seperti kertas di atas meja.</td>
+                </tr>
+                <tr>
+                    <td><strong>Bold, graphic, intentional</strong></td>
+                    <td>Hierarki visual diterapkan pada Product Card: nama produk dicetak tebal dan besar, deskripsi lebih kecil dan berwarna abu-abu, harga diberi warna biru terang untuk menarik perhatian.</td>
+                </tr>
+                <tr>
+                    <td><strong>Motion provides meaning</strong></td>
+                    <td>Perpindahan antar halaman menggunakan <code>AnimatedContent</code> dengan efek fade in/out selama 220ms. Tombol simpan juga menggunakan animasi <code>AnimatedContent</code> untuk transisi antara kondisi normal dan kondisi loading.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>3. Komponen UI Modern</h3>
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Komponen</th>
+                    <th>Penerapan</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Top App Bar / Toolbar</strong></td>
+                    <td>Setiap halaman memiliki <code>TopAppBar</code> masing-masing: <em>HomeTopBar</em> dengan logo dan nama aplikasi, <em>AddProductTopBar</em> dengan tombol back, dan <em>ProfileTopBar</em> dengan judul "Profil Saya".</td>
+                </tr>
+                <tr>
+                    <td><strong>Card</strong></td>
+                    <td>Digunakan di hampir setiap halaman — card produk, greeting card, empty state card, stat card di profil, dan info banner di form tambah produk.</td>
+                </tr>
+                <tr>
+                    <td><strong>FAB (Floating Action Button)</strong></td>
+                    <td>Tombol "Jual Produk" di halaman beranda menggunakan <code>ExtendedFloatingActionButton</code> yang merupakan varian FAB dengan teks dan ikon, untuk aksi utama yang paling penting.</td>
+                </tr>
+                <tr>
+                    <td><strong>Bottom Navigation</strong></td>
+                    <td>Komponen <code>NavigationBar</code> berisi dua item navigasi (Beranda dan Profil) dengan indikator visual berupa perubahan ikon solid/outline dan warna biru pada tab yang aktif.</td>
+                </tr>
+                <tr>
+                    <td><strong>Text Field</strong></td>
+                    <td>Form tambah produk menggunakan <code>OutlinedTextField</code> dengan label, placeholder, pesan error real-time, dan counter karakter yang ditampilkan di bawah setiap field.</td>
+                </tr>
+                <tr>
+                    <td><strong>Snackbar</strong></td>
+                    <td>Digunakan sebagai <em>feedback</em> setelah pengguna menambahkan atau menghapus produk. Snackbar tampil di bagian bawah layar dan hilang sendiri setelah beberapa detik.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>4. Responsivitas dan Pendekatan Modern dengan Jetpack Compose</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Seluruh layout aplikasi dibangun dengan <strong>Jetpack Compose</strong>, yaitu pendekatan deklaratif yang
+        disebutkan dalam materi kuliah. Dengan Compose, tampilan UI ditulis seperti mendeskripsikan "seperti apa
+        tampilan yang diinginkan" alih-alih "langkah demi langkah cara membuatnya" seperti pada XML tradisional.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Untuk scrolling yang efisien, digunakan <code>LazyColumn</code> (scroll vertikal) dan <code>LazyRow</code>
+        (scroll horizontal untuk chip kategori). Komponen ini hanya me-render item yang terlihat di layar,
+        sehingga performa tetap ringan meski daftar produk panjang — prinsip yang sama dengan <code>RecyclerView</code>
+        pada pendekatan XML tradisional. Penggunaan unit <strong>dp</strong> dan <strong>sp</strong> juga memastikan
+        ukuran elemen menyesuaikan diri dengan berbagai ukuran layar perangkat.
+    </p>
+
+    <h3>5. Alur Pengembangan (5 Fase)</h3>
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Fase</th>
+                    <th>Penerapan dalam Proyek</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Analisis</strong></td>
+                    <td>Kebutuhan aplikasi dirumuskan: siswa membutuhkan platform untuk menampilkan, menambahkan, dan menghapus produk jualan mereka di lingkungan sekolah.</td>
+                </tr>
+                <tr>
+                    <td><strong>Wireframe</strong></td>
+                    <td>Struktur halaman dirancang dengan tiga screen utama: Home, Add Product, dan Profile, yang dihubungkan dengan navigasi bottom bar dan FAB.</td>
+                </tr>
+                <tr>
+                    <td><strong>Injeksi Material</strong></td>
+                    <td>Komponen Material Design 3 diterapkan ke dalam wireframe — card, FAB, text field, navigation bar, dan snackbar semuanya menggunakan komponen dari library Material3.</td>
+                </tr>
+                <tr>
+                    <td><strong>Implementasi</strong></td>
+                    <td>Kode ditulis di Android Studio menggunakan Jetpack Compose dengan bahasa pemrograman Kotlin.</td>
+                </tr>
+                <tr>
+                    <td><strong>Uji UX</strong></td>
+                    <td>Validasi form, dialog konfirmasi hapus, animasi loading, dan snackbar ditambahkan untuk memastikan pengalaman pengguna terasa lancar dan tidak membingungkan.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr style="border-color: #b8860b; margin: 30px 0;">
+
+    <!-- ==================== PENJELASAN KODE ==================== -->
+    <h2>Penjelasan Kode MainActivity.kt</h2>
+    <p style="text-align: justify; text-indent: 40px;">
+        Seluruh logika dan tampilan aplikasi Market Siswa ditulis dalam satu file bernama <code>MainActivity.kt</code>.
+        File ini dibagi menjadi 13 bagian utama. Berikut penjelasan masing-masing bagian beserta potongan kodenya.
+    </p>
+
+    <!-- Bagian 1 -->
+    <h3>Bagian 1 — Import Library</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Di baris paling atas, terdapat daftar <em>import</em> yang berisi semua library yang dibutuhkan aplikasi.
+        Library ini disediakan oleh Google dan Jetpack Compose, sehingga kita tidak perlu menulis komponen dari nol.
+        Beberapa yang penting antara lain:
+    </p>
+    <ul style="line-height: 2;">
+        <li><code>androidx.compose.material3.*</code> — semua komponen Material Design 3 seperti Card, Button, TextField, dll.</li>
+        <li><code>androidx.compose.animation.*</code> — untuk efek animasi transisi antar halaman dan animasi tombol.</li>
+        <li><code>androidx.compose.foundation.lazy.*</code> — untuk membuat daftar yang bisa di-scroll (<code>LazyColumn</code> dan <code>LazyRow</code>).</li>
+        <li><code>kotlinx.coroutines.*</code> — untuk menjalankan proses yang membutuhkan jeda waktu (seperti simulasi loading) tanpa membekukan tampilan.</li>
+        <li><code>java.text.NumberFormat</code> — untuk memformat angka harga menjadi format Rupiah yang benar.</li>
+    </ul>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material3.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.text.NumberFormat
+import java.util.Locale</code></pre>
+
+    <!-- Bagian 2 -->
+    <h3>Bagian 2 — Data Model (data class Product)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Bagian ini mendefinisikan struktur data untuk sebuah produk. Dalam Kotlin, <code>data class</code> digunakan
+        untuk menyimpan kumpulan data yang berkaitan. Setiap produk memiliki lima properti: id unik yang dibuat
+        otomatis dari waktu saat ini, nama, harga, deskripsi, dan kategori (dengan nilai bawaan "Umum" jika tidak diisi).
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>data class Product(
+    val id: Long = System.currentTimeMillis(),
+    val name: String,
+    val price: String,
+    val description: String,
+    val category: String = "Umum"
+)</code></pre>
+    <p style="text-align: justify; text-indent: 40px;">
+        Properti <code>id</code> menggunakan <code>System.currentTimeMillis()</code> yang akan menghasilkan angka
+        berbeda setiap kali produk dibuat, sehingga setiap produk dijamin memiliki id yang unik.
+    </p>
+
+    <!-- Bagian 3 -->
+    <h3>Bagian 3 — Main Activity</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        <code>MainActivity</code> adalah titik masuk (<em>entry point</em>) dari aplikasi Android. Di sinilah
+        aplikasi pertama kali dijalankan. Function <code>onCreate</code> dipanggil otomatis oleh sistem saat
+        aplikasi dibuka. Di dalamnya, fungsi <code>setContent</code> digunakan untuk menghubungkan Jetpack Compose
+        ke layar perangkat. Seluruh tampilan dibungkus dalam <code>MarketSiswaTheme</code> agar tema warna
+        diterapkan secara menyeluruh, lalu <code>MainScreen</code> dipanggil sebagai layar pertama yang ditampilkan.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            MarketSiswaTheme {
+                MainScreen()
+            }
+        }
+    }
+}</code></pre>
+
+    <!-- Bagian 4 -->
+    <h3>Bagian 4 — Theme (MarketSiswaTheme)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Bagian ini mendefinisikan tema warna seluruh aplikasi. Dengan mendaftarkan warna di sini satu kali,
+        semua komponen Material Design yang digunakan di seluruh aplikasi akan otomatis mengikuti warna
+        yang sama tanpa perlu diatur satu per satu. Warna yang dipilih mengacu pada palet warna Google
+        (biru, hijau, kuning) untuk kesan yang bersih dan profesional.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun MarketSiswaTheme(content: @Composable () -> Unit) {
+    MaterialTheme(
+        colorScheme = lightColorScheme(
+            primary   = Color(0xFF1A73E8), // Biru Google
+            secondary = Color(0xFF34A853), // Hijau Google
+            tertiary  = Color(0xFFFBBC04), // Kuning Google
+            error     = Color(0xFFD93025), // Merah untuk error
+            background = Color(0xFFF8F9FA),
+            // ... warna lainnya
+        ),
+        content = content
+    )
+}</code></pre>
+
+    <!-- Bagian 5 -->
+    <h3>Bagian 5 — Main Screen (Scaffold)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        <code>MainScreen</code> adalah "kerangka" utama aplikasi. Di sinilah semua bagian besar disatukan.
+        Bagian ini menggunakan komponen <code>Scaffold</code> dari Material Design yang secara otomatis mengatur
+        posisi Top App Bar, Bottom Navigation, FAB, dan Snackbar di tempat yang benar tanpa kita perlu mengatur
+        posisinya secara manual.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Di bagian atas function ini, beberapa variabel state penting didefinisikan:
+    </p>
+    <ul style="line-height: 2;">
+        <li><code>currentScreen</code> — menyimpan nama halaman yang sedang aktif ("home", "add", atau "profile").</li>
+        <li><code>productList</code> — daftar produk yang bisa berubah-ubah (mutableStateListOf), sehingga UI otomatis diperbarui setiap ada produk yang ditambah atau dihapus.</li>
+        <li><code>snackbarHost</code> — pengontrol untuk menampilkan snackbar.</li>
+        <li><code>scope</code> — digunakan untuk menjalankan proses asinkron seperti menampilkan snackbar atau simulasi loading.</li>
+    </ul>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun MainScreen() {
+    var currentScreen by remember { mutableStateOf("home") }
+    val productList   = remember { mutableStateListOf&lt;Product&gt;() }
+    val snackbarHost  = remember { SnackbarHostState() }
+    val scope         = rememberCoroutineScope()
+
+    // Data awal saat pertama kali aplikasi dibuka
+    LaunchedEffect(Unit) {
+        if (productList.isEmpty()) {
+            productList.add(Product(name = "Brownies Lumer", price = "15000", ...))
+            productList.add(Product(name = "Kaos Custom",    price = "85000", ...))
+            productList.add(Product(name = "Jasa Desain Logo", price = "50000", ...))
+        }
+    }
+
+    Scaffold(
+        snackbarHost = { ... },
+        topBar       = { ... },
+        bottomBar    = { ... },
+        floatingActionButton = { ... }
+    ) { innerPadding ->
+        // Konten utama di sini
+    }
+}</code></pre>
+    <p style="text-align: justify; text-indent: 40px;">
+        <code>LaunchedEffect(Unit)</code> digunakan untuk menjalankan kode satu kali saat screen pertama kali
+        ditampilkan — dalam hal ini untuk mengisi data produk awal agar aplikasi tidak terlihat kosong saat
+        pertama dibuka.
+    </p>
+
+    <!-- Bagian 6 -->
+    <h3>Bagian 6 — Animated Screen Transition</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Perpindahan antar halaman (beranda, tambah produk, profil) tidak langsung berganti secara tiba-tiba,
+        melainkan menggunakan animasi <em>fade in</em> dan <em>fade out</em> selama 220 milidetik. Ini dilakukan
+        dengan komponen <code>AnimatedContent</code>. Ketika variabel <code>currentScreen</code> berubah,
+        Compose secara otomatis menjalankan animasi transisi dan menampilkan halaman yang sesuai.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>AnimatedContent(
+    targetState = currentScreen,
+    transitionSpec = {
+        fadeIn(tween(220)) togetherWith fadeOut(tween(220))
+    },
+    label = "screen_transition"
+) { screen ->
+    when (screen) {
+        "home"    -> HomeScreen(...)
+        "add"     -> AddProductScreen(...)
+        "profile" -> ProfileScreen(...)
+    }
+}</code></pre>
+
+    <!-- Bagian 7 -->
+    <h3>Bagian 7 — Top App Bars</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Terdapat tiga versi Top App Bar, masing-masing untuk satu halaman. Pemisahan ini dilakukan agar setiap
+        halaman bisa menampilkan judul dan tombol navigasi yang sesuai konteksnya.
+    </p>
+    <ul style="line-height: 2;">
+        <li><strong>HomeTopBar</strong> — menampilkan logo berbentuk kotak biru dengan huruf "M" dan teks "MarketSiswa".</li>
+        <li><strong>AddProductTopBar</strong> — menampilkan judul "Tambah Produk" dan tombol panah kembali di sisi kiri.</li>
+        <li><strong>ProfileTopBar</strong> — menampilkan judul "Profil Saya".</li>
+    </ul>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun AddProductTopBar(onBack: () -> Unit) {
+    TopAppBar(
+        title = { Text("Tambah Produk", fontWeight = FontWeight.SemiBold) },
+        navigationIcon = {
+            IconButton(onClick = onBack) {
+                Icon(Icons.Default.ArrowBack, contentDescription = "Kembali")
+            }
+        },
+        colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.White)
+    )
+}</code></pre>
+
+    <!-- Bagian 8 -->
+    <h3>Bagian 8 — Home Screen</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Halaman beranda menggunakan <code>LazyColumn</code> untuk menampilkan daftar produk yang bisa di-scroll.
+        Item pertama yang ditampilkan adalah <code>GreetingCard</code>, kemudian header "Semua Produk" beserta
+        jumlah item, lalu daftar produk di bawahnya. Jika tidak ada produk, <code>EmptyStateCard</code>
+        ditampilkan sebagai gantinya.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Penggunaan <code>items(products, key = { it.id })</code> sangat penting — properti <code>key</code>
+        membantu Compose mengetahui produk mana yang berubah sehingga animasi penghapusan berjalan dengan benar
+        dan performa tetap optimal.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun HomeScreen(products: List&lt;Product&gt;, onDeleteProduct: (Product) -> Unit) {
+    LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(...)) {
+        item { GreetingCard(productCount = products.size) }
+
+        if (products.isEmpty()) {
+            item { EmptyStateCard() }
+        } else {
+            items(products, key = { it.id }) { product ->
+                ProductCard(product = product, onDelete = { onDeleteProduct(product) })
+            }
+        }
+    }
+}</code></pre>
+
+    <!-- Bagian 9 -->
+    <h3>Bagian 9 — Greeting Card</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        <code>GreetingCard</code> adalah card besar berwarna biru di bagian atas halaman beranda. Card ini
+        menampilkan sapaan kepada pengguna dan pesan yang berubah secara dinamis: jika belum ada produk,
+        pesannya mengajak untuk mulai berjualan; jika sudah ada produk, pesannya menampilkan jumlah produk aktif.
+        Di sisi kanan card terdapat ikon toko yang dibungkus dalam lingkaran transparan sebagai elemen dekoratif.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun GreetingCard(productCount: Int) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape    = RoundedCornerShape(20.dp),
+        colors   = CardDefaults.cardColors(containerColor = Color(0xFF1A73E8))
+    ) {
+        Row(modifier = Modifier.padding(20.dp)) {
+            Column {
+                Text("Halo, Siswa! 👋", color = Color.White, fontWeight = FontWeight.ExtraBold)
+                Text(
+                    if (productCount == 0) "Belum ada produk. Yuk mulai jual!"
+                    else "Kamu punya $productCount produk aktif",
+                    color = Color(0xFFBDD7F8)
+                )
+            }
+            // Ikon toko di sisi kanan
+            Icon(Icons.Default.Storefront, tint = Color.White)
+        }
+    }
+}</code></pre>
+
+    <!-- Bagian 10 -->
+    <h3>Bagian 10 — Product Card</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        <code>ProductCard</code> adalah tampilan satu produk dalam bentuk card. Di dalamnya terdapat logika
+        untuk menampilkan dialog konfirmasi sebelum produk dihapus. Variabel <code>showDeleteDialog</code>
+        bertipe boolean yang mengontrol apakah dialog tersebut ditampilkan atau tidak.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Hierarki visual diterapkan di sini sesuai prinsip Material Design — nama produk ditampilkan paling besar
+        dan tebal, deskripsi lebih kecil dan berwarna abu-abu, sementara harga diberi warna biru terang agar
+        langsung menarik perhatian. Teks yang terlalu panjang dipotong secara otomatis dengan <code>TextOverflow.Ellipsis</code>.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun ProductCard(product: Product, onDelete: () -> Unit) {
+    var showDeleteDialog by remember { mutableStateOf(false) }
+
+    // Dialog konfirmasi sebelum hapus
+    if (showDeleteDialog) {
+        AlertDialog(
+            title = { Text("Hapus Produk?") },
+            text  = { Text("\"${product.name}\" akan dihapus.") },
+            confirmButton = {
+                TextButton(onClick = { showDeleteDialog = false; onDelete() }) {
+                    Text("Hapus", color = Color(0xFFD93025))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { showDeleteDialog = false }) { Text("Batal") }
+            },
+            onDismissRequest = { showDeleteDialog = false }
+        )
+    }
+
+    Card(modifier = Modifier.fillMaxWidth()) {
+        Row(modifier = Modifier.padding(16.dp)) {
+            // Inisial produk sebagai avatar
+            Box(...) {
+                Text(product.name.first().uppercaseChar().toString())
+            }
+            Column(modifier = Modifier.weight(1f)) {
+                Text(product.name,        fontWeight = FontWeight.SemiBold) // Level 1
+                Text(product.description, color = Color(0xFF5F6368))        // Level 2
+                Text(formatPrice(product.price), color = Color(0xFF1A73E8)) // Harga
+            }
+            IconButton(onClick = { showDeleteDialog = true }) {
+                Icon(Icons.Default.MoreVert, contentDescription = "Opsi")
+            }
+        }
+    }
+}</code></pre>
+
+    <!-- Bagian 11 -->
+    <h3>Bagian 11 — Add Product Screen</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Ini adalah halaman form untuk menambahkan produk baru. Terdapat beberapa state yang dikelola secara
+        lokal di dalam function ini: nilai dari setiap field (nama, harga, deskripsi, kategori), status
+        loading, dan status validasi.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Validasi dilakukan secara langsung saat pengguna mengetik, bukan hanya saat tombol simpan ditekan.
+        Ini disebut <em>real-time validation</em>. Contohnya, variabel <code>nameError</code> akan bernilai
+        <code>true</code> jika nama sudah diketik tapi panjangnya masih kurang dari 3 karakter.
+        Variabel <code>isFormValid</code> akan bernilai <code>true</code> hanya jika semua syarat terpenuhi,
+        dan tombol simpan hanya aktif (<em>enabled</em>) ketika <code>isFormValid</code> bernilai <code>true</code>.
+    </p>
+    <p style="text-align: justify; text-indent: 40px;">
+        Untuk pemilihan kategori, digunakan <code>FilterChip</code> yang ditampilkan dalam <code>LazyRow</code>
+        (baris yang bisa di-scroll ke samping). Ini lebih cepat digunakan dibandingkan dropdown menu karena
+        semua pilihan langsung terlihat.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun AddProductScreen(onProductAdded: (Product) -> Unit) {
+    var name             by remember { mutableStateOf("") }
+    var price            by remember { mutableStateOf("") }
+    var desc             by remember { mutableStateOf("") }
+    var selectedCategory by remember { mutableStateOf("Umum") }
+    var isLoading        by remember { mutableStateOf(false) }
+
+    // Validasi real-time
+    val nameError   = name.isNotBlank() && name.length < 3
+    val priceError  = price.isNotBlank() && price.toLongOrNull() == null
+    val isFormValid = name.isNotBlank() && price.isNotBlank() && desc.isNotBlank()
+            && !nameError && !priceError
+
+    // Field Harga — hanya menerima angka, keyboard otomatis tipe angka
+    OutlinedTextField(
+        value         = price,
+        onValueChange = { price = it.filter { c -> c.isDigit() } },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        isError       = priceError,
+        supportingText = {
+            when {
+                priceError         -> Text("Masukkan angka yang valid", color = Color(0xFFD93025))
+                price.isNotBlank() -> Text(formatPrice(price), color = Color(0xFF1A73E8))
+            }
+        }
+    )
+
+    // Pemilihan kategori dengan chip
+    LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+        items(categories) { category ->
+            FilterChip(
+                selected = selectedCategory == category,
+                onClick  = { selectedCategory = category },
+                label    = { Text(category) }
+            )
+        }
+    }
+
+    // Tombol simpan dengan animasi loading
+    Button(
+        onClick  = {
+            isLoading = true
+            scope.launch {
+                delay(1000) // Simulasi proses simpan
+                onProductAdded(Product(name = name.trim(), price = price, ...))
+                isLoading = false
+            }
+        },
+        enabled = isFormValid && !isLoading
+    ) {
+        AnimatedContent(targetState = isLoading) { loading ->
+            if (loading) {
+                CircularProgressIndicator(modifier = Modifier.size(20.dp))
+                Text("Menyimpan...")
+            } else {
+                Icon(Icons.Default.CloudUpload, contentDescription = null)
+                Text("Simpan Produk")
+            }
+        }
+    }
+}</code></pre>
+
+    <!-- Bagian 12 -->
+    <h3>Bagian 12 — Profile Screen</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Halaman profil menampilkan informasi pengguna dalam beberapa bagian yang tersusun dari atas ke bawah
+        menggunakan <code>LazyColumn</code>.
+    </p>
+    <ul style="line-height: 2;">
+        <li><strong>Card avatar</strong> — menampilkan inisial "JS", nama "John Siswa", dan label kelas "XII RPL 1" di tengah.</li>
+        <li><strong>Stat cards</strong> — dua card kecil berjajar secara horizontal untuk menampilkan jumlah produk dan produk terjual.</li>
+        <li><strong>Menu card</strong> — daftar menu pengaturan (Edit Profil, Notifikasi, Bantuan, Tentang Aplikasi) yang masing-masing memiliki ikon, judul, subjudul, dan panah ke kanan.</li>
+        <li><strong>Tombol Keluar</strong> — tombol berwarna merah dengan border untuk aksi logout.</li>
+    </ul>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun ProfileScreen(productCount: Int) {
+    LazyColumn(modifier = Modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
+        // Avatar dan info pengguna
+        item {
+            Card {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Box(modifier = Modifier.size(88.dp).clip(CircleShape).background(Color(0xFFD2E3FC))) {
+                        Text("JS", fontSize = 32.sp, fontWeight = FontWeight.ExtraBold)
+                    }
+                    Text("John Siswa", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+                    Text("XII RPL 1")
+                }
+            }
+        }
+        // Statistik
+        item {
+            Row {
+                StatCard(label = "Produk",  value = "$productCount", icon = Icons.Default.Inventory2)
+                StatCard(label = "Terjual", value = "0",             icon = Icons.Default.ShoppingCart)
+            }
+        }
+        // Menu pengaturan
+        item {
+            Card {
+                ProfileMenuItem(Icons.Default.Edit,          "Edit Profil",      "Ubah nama dan foto profil")
+                ProfileMenuItem(Icons.Default.Notifications, "Notifikasi",       "Atur preferensi notifikasi")
+                ProfileMenuItem(Icons.Default.Help,          "Bantuan",          "Pusat bantuan & FAQ")
+                ProfileMenuItem(Icons.Default.Info,          "Tentang Aplikasi", "MarketSiswa v1.0.0")
+            }
+        }
+        // Tombol keluar
+        item {
+            OutlinedButton(onClick = { /* TODO */ }) {
+                Icon(Icons.Default.Logout, contentDescription = null)
+                Text("Keluar")
+            }
+        }
+    }
+}</code></pre>
+
+    <!-- Bagian 13 -->
+    <h3>Bagian 13 — Helper Composables</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Agar kode tidak terlalu panjang dan mudah dibaca ulang, beberapa komponen kecil yang dipakai berulang
+        dipisahkan menjadi function sendiri. Berikut daftar helper composables yang ada:
+    </p>
+    <div class="tech-table-container">
+        <table class="tech-table">
+            <thead>
+                <tr>
+                    <th>Function</th>
+                    <th>Fungsi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>FieldLabel()</code></td>
+                    <td>Menampilkan label di atas field form. Jika field wajib diisi, tanda bintang merah (*) otomatis ditambahkan.</td>
+                </tr>
+                <tr>
+                    <td><code>StatCard()</code></td>
+                    <td>Card kecil untuk menampilkan satu data statistik (ikon, angka, label) di halaman profil.</td>
+                </tr>
+                <tr>
+                    <td><code>ProfileMenuItem()</code></td>
+                    <td>Satu baris menu di halaman profil dengan ikon, judul, subjudul, dan panah ke kanan.</td>
+                </tr>
+                <tr>
+                    <td><code>MenuDivider()</code></td>
+                    <td>Garis pemisah tipis antar item menu di halaman profil.</td>
+                </tr>
+                <tr>
+                    <td><code>navBarItemColors()</code></td>
+                    <td>Mendefinisikan warna ikon dan teks navigation bar untuk kondisi dipilih dan tidak dipilih, agar tidak perlu ditulis ulang dua kali.</td>
+                </tr>
+                <tr>
+                    <td><code>fieldColors()</code></td>
+                    <td>Mendefinisikan warna border, label, dan cursor untuk semua OutlinedTextField di form tambah produk secara konsisten.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>@Composable
+fun FieldLabel(text: String, required: Boolean) {
+    Row {
+        Text(text, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
+        if (required) Text(" *", color = Color(0xFFD93025), fontWeight = FontWeight.Bold)
+    }
+}
+
+@Composable
+fun navBarItemColors() = NavigationBarItemDefaults.colors(
+    selectedIconColor   = Color(0xFF1A73E8),
+    selectedTextColor   = Color(0xFF1A73E8),
+    indicatorColor      = Color(0xFFD2E3FC),
+    unselectedIconColor = Color(0xFF5F6368),
+    unselectedTextColor = Color(0xFF5F6368)
+)</code></pre>
+
+    <!-- Bagian 14 -->
+    <h3>Bagian 14 — Utility (formatPrice)</h3>
+    <p style="text-align: justify; text-indent: 40px;">
+        Function ini bertugas mengubah angka harga yang disimpan sebagai teks (misalnya "15000") menjadi
+        format mata uang Rupiah yang benar (misalnya "Rp 15.000"). Pemformatan menggunakan <code>NumberFormat</code>
+        dengan locale Indonesia agar pemisah ribuan menggunakan titik sesuai kebiasaan penulisan di Indonesia.
+        Jika teks yang dimasukkan bukan angka yang valid, function ini akan mengembalikan teks apa adanya
+        dengan awalan "Rp" sebagai fallback.
+    </p>
+    <pre style="background:rgba(0,0,0,0.3); padding:16px; border-radius:8px; overflow-x:auto; font-size:13px; border-left: 3px solid #b8860b;"><code>fun formatPrice(price: String): String {
+    val number = price.toLongOrNull() ?: return "Rp $price"
+    val format = NumberFormat.getNumberInstance(Locale("id", "ID"))
+    return "Rp ${format.format(number)}"
+}</code></pre>
+    <p style="text-align: justify; text-indent: 40px;">
+        Function ini dipanggil di dua tempat: di dalam <code>ProductCard</code> untuk menampilkan harga yang
+        sudah diformat, dan di dalam form tambah produk sebagai pratinjau harga secara real-time saat pengguna
+        mengetik angka harga.
+    </p>
+
+    <hr style="border-color: #b8860b; margin: 30px 0;">
+
+    <h2>Penutup</h2>
+    <p style="text-align: justify; text-indent: 40px;">
+        Market Siswa adalah implementasi dari seluruh materi yang dipelajari dalam mata kuliah Mobile Programming di pertemuan 11.
+        Mulai dari penerapan Material Design 3, penggunaan komponen UI modern, animasi yang bermakna,
+        hingga validasi form yang memperhatikan pengalaman pengguna — semua diterapkan dalam satu aplikasi
+        yang utuh dan fungsional. Aplikasi ini dibangun sepenuhnya menggunakan Jetpack Compose dan Kotlin
+        di Android Studio, tanpa satu baris pun kode XML untuk tampilan.
+    </p>
+
+</div>
+</body>
+</html>

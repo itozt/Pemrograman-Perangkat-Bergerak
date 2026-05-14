@@ -1,0 +1,121 @@
+# PANDUAN IMPLEMENTASI - Pertemuan 12
+# Aplikasi Login MVVM + Room Database
+# Package: com.example.pertemuan12
+
+================================================================
+LANGKAH 1: UBAH FILE build.gradle (Module: app)
+================================================================
+
+Buka file: app/build.gradle
+
+A) Tambahkan plugin KAPT di bagian plugins { ... }:
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")               // ← TAMBAHKAN BARIS INI
+}
+
+B) Tambahkan dependency di bagian dependencies { ... }:
+
+dependencies {
+    // ... dependency yang sudah ada ...
+
+    // Room Database
+    implementation("androidx.room:room-runtime:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    // ViewModel + Compose integration
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.0")
+
+    // Navigation Compose (opsional, siap dipakai jika butuh navigasi antar screen)
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+}
+
+Setelah itu klik: "Sync Now" yang muncul di bagian atas editor.
+
+================================================================
+LANGKAH 2: BUAT STRUKTUR FOLDER
+================================================================
+
+Di dalam folder: app/src/main/java/com/example/pertemuan12/
+Buat folder-folder berikut (klik kanan → New → Package):
+
+com.example.pertemuan12
+├── data/
+│   ├── local/
+│   │   ├── dao/           ← taruh UserDao.kt di sini
+│   │   ├── database/      ← taruh AppDatabase.kt di sini
+│   │   └── entity/        ← taruh User.kt di sini
+│   └── repository/        ← taruh UserRepository.kt di sini
+├── ui/
+│   └── screen/            ← taruh LoginScreen.kt di sini
+├── viewmodel/             ← taruh LoginViewModel.kt & LoginViewModelFactory.kt di sini
+└── MainActivity.kt        ← ganti isi file yang sudah ada
+
+================================================================
+LANGKAH 3: SALIN SEMUA FILE KE LOKASI YANG TEPAT
+================================================================
+
+File yang perlu dibuat / disalin:
+
+NO | FILE                     | LOKASI FOLDER
+---|--------------------------|-------------------------------------
+1  | User.kt                  | data/local/entity/
+2  | UserDao.kt               | data/local/dao/
+3  | AppDatabase.kt           | data/local/database/
+4  | UserRepository.kt        | data/repository/
+5  | LoginViewModel.kt        | viewmodel/
+6  | LoginViewModelFactory.kt | viewmodel/
+7  | LoginScreen.kt           | ui/screen/
+8  | MainActivity.kt          | (root, sudah ada — ganti isinya)
+
+================================================================
+LANGKAH 4: CARA MEMBUAT FILE BARU DI ANDROID STUDIO
+================================================================
+
+1. Klik kanan pada folder tujuan (misal: folder "entity")
+2. Pilih: New → Kotlin Class/File
+3. Pilih: "File" atau "Class" sesuai kebutuhan
+4. Ketik nama file (tanpa .kt) → tekan Enter
+5. Hapus isi default, salin kode dari file yang disediakan
+
+================================================================
+LANGKAH 5: JALANKAN APLIKASI
+================================================================
+
+1. Hubungkan emulator atau perangkat Android fisik (min. API 24)
+2. Klik tombol Run ▶ di Android Studio
+3. Tunggu proses build selesai
+
+================================================================
+PENGUJIAN APLIKASI
+================================================================
+
+✅ Login BERHASIL:
+   Username : admin
+   Password : 12345
+   Output   : "Login Berhasil ✓"
+
+❌ Login GAGAL:
+   Username : admin
+   Password : salah
+   Output   : "Username atau Password Salah ✗"
+
+================================================================
+CATATAN PENTING
+================================================================
+
+- insertDummyUser() dipanggil setiap kali aplikasi dibuka.
+  Room akan mencoba insert ulang, tapi karena data sudah ada,
+  tidak akan terjadi error (karena tidak ada UNIQUE constraint).
+  Untuk proyek nyata, sebaiknya gunakan onConflictStrategy.
+
+- File ui/theme/ (Pertemuan12Theme) sudah ada dari project awal,
+  tidak perlu diubah.
+
+- Jika muncul error "Unresolved reference", pastikan:
+  1. Plugin kapt sudah ditambahkan di build.gradle
+  2. Sync Gradle sudah berhasil
+  3. Nama package di setiap file sudah "com.example.pertemuan12"

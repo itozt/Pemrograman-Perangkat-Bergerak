@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjelasan Project Login App - Pertemuan 12</title>
+    <style>
+        /* Container utama */
+        .blog-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        /* Bagian Profil/Detail Diri */
+        .student-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-left: 4px solid #b8860b;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .student-info p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        .student-info span {
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+
+        /* Tabel Perkembangan Teknologi */
+        .tech-table-container {
+            overflow-x: auto;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            border: 1px solid #b8860b;
+        }
+        .tech-table thead {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid #b8860b;
+        }
+        .tech-table th {
+            padding: 12px 15px;
+            text-align: left;
+            color: #ffd700;
+            border: 1px solid #b8860b;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .tech-table td {
+            padding: 12px 15px;
+            border: 1px solid #b8860b;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        .tech-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .tech-table tbody tr:hover {
+            background-color: rgba(184, 134, 11, 0.2);
+            transition: 0.3s;
+        }
+
+        /* Gambar di dalam tabel */
+        .table-img {
+            max-width: 100px;
+            max-height: 100px;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            border: 1px solid #b8860b;
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        /* Code styling */
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            border-left: 3px solid #b8860b;
+            line-height: 1.5;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            color: #c8d6e5;
+        }
+        
+        h1, h2, h3 {
+            color: #b6a271;
+        }
+        
+        hr {
+            border-color: #b8860b;
+            margin: 30px 0;
+        }
+        
+        ul {
+            line-height: 1.8;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-wrapper">
+        <h1>Aplikasi Login Sederhana dengan Room Database + MVVM Architecture</h1>
+
+        <div class="student-info">
+            <p><span>Nama</span>: [Isi Nama Lengkap]</p>
+            <p><span>NIM/NRP</span>: [Isi NIM]</p>
+            <p><span>Mata Kuliah</span>: Pemrograman Perangkat Bergerak</p>
+            <p><span>Pertemuan</span>: 12</p>
+            <p><span>Project</span>: Pertemuan 12</p>
+            <p><span>Package</span>: com.example.pertemuan12</p>
+        </div>
+
+        <hr>
+
+        <h2>1. Deskripsi Aplikasi dan Tujuan Pembuatan</h2>
+        
+        <h3>1.1 Deskripsi Umum</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Pada project Pertemuan 12 ini, saya membuat aplikasi Android yang sederhana namun fungsional untuk proses autentikasi (login) pengguna. Aplikasi ini dibangun menggunakan Jetpack Compose untuk antarmuka pengguna dan Room Database sebagai sistem penyimpanan data lokal di perangkat. Fitur-fitur utama yang saya implementasikan mencakup form input username dan password, tombol login, validasi kredensial terhadap data di database lokal, serta menampilkan pesan feedback yang jelas (pesan sukses atau pesan kesalahan).
+        </p>
+        
+        <h3>1.2 Tujuan Pembuatan</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Tujuan utama pembuatan aplikasi ini adalah untuk mendalami beberapa konsep penting dalam mobile programming modern:
+        </p>
+        <ul>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Memahami alur autentikasi dasar:</strong> Bagaimana cara menangkap input user, memvalidasinya terhadap data yang disimpan, dan memberikan response yang sesuai.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menguasai Room Database:</strong> Bagaimana cara menggunakan Room untuk membuat tabel, menjalankan query, dan memanipulasi data secara aman melalui DAO.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menerapkan pola MVVM:</strong> Memisahkan tanggung jawab kode antara UI (View), logika bisnis (ViewModel), dan akses data (Repository + DAO + Entity), agar code lebih mudah dirawat, diuji, dan dikembangkan.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menggunakan Coroutine:</strong> Menjalankan operasi database di background thread sehingga UI tetap responsif dan tidak freeze.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menerapkan Jetpack Compose:</strong> Membangun interface deklaratif yang modern, efisien, dan mudah dikelola dibandingkan XML tradisional.</p></li>
+        </ul>
+
+        <hr>
+
+        <h2>2. Arsitektur Aplikasi (MVVM Architecture)</h2>
+        
+        <h3>2.1 Penjelasan Pola MVVM</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            MVVM (Model-View-ViewModel) adalah pola arsitektur yang membagi aplikasi menjadi tiga lapisan utama dengan tanggung jawab yang jelas dan terpisah. Pola ini memudahkan pengembangan, testing, dan pemeliharaan kode dalam jangka panjang.
+        </p>
+        
+        <h3>2.2 Tiga Lapisan dalam Aplikasi Ini</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Lapisan</th>
+                        <th>File/Class</th>
+                        <th>Tanggung Jawab</th>
+                        <th>Penjelasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>View</strong></td>
+                        <td><code>LoginScreen.kt</code></td>
+                        <td>Menampilkan UI dan menerima input user</td>
+                        <td>Berisi Composable function untuk form login, tidak punya logika bisnis, hanya menerima state dari ViewModel dan mengirim event saat user berinteraksi.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ViewModel</strong></td>
+                        <td><code>LoginViewModel.kt</code>, <code>LoginViewModelFactory.kt</code></td>
+                        <td>Mengelola state UI dan logika bisnis login</td>
+                        <td>Menyimpan state login (string pesan sukses/gagal), menerima event login dari View, mengakses Repository untuk validasi, dan update state yang otomatis di-reflect ke UI.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Model/Data</strong></td>
+                        <td><code>User.kt</code> (Entity), <code>UserDao.kt</code> (DAO), <code>AppDatabase.kt</code> (Database), <code>UserRepository.kt</code> (Repository)</td>
+                        <td>Mengelola penyimpanan dan akses data</td>
+                        <td>Entity mendefinisikan tabel, DAO menyediakan query, AppDatabase menghubungkan Entity dengan DAO, Repository menjadi interface antara ViewModel dan Database sehingga ViewModel tidak perlu tahu detail database.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>2.3 Alur Data Aplikasi</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Alur data pada aplikasi ini mengikuti pola unidirectional (satu arah) yang konsisten: <strong>View → ViewModel → Repository → DAO → Room/SQLite</strong>, kemudian kembali ke ViewModel sebagai state, lalu Compose otomatis me-refresh tampilan View. Alur ini memastikan data mengalir dengan teratur dan dapat diprediksi, sehingga debugging dan testing menjadi lebih mudah.
+        </p>
+
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Komponen</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>User / View</td>
+                        <td>User mengetik username dan password, lalu menekan tombol LOGIN.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>LoginScreen (Composable)</td>
+                        <td>Menangkap input dan memanggil <code>viewModel.login(username, password)</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>LoginViewModel</td>
+                        <td>Menerima username/password, memanggil <code>repository.login(username, password)</code> dalam Coroutine <code>viewModelScope.launch</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>UserRepository</td>
+                        <td>Meneruskan permintaan login ke <code>userDao.login(username, password)</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>UserDao</td>
+                        <td>Menjalankan SQL Query: <code>SELECT * FROM users WHERE username = :username AND password = :password</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Room/SQLite</td>
+                        <td>Database mencari record yang cocok, mengembalikan User object atau null.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>LoginViewModel (ViewModel menerima hasil)</td>
+                        <td>Update state <code>loginState</code> ke <code>"Login Berhasil ✓"</code> atau <code>"Username atau Password Salah ✗"</code>.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>LoginScreen (View menerima state baru)</td>
+                        <td>Compose mendeteksi perubahan state, melakukan recomposition, menampilkan pesan result ke user.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>3. Langkah-Langkah Pembuatan Aplikasi (Detail Implementasi)</h2>
+        
+        <h3>3.1 Langkah 1: Persiapan Project</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Pertama-tama, saya membuat project Android baru di Android Studio dengan nama <code>Pertemuan 12</code> dan menggunakan package name <code>com.example.pertemuan12</code>. Project ini menggunakan Jetpack Compose sebagai default untuk UI. Setelah project terbuat, saya memastikan build tools dan SDK terbaru sudah tersedia, kemudian melakukan sync dan verifikasi bahwa project dapat di-build tanpa error.
+        </p>
+
+        <h3>3.2 Langkah 2: Menambahkan Dependency</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Saya membuka file <code>app/build.gradle.kts</code> dan menambahkan dependency yang diperlukan. Dependency utama yang ditambahkan adalah:
+        </p>
+        <ul>
+            <li><code>androidx.room:room-runtime</code> — library utama Room untuk database lokal.</li>
+            <li><code>androidx.room:room-ktx</code> — extension Kotlin untuk Room yang mempermudah penggunaan suspend function dan Coroutine.</li>
+            <li><code>androidx.room:room-compiler</code> via KSP — compiler yang menghasilkan kode SQL dari anotasi @Query dan @Insert.</li>
+            <li><code>androidx.lifecycle:lifecycle-viewmodel-compose</code> — integrasi ViewModel dengan Compose.</li>
+            <li><code>kotlinx.coroutines</code> — library untuk asynchronous programming di Kotlin.</li>
+        </ul>
+
+        <h3>3.3 Langkah 3: Membuat Entity (User.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Entity adalah representasi tabel database dalam bentuk Kotlin data class. Saya membuat file <code>data/local/entity/User.kt</code> yang mendefinisikan struktur tabel <code>users</code> dengan tiga kolom: <code>id</code> (primary key auto-increment), <code>username</code> (string), dan <code>password</code> (string).
+        </p>
+
+        <h3>3.4 Langkah 4: Membuat DAO (UserDao.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            DAO (Data Access Object) adalah interface yang mendefinisikan operasi database yang dapat dilakukan. Saya membuat file <code>data/local/dao/UserDao.kt</code> berisi dua function utama: <code>insert(user: User)</code> untuk menambah user baru, dan <code>login(username, password): User?</code> untuk validasi login.
+        </p>
+
+        <h3>3.5 Langkah 5: Membuat Database Class (AppDatabase.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            File <code>data/local/database/AppDatabase.kt</code> adalah abstract class yang berperan sebagai access point ke database. Saya menambahkan anotasi <code>@Database(entities = [User::class], version = 1)</code>, abstract function <code>userDao(): UserDao</code>, dan companion object dengan pola Singleton untuk memastikan hanya ada satu instance database selama aplikasi berjalan.
+        </p>
+
+        <h3>3.6 Langkah 6: Membuat Repository (UserRepository.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Repository berfungsi sebagai perantara antara ViewModel dan DAO, sehingga ViewModel tidak perlu mengetahui detail implementasi database. File <code>data/repository/UserRepository.kt</code> menerima UserDao sebagai parameter konstruktor dan menyediakan function <code>insert()</code> dan <code>login()</code> yang meneruskan operasi ke DAO.
+        </p>
+
+        <h3>3.7 Langkah 7: Membuat ViewModel (LoginViewModel.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            ViewModel menyimpan state UI dan logika bisnis. Saya membuat <code>viewmodel/LoginViewModel.kt</code> yang extends ViewModel, berisi state <code>loginState</code> menggunakan <code>mutableStateOf("")</code> agar Compose dapat memantau perubahannya. Function <code>login()</code> memanggil repository dalam coroutine scope, dan function <code>insertDummyUser()</code> menambahkan akun default <code>admin/12345</code> saat aplikasi pertama kali launch.
+        </p>
+
+        <h3>3.8 Langkah 8: Membuat ViewModelFactory (LoginViewModelFactory.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Karena LoginViewModel memerlukan parameter UserRepository, saya perlu membuat factory untuk instantiate ViewModel dengan benar. File <code>viewmodel/LoginViewModelFactory.kt</code> mengimplementasikan ViewModelProvider.Factory dan override function <code>create()</code> untuk membuat LoginViewModel dengan repository yang sudah di-inject.
+        </p>
+
+        <h3>3.9 Langkah 9: Membuat LoginScreen (ui/screen/LoginScreen.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Ini adalah layer View yang berisi UI Compose. File <code>ui/screen/LoginScreen.kt</code> adalah Composable function yang menampilkan form login dengan: title, subtitle, OutlinedTextField untuk username dan password, button LOGIN, dan card untuk menampilkan pesan hasil login (sukses atau gagal).
+        </p>
+
+        <h3>3.10 Langkah 10: Setup MainActivity</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Terakhir, saya mengkonfigurasi <code>MainActivity.kt</code> sebagai entry point aplikasi. Di sini, saya menginisialisasi rantai dependency dari AppDatabase hingga ViewModel, memanggil <code>insertDummyUser()</code> dalam <code>LaunchedEffect</code>, dan menampilkan <code>LoginScreen(viewModel)</code> di dalam Surface dengan tema Pertemuan12Theme.
+        </p>
+
+        <hr>
+
+        <h2>4. Penjelasan File, Isi Kode, dan Tujuan Masing-Masing</h2>
+
+        <h3>4.1 Tabel Ringkasan File-File Utama</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>File</th>
+                        <th>Tujuan</th>
+                        <th>Isi Kode Utama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2"><strong>Entry Point</strong></td>
+                        <td><code>MainActivity.kt</code></td>
+                        <td>Activity utama aplikasi, mengatur alur lifecycle dan menginisialisasi dependencies</td>
+                        <td>onCreate() untuk setup Compose, rantai initialization database → repository → viewmodel, LaunchedEffect untuk insert dummy user</td>
+                    </tr>
+                    <tr>
+                        <td><code>AndroidManifest.xml</code></td>
+                        <td>Konfigurasi manifest aplikasi</td>
+                        <td>Deklarasi MainActivity sebagai launcher activity, permission (jika ada)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>UI/View Layer</strong></td>
+                        <td><code>ui/screen/LoginScreen.kt</code></td>
+                        <td>Composable UI untuk form login</td>
+                        <td>Column layout, OutlinedTextField untuk username/password, Button LOGIN, Card untuk menampilkan status</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><strong>ViewModel Layer</strong></td>
+                        <td><code>viewmodel/LoginViewModel.kt</code></td>
+                        <td>Logic bisnis dan state management login</td>
+                        <td>mutableStateOf untuk loginState, function login(), function insertDummyUser(), viewModelScope.launch untuk coroutine</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewmodel/LoginViewModelFactory.kt</code></td>
+                        <td>Factory untuk membuat LoginViewModel dengan dependency injection</td>
+                        <td>class yang extends ViewModelProvider.Factory, override create() untuk instantiate LoginViewModel(repository)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>Repository Layer</strong></td>
+                        <td><code>data/repository/UserRepository.kt</code></td>
+                        <td>Perantara antara ViewModel dan Data Layer (DAO)</td>
+                        <td>Class yang menerima UserDao, menyediakan suspend function insert() dan login()</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>Entity (Model)</strong></td>
+                        <td><code>data/local/entity/User.kt</code></td>
+                        <td>Representasi tabel users di database</td>
+                        <td>@Entity data class dengan @PrimaryKey id, username, password</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>DAO</strong></td>
+                        <td><code>data/local/dao/UserDao.kt</code></td>
+                        <td>Interface untuk operasi database (insert, query)</td>
+                        <td>@Dao interface, @Insert suspend fun insert(user: User), @Query suspend fun login(username, password)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>Database</strong></td>
+                        <td><code>data/local/database/AppDatabase.kt</code></td>
+                        <td>Konfigurasi database dan singleton instance</td>
+                        <td>@Database abstract class, abstract fun userDao(), companion object dengan fun getDatabase(context) Singleton pattern</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Theme & Resources</strong></td>
+                        <td><code>ui/theme/Color.kt</code></td>
+                        <td>Definisi warna-warna aplikasi</td>
+                        <td>Color objects (Purple80, Purple40, dll)</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/Theme.kt</code></td>
+                        <td>Konfigurasi Material Theme 3</td>
+                        <td>@Composable Pertemuan12Theme dengan color scheme, typography</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/Type.kt</code></td>
+                        <td>Definisi typography (ukuran font, style teks)</td>
+                        <td>Typography object dengan default text styles</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><strong>Config & Build</strong></td>
+                        <td><code>app/build.gradle.kts</code></td>
+                        <td>Konfigurasi build dan dependencies aplikasi</td>
+                        <td>Room dependencies, KSP plugin, Coroutines, Lifecycle ViewModel, Compose libraries</td>
+                    </tr>
+                    <tr>
+                        <td><code>build.gradle.kts</code> (root)</td>
+                        <td>Konfigurasi build tingkat project</td>
+                        <td>Plugin declarations untuk Android, Kotlin, Compose</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>5. Penjelasan Detail Setiap Bagian Kode MainActivity.kt</h2>
+
+        <h3>5.1 Struktur Umum MainActivity</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            MainActivity adalah Activity utama yang berjalan saat aplikasi di-launch. File ini mengandung logic setup aplikasi, inisialisasi dependencies, dan render UI Compose. Berikut adalah penjelasan per bagian dari kode MainActivity.kt.
+        </p>
+
+        <h3>5.2 Bagian 1: Package dan Import</h3>
+        <pre><code>package com.example.pertemuan12
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
+// ... lebih banyak import</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            Bagian ini berisi deklarasi package aplikasi dan impor semua library yang diperlukan. Library-library ini termasuk:
+        </p>
+        <ul>
+            <li><strong>androidx.activity:</strong> ComponentActivity adalah base class Activity modern yang support Compose.</li>
+            <li><strong>androidx.compose.*:</strong> Semua komponen Compose untuk build UI deklaratif.</li>
+            <li><strong>androidx.lifecycle.viewmodel.compose:</strong> Function viewModel() untuk access ViewModel dari Compose.</li>
+            <li><strong>Custom imports:</strong> Database, Repository, ViewModel, dan UI screen yang telah kita buat.</li>
+        </ul>
+
+        <h3>5.3 Bagian 2: Class Declaration dan onCreate()</h3>
+        <pre><code>class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            MainActivity mewarisi ComponentActivity, bukan Activity biasa, karena ComponentActivity dirancang khusus untuk support Compose. Function override onCreate() dipanggil saat Activity dibuat. Perintah enableEdgeToEdge() mengaktifkan layout agar dapat menggunakan seluruh layar termasuk area status bar dan navigation bar. Function setContent { } adalah tempat mendefinisikan seluruh UI berbasis Compose.
+        </p>
+
+        <h3>5.4 Bagian 3: Theme dan Surface Wrapper</h3>
+        <pre><code>        setContent {
+            Pertemuan12Theme {
+                Surface(modifier = Modifier.fillMaxSize()) {</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            Pertemuan12Theme adalah Composable function yang menerapkan Material Theme 3 ke seluruh aplikasi, memastikan warna, typography, dan style komponen konsisten. Surface adalah komponen yang berfungsi sebagai container utama dengan background, dan fillMaxSize() membuat Surface memenuhi seluruh layar.
+        </p>
+
+        <h3>5.5 Bagian 4: Inisialisasi Dependency Chain</h3>
+        <pre><code>                    val database = AppDatabase.getDatabase(this@MainActivity)
+                    val userDao = database.userDao()
+                    val repository = UserRepository(userDao)
+                    val factory = LoginViewModelFactory(repository)
+                    val viewModel: LoginViewModel = viewModel(factory = factory)</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            Ini adalah core dari Dependency Injection manual. Rantainya adalah:
+        </p>
+        <ul>
+            <li><code>AppDatabase.getDatabase(context)</code> — Membuat atau mengambil singleton instance database Room.</li>
+            <li><code>database.userDao()</code> — Mendapatkan DAO interface dari database untuk akses tabel users.</li>
+            <li><code>UserRepository(userDao)</code> — Membuat instance Repository yang diberi userDao sebagai dependency.</li>
+            <li><code>LoginViewModelFactory(repository)</code> — Membuat factory yang tahu cara membuat LoginViewModel dengan repository.</li>
+            <li><code>viewModel(factory = factory)</code> — Function dari Compose yang membuat LoginViewModel menggunakan factory yang sudah disiapkan.</li>
+        </ul>
+
+        <h3>5.6 Bagian 5: LaunchedEffect untuk Insert Data Dummy</h3>
+        <pre><code>                    LaunchedEffect(Unit) {
+                        viewModel.insertDummyUser()
+                    }</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            LaunchedEffect adalah Composable effect yang dijalankan saat composable masuk ke composition. Parameter Unit berarti effect hanya dijalankan sekali (tidak ada dependency). Di sini, kita memanggil insertDummyUser() untuk menyisipkan akun default admin/12345 ke database pada saat pertama kali aplikasi launch. Ini memastikan selalu ada data untuk login testing.
+        </p>
+
+        <h3>5.7 Bagian 6: Render LoginScreen</h3>
+        <pre><code>                    LoginScreen(viewModel)
+                }
+            }
+        }
+    }
+}</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            Terakhir, kita memanggil LoginScreen(viewModel) untuk menampilkan UI login screen. ViewModel diberikan sebagai parameter sehingga LoginScreen dapat mengakses state dan memanggil function login() dari ViewModel.
+        </p>
+
+        <hr>
+
+        <h2>6. Tree Struktur Folder Aplikasi dan Alur Lalu Lintas Data</h2>
+
+        <h3>6.1 Struktur Folder Aplikasi</h3>
+        <pre><code>Pertemuan 12/
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+│       └── main/
+│           ├── AndroidManifest.xml
+│           ├── java/com/example/pertemuan12/
+│           │   ├── MainActivity.kt
+│           │   ├── data/
+│           │   │   ├── local/
+│           │   │   │   ├── entity/
+│           │   │   │   │   └── User.kt
+│           │   │   │   ├── dao/
+│           │   │   │   │   └── UserDao.kt
+│           │   │   │   └── database/
+│           │   │   │       └── AppDatabase.kt
+│           │   │   └── repository/
+│           │   │       └── UserRepository.kt
+│           │   ├── viewmodel/
+│           │   │   ├── LoginViewModel.kt
+│           │   │   └── LoginViewModelFactory.kt
+│           │   └── ui/
+│           │       ├── screen/
+│           │       │   └── LoginScreen.kt
+│           │       └── theme/
+│           │           ├── Color.kt
+│           │           ├── Theme.kt
+│           │           └── Type.kt
+│           └── res/
+│               ├── values/
+│               │   ├── strings.xml
+│               │   ├── colors.xml
+│               │   └── themes.xml
+│               ├── mipmap-*/
+│               │   └── ic_launcher.webp
+│               └── xml/
+│                   ├── backup_rules.xml
+│                   └── data_extraction_rules.xml
+├── build.gradle.kts (root)
+├── settings.gradle.kts
+└── gradle/</code></pre>
+
+        <h3>6.2 Penjelasan Struktur Folder</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Folder/File</th>
+                        <th>Kegunaan</th>
+                        <th>Penjelasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>data/</code></td>
+                        <td>Data Layer — semua kode terkait akses dan model data</td>
+                        <td>Berisi subfolder local (untuk database lokal), repository (perantara akses data).</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/local/entity/</code></td>
+                        <td>Entity class (model tabel database)</td>
+                        <td>User.kt mendefinisikan struktur tabel users dengan anotasi @Entity dan @PrimaryKey.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/local/dao/</code></td>
+                        <td>Data Access Object — interface query database</td>
+                        <td>UserDao.kt berisi anotasi @Insert dan @Query untuk operasi database yang akan di-generate Room menjadi SQL otomatis.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/local/database/</code></td>
+                        <td>Konfigurasi database Room</td>
+                        <td>AppDatabase.kt adalah abstract class yang di-anotasi @Database, menjadi entry point untuk akses database.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/repository/</code></td>
+                        <td>Repository pattern — abstraction layer</td>
+                        <td>UserRepository.kt menyembunyikan detail DAO dari ViewModel, menyediakan interface clean untuk akses data.</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewmodel/</code></td>
+                        <td>ViewModel Layer — state management dan business logic</td>
+                        <td>LoginViewModel.kt menyimpan UI state, logic login; LoginViewModelFactory.kt untuk dependency injection ViewModel.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/screen/</code></td>
+                        <td>Composable screen (halaman UI)</td>
+                        <td>LoginScreen.kt adalah Composable function yang menampilkan form login dan feedback message.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/</code></td>
+                        <td>Styling dan tema aplikasi</td>
+                        <td>Color.kt (definisi warna), Theme.kt (aplikasi Material Theme 3), Type.kt (typography).</td>
+                    </tr>
+                    <tr>
+                        <td><code>res/values/</code></td>
+                        <td>Resource strings, colors, themes XML</td>
+                        <td>strings.xml (teks app_name), colors.xml (warna), themes.xml (tema Android Material).</td>
+                    </tr>
+                    <tr>
+                        <td><code>res/mipmap-*/</code></td>
+                        <td>Icon launcher aplikasi dalam berbagai resolusi</td>
+                        <td>ic_launcher.webp, ic_launcher_round.webp untuk berbagai density (mdpi, hdpi, xhdpi, dll).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.3 Alur Lalu Lintas Data (Data Flow)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Data mengalir dengan pola unidirectional yang teratur di aplikasi ini:
+        </p>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>User Input (View):</strong> User mengetik username dan password pada OutlinedTextField di LoginScreen, lalu menekan tombol LOGIN.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Event ke ViewModel:</strong> LoginScreen memanggil callback <code>viewModel.login(username, password)</code>.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>ViewModel Processing:</strong> LoginViewModel.login() memanggil <code>repository.login(username, password)</code> di dalam Coroutine scope viewModelScope.launch agar tidak block UI thread.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Repository Forward:</strong> UserRepository.login() meneruskan permintaan ke <code>userDao.login(username, password)</code>.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Database Query:</strong> UserDao menjalankan SQL query <code>SELECT * FROM users WHERE username = :username AND password = :password</code>. Room compiler sudah mengubah @Query anotasi menjadi SQL implementation.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Database Result:</strong> SQLite mengembalikan User object jika cocok, atau null jika tidak ada.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Back to ViewModel:</strong> Hasil kembali ke ViewModel. Jika user != null, set loginState = "Login Berhasil ✓", else set "Username atau Password Salah ✗".</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>State Update & Recomposition:</strong> loginState adalah mutableStateOf, jadi Compose otomatis mendeteksi perubahan state dan melakukan recomposition. LoginScreen di-render ulang dengan pesan baru.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>UI Feedback (View):</strong> User melihat pesan hasil login (sukses atau gagal) dalam Card di bawah tombol LOGIN.</p></li>
+        </ol>
+
+        <hr>
+
+        <h2>7. Cara Pengujian di Android Studio</h2>
+
+        <h3>7.1 Persiapan Sebelum Testing</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Sebelum melakukan testing, pastikan beberapa hal telah dipersiaplan dengan baik untuk memastikan aplikasi dapat berjalan tanpa hambatan.
+        </p>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Buka Project:</strong> Buka project Pertemuan 12 di Android Studio, tunggu proses indexing file selesai (biasanya 1-2 menit tergantung kecepatan komputer).</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Gradle Sync:</strong> Jalankan <strong>File > Sync Now</strong> atau tunggu Android Studio otomatis menyarankan sync. Pastikan semua dependency berhasil di-download dan tidak ada error merah.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Check Build:</strong> Buka Build Console dan pastikan tidak ada error atau warning yang kritis. Jika ada warning atau error, baca pesan dan fix sesuai saran.</p></li>
+        </ol>
+
+        <h3>7.2 Langkah-Langkah Testing</h3>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Clean & Build Project:</strong> Klik menu <strong>Build > Clean Project</strong> untuk membersihkan build artifacts lama, lalu <strong>Build > Rebuild Project</strong> untuk rebuild semuanya dari nol.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Jalankan Emulator:</strong> Jika menggunakan emulator (bukan device fisik), buka Android Virtual Device (AVD) Manager, pilih emulator yang kompatibel (minimal API 24 / Android 7.0), dan jalankan emulator tersebut. Tunggu emulator sepenuhnya boot (layar hidup, home screen terlihat).</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Run App:</strong> Klik tombol <strong>Run (Play icon)</strong> di toolbar, atau tekan Shift+F10. Pilih emulator yang sedang berjalan, lalu klik OK. Android Studio akan melakukan compile, generate APK, dan install aplikasi ke emulator.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Tunggu App Launch:</strong> Tunggu aplikasi selesai di-install dan ter-launch secara otomatis. Jika berhasil, akan muncul UI login screen di emulator.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Monitor Logcat:</strong> Buka window Logcat (biasanya di tab bawah Android Studio) dan filter log dengan tag aplikasi untuk memastikan tidak ada crash atau exception saat aplikasi startup.</p></li>
+        </ol>
+
+        <h3>7.3 Scenario Testing</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Setelah aplikasi berhasil launch, lakukan pengujian dengan tiga skenario berikut untuk memastikan fitur login berfungsi dengan baik.
+        </p>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Skenario</th>
+                        <th>Input</th>
+                        <th>Aksi</th>
+                        <th>Expected Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Tampilan Awal (Sebelum Login)</td>
+                        <td>-</td>
+                        <td>Amati UI saat aplikasi pertama kali dibuka</td>
+                        <td>Form username dan password kosong, tombol LOGIN aktif, tidak ada pesan error, text "admin / 12345" terlihat di bawah sebagai hint</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Login Gagal</td>
+                        <td>Username: admin, Password: 11111</td>
+                        <td>Ketik username dan password salah, tekan tombol LOGIN</td>
+                        <td>Card merah dengan pesan "Username atau Password Salah ✗" muncul di bawah tombol. Input field tetap terisi.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Login Berhasil</td>
+                        <td>Username: admin, Password: 12345</td>
+                        <td>Ketik username dan password benar, tekan tombol LOGIN</td>
+                        <td>Card hijau dengan pesan "Login Berhasil ✓" muncul di bawah tombol. Tidak ada crash atau error di Logcat.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>8. Hasil Pengujian dan Area Placeholder untuk Screenshot</h2>
+
+        <h3>8.1 Hasil Testing</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Berikut adalah tabel yang merangkum hasil testing aplikasi dengan tiga kondisi utama. Silakan isi kolom "Hasil Observasi" berdasarkan pengamatan aktual saat testing, dan tempel screenshot di area yang disediakan.
+        </p>
+
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Kondisi Uji</th>
+                        <th>Ekspektasi</th>
+                        <th>Hasil Observasi</th>
+                        <th>Screenshot (Area untuk tempel)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kondisi 1:<br>Sebelum Mencoba Login</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>UI login screen muncul normal</li>
+                                <li>Title "User Login" terlihat</li>
+                                <li>Subtitle "Silakan masukkan username dan password" terlihat</li>
+                                <li>Field username kosong</li>
+                                <li>Field password kosong</li>
+                                <li>Tombol LOGIN aktif dan dapat ditekan</li>
+                                <li>Tidak ada card pesan kesalahan</li>
+                                <li>Text "admin / 12345" terlihat sebagai hint</li>
+                            </ul>
+                        </td>
+                        <td><p style="text-align: justify; text-indent: 40px;">[Isi hasil observasi Anda di sini — apa yang benar-benar terlihat saat aplikasi pertama kali dibuka?]</p></td>
+                        <td><p style="text-align: center; height: 300px; border: 2px dashed #b8860b; padding: 16px; background: rgba(0,0,0,0.1); border-radius: 6px;"><strong>[TEMPEL SCREENSHOT KONDISI AWAL DI SINI]</strong></p></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 2:<br>Login Gagal<br>(Kredensial Salah)</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Masukkan username "admin" dan password "11111" (salah)</li>
+                                <li>Tekan tombol LOGIN</li>
+                                <li>Card berwarna merah muncul</li>
+                                <li>Pesan "Username atau Password Salah ✗" ditampilkan</li>
+                                <li>Input field tetap terisi (tidak dikosongkan)</li>
+                                <li>Tidak ada crash atau error di Logcat</li>
+                            </ul>
+                        </td>
+                        <td><p style="text-align: justify; text-indent: 40px;">[Isi hasil observasi Anda — apakah pesan error muncul dengan benar? Apakah card berwarna merah? Apakah ada delay atau crash?]</p></td>
+                        <td><p style="text-align: center; height: 300px; border: 2px dashed #b8860b; padding: 16px; background: rgba(0,0,0,0.1); border-radius: 6px;"><strong>[TEMPEL SCREENSHOT LOGIN GAGAL DI SINI]</strong></p></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 3:<br>Login Berhasil<br>(Kredensial Benar)</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Masukkan username "admin" dan password "12345" (benar)</li>
+                                <li>Tekan tombol LOGIN</li>
+                                <li>Card berwarna hijau muncul</li>
+                                <li>Pesan "Login Berhasil ✓" ditampilkan</li>
+                                <li>Input field tetap terisi</li>
+                                <li>Tidak ada crash atau error di Logcat</li>
+                                <li>Tidak ada force close atau ANR (App Not Responding)</li>
+                            </ul>
+                        </td>
+                        <td><p style="text-align: justify; text-indent: 40px;">[Isi hasil observasi Anda — apakah pesan sukses muncul dengan benar? Apakah card berwarna hijau? Apakah user experience terasa lancar?]</p></td>
+                        <td><p style="text-align: center; height: 300px; border: 2px dashed #b8860b; padding: 16px; background: rgba(0,0,0,0.1); border-radius: 6px;"><strong>[TEMPEL SCREENSHOT LOGIN BERHASIL DI SINI]</strong></p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>8.2 Catatan Testing Tambahan</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            [Ruang untuk mencatat catatan tambahan dari testing: performa aplikasi, observasi UX, saran perbaikan, atau hasil testing tambahan yang tidak ada di tabel di atas.]
+        </p>
+
+        <hr>
+
+        <h2>9. Kesimpulan</h2>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Dari pengembangan dan testing project aplikasi login ini, saya telah mempelajari beberapa hal penting dalam mobile programming modern. Pertama, pembuatan fitur autentikasi yang stabil dan aman memerlukan arsitektur yang terstruktur dengan baik — tidak hanya bisa berfungsi, tetapi juga mudah dimaintain dan di-test di masa depan.
+        </p>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Dengan menerapkan pola MVVM dan pemisahan layer yang jelas (View, ViewModel, Repository, DAO, Entity), kode menjadi lebih terorganisir dan scalable. ViewModel menangani state dan logic, sehingga UI hanya fokus menampilkan dan menerima input. Repository menjadi abstraction layer yang menyembunyikan kompleksitas database dari ViewModel, memudahkan testing dengan mock data.
+        </p>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Room Database memberikan solusi yang jauh lebih aman dan mudah dibanding SQLite manual — type-safe, automatic SQL generation, dan support untuk Coroutine membuat operasi database menjadi seamless. Penggunaan Jetpack Compose untuk UI membuat code lebih deklaratif dan mudah dibaca dibanding XML tradisional, dengan hot reload untuk development cycle yang lebih cepat.
+        </p>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Secara keseluruhan, project Pertemuan 12 ini telah berhasil mengimplementasikan aplikasi login sederhana dengan semua fitur yang diminta: input username/password, tombol login, validasi ke database lokal, pesan sukses/gagal, dan penyimpanan data user dengan aman. Aplikasi ini siap sebagai fondasi untuk pengembangan lebih lanjut, misalnya penambahan fitur register, hash password, atau autentikasi dengan server backend.
+        </p>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Materi yang dipelajari dari project ini mencakup konsep fundamental yang akan terus digunakan di project-project Android selanjutnya. Dengan pemahaman yang solid tentang MVVM, Database, Coroutine, dan Compose, saya siap untuk mengembangkan aplikasi Android yang lebih kompleks dan profesional di masa depan.
+        </p>
+
+    </div>
+</body>
+</html>
