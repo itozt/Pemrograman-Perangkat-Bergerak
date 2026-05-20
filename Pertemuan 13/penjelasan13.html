@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjelasan Project Registrasi Siswa - Pertemuan 13</title>
+    <style>
+        /* Container utama */
+        .blog-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        /* Bagian Profil/Detail Diri */
+        .student-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-left: 4px solid #b8860b;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .student-info p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        .student-info span {
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+
+        /* Tabel Perkembangan Teknologi */
+        .tech-table-container {
+            overflow-x: auto;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            border: 1px solid #b8860b;
+        }
+        .tech-table thead {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid #b8860b;
+        }
+        .tech-table th {
+            padding: 12px 15px;
+            text-align: left;
+            color: #ffd700;
+            border: 1px solid #b8860b;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .tech-table td {
+            padding: 12px 15px;
+            border: 1px solid #b8860b;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        .tech-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .tech-table tbody tr:hover {
+            background-color: rgba(184, 134, 11, 0.2);
+            transition: 0.3s;
+        }
+
+        /* Gambar di dalam tabel */
+        .table-img {
+            max-width: 100px;
+            max-height: 100px;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            border: 1px solid #b8860b;
+            background-color: rgba(255,255,255,0.05);
+        }
+        
+        /* Code styling */
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            border-left: 3px solid #b8860b;
+            line-height: 1.5;
+        }
+        
+        code {
+            font-family: 'Courier New', monospace;
+            color: #c8d6e5;
+        }
+        
+        h1, h2, h3 {
+            color: #b6a271;
+        }
+        
+        hr {
+            border-color: #b8860b;
+            margin: 30px 0;
+        }
+        
+        ul {
+            line-height: 1.8;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-wrapper">
+        <h1>Aplikasi Registrasi Siswa dengan Room Database dan Jetpack Compose</h1>
+
+        <div class="student-info">
+            <p><span>Nama</span>: Christoforus Indra Bagus Pratama</p>
+            <p><span>NRP</span>: 5025231124</p>
+            <p><span>Mata Kuliah</span>: Pemrograman Perangkat Bergerak</p>
+            <p><span>Tanggal</span>: 20 Mei 2026</p>
+            <p><span>Pertemuan</span>: 13</p>
+            <p><span>Link</span>: <a href="https://github.com/itozt/Pemrograman-Perangkat-Bergerak/blob/main/Pertemuan%2013/app/src/main/java/com/example/pertemuan13/MainActivity.kt" target="_blank">Link Github</a></p>
+        </div>
+
+        <hr>
+        <div class="separator" style="clear: both;">
+            <a href="screenshot/Dashboard%20dengan%20Scroll.png" style="display: block; padding: 1em 0; text-align: center; ">
+                <img alt="Registrasi Siswa" border="0" width="600" src="screenshot/Dashboard%20dengan%20Scroll.png"/>
+            </a>
+        </div>
+        <hr>
+
+        <h2>1. Deskripsi Aplikasi dan Tujuan Pembuatan</h2>
+        
+        <h3>1.1 Deskripsi Umum</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Project Pertemuan 13 ini berfokus pada pembuatan aplikasi Registrasi Siswa berbasis Android. Aplikasi memungkinkan pengguna menambahkan data siswa (nama dan email), menampilkan daftar siswa secara real-time, melakukan edit data, serta menghapus data dengan konfirmasi. Aplikasi dibangun dengan Jetpack Compose untuk UI dan Room Database sebagai penyimpanan lokal, sehingga data tetap tersimpan di perangkat.
+        </p>
+        
+        <h3>1.2 Tujuan Pembuatan</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Tujuan utama pembuatan aplikasi ini adalah memperdalam konsep berikut:
+        </p>
+        <ul>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menguasai CRUD dengan Room:</strong> Memahami proses Create, Read, Update, dan Delete pada database lokal melalui DAO.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menerapkan arsitektur MVVM:</strong> Memisahkan UI dan logika bisnis agar kode lebih terstruktur dan mudah dirawat.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menggunakan Flow dan StateFlow:</strong> Menampilkan data secara reaktif tanpa perlu refresh manual.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Membuat UI modern dengan Compose:</strong> Membangun form input, daftar data, dan dialog konfirmasi secara deklaratif.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Menerapkan validasi input:</strong> Menjaga kualitas data dengan validasi sederhana sebelum disimpan.</p></li>
+        </ul>
+
+        <hr>
+
+        <h2>2. Arsitektur Aplikasi (MVVM + Room)</h2>
+        
+        <h3>2.1 Penjelasan Pola MVVM</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            MVVM (Model-View-ViewModel) membagi aplikasi menjadi tiga lapisan dengan tanggung jawab yang jelas. Pada project ini, View menampilkan UI dan menerima input, ViewModel mengelola state serta menjalankan logika bisnis, sedangkan Model/Data menangani penyimpanan data melalui Room Database.
+        </p>
+        
+        <h3>2.2 Tiga Lapisan dalam Aplikasi Ini</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Lapisan</th>
+                        <th>File/Class</th>
+                        <th>Tanggung Jawab</th>
+                        <th>Penjelasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>View</strong></td>
+                        <td><code>MainScreen.kt</code>, <code>FormInput.kt</code>, <code>StudentItem.kt</code></td>
+                        <td>Menampilkan UI dan menerima input user</td>
+                        <td>Berisi composable untuk form input, daftar siswa, dan kartu item siswa.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ViewModel</strong></td>
+                        <td><code>StudentViewModel.kt</code></td>
+                        <td>Mengelola state UI dan logika bisnis</td>
+                        <td>Mengatur list siswa, proses tambah, edit, dan hapus data melalui DAO.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Model/Data</strong></td>
+                        <td><code>Siswa.kt</code>, <code>SiswaDao.kt</code>, <code>AppDatabase.kt</code></td>
+                        <td>Penyimpanan dan akses data</td>
+                        <td>Entity mendefinisikan tabel siswa, DAO menyediakan operasi database, AppDatabase mengelola instance Room.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>2.3 Alur Data Aplikasi</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Alur data mengikuti pola satu arah: <strong>View → ViewModel → DAO → Room/SQLite</strong>, kemudian hasilnya dikembalikan ke ViewModel sebagai state dan UI akan ter-update otomatis melalui Flow/StateFlow.
+        </p>
+        
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Komponen</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>User / View</td>
+                        <td>User mengisi nama dan email lalu menekan tombol tambah.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>MainScreen</td>
+                        <td>Memvalidasi input dan memanggil fungsi ViewModel.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>StudentViewModel</td>
+                        <td>Menjalankan operasi insert atau update di dalam coroutine.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>SiswaDao</td>
+                        <td>DAO mengeksekusi query insert/update/delete sesuai kebutuhan.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Room/SQLite</td>
+                        <td>Database menyimpan perubahan dan mengirim data terbaru.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Flow/StateFlow</td>
+                        <td>Daftar siswa di-emit ulang dari DAO sebagai Flow.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>UI (Compose)</td>
+                        <td>UI melakukan recomposition dan menampilkan data terbaru.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>3. Langkah-Langkah Pembuatan Aplikasi (Detail Implementasi)</h2>
+        
+        <h3>3.1 Langkah 1: Persiapan Project</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Project dibuat di Android Studio dengan nama <code>Pertemuan 13</code> dan package <code>com.example.pertemuan13</code>. UI menggunakan Jetpack Compose sebagai pendekatan modern untuk membangun tampilan.
+        </p>
+
+        <h3>3.2 Langkah 2: Menambahkan Dependency</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Pada <code>app/build.gradle.kts</code>, saya menambahkan dependency Room, ViewModel Compose, dan Coroutines agar database dapat bekerja secara asynchronous dan UI tetap responsif.
+        </p>
+
+        <h3>3.3 Langkah 3: Membuat Entity (Siswa.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Entity <code>Siswa</code> mendefinisikan struktur tabel dengan kolom <code>id</code>, <code>nama</code>, dan <code>email</code>. Field <code>id</code> dibuat auto-generate agar unik untuk setiap siswa.
+        </p>
+
+        <h3>3.4 Langkah 4: Membuat DAO (SiswaDao.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            DAO berisi fungsi untuk insert, update, delete, dan query daftar siswa. Query <code>getAllSiswa()</code> mengembalikan <code>Flow</code> agar UI menerima perubahan data secara real-time.
+        </p>
+
+        <h3>3.5 Langkah 5: Membuat Database Class (AppDatabase.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            <code>AppDatabase</code> adalah singleton Room Database yang menyediakan akses ke <code>SiswaDao</code>. Database ini menggunakan nama <code>siswa_database</code>.
+        </p>
+
+        <h3>3.6 Langkah 6: Membuat ViewModel (StudentViewModel.kt)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            ViewModel menampung state daftar siswa dan menyediakan fungsi <code>tambahSiswa</code>, <code>editSiswa</code>, dan <code>hapusSiswa</code>. Semua operasi dilakukan di dalam <code>viewModelScope</code>.
+        </p>
+
+        <h3>3.7 Langkah 7: Membuat UI Compose</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            UI dibangun melalui tiga komponen utama: <code>FormInput</code> untuk input data, <code>StudentItem</code> untuk tampilan kartu siswa, dan <code>MainScreen</code> sebagai layar utama yang menyusun semua komponen.
+        </p>
+
+        <h3>3.8 Langkah 8: Setup MainActivity</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            <code>MainActivity.kt</code> menginisialisasi database dan DAO, membuat ViewModel dengan factory, lalu menampilkan <code>MainScreen</code> dalam tema <code>Pertemuan13Theme</code>.
+        </p>
+
+        <hr>
+
+        <h2>4. Penjelasan File, Isi Kode, dan Tujuan Masing-Masing</h2>
+
+        <h3>4.1 Tabel Ringkasan File-File Utama</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>File</th>
+                        <th>Tujuan</th>
+                        <th>Isi Kode Utama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2"><strong>Entry Point</strong></td>
+                        <td><code>MainActivity.kt</code></td>
+                        <td>Activity utama aplikasi</td>
+                        <td>Inisialisasi database dan ViewModel, render <code>MainScreen</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><code>AndroidManifest.xml</code></td>
+                        <td>Konfigurasi manifest aplikasi</td>
+                        <td>Menetapkan MainActivity sebagai launcher.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>UI/View Layer</strong></td>
+                        <td><code>ui/MainScreen.kt</code></td>
+                        <td>Layar utama aplikasi</td>
+                        <td>Form input, daftar siswa, dialog konfirmasi hapus.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/FormInput.kt</code></td>
+                        <td>Form input data siswa</td>
+                        <td>TextField nama dan email, tombol tambah atau simpan.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/StudentItem.kt</code></td>
+                        <td>Kartu tampilan siswa</td>
+                        <td>Avatar inisial, nama, email, tombol edit dan hapus.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>ViewModel Layer</strong></td>
+                        <td><code>viewmodel/StudentViewModel.kt</code></td>
+                        <td>Logika bisnis dan state management</td>
+                        <td>StateFlow list siswa, fungsi tambah, edit, hapus.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Data Layer</strong></td>
+                        <td><code>data/Siswa.kt</code></td>
+                        <td>Entity tabel siswa</td>
+                        <td>@Entity dengan <code>id</code>, <code>nama</code>, <code>email</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/SiswaDao.kt</code></td>
+                        <td>DAO untuk operasi database</td>
+                        <td>@Insert, @Update, @Delete, dan query Flow.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/AppDatabase.kt</code></td>
+                        <td>Konfigurasi Room Database</td>
+                        <td>Singleton database dengan <code>siswaDao()</code>.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Theme & Resources</strong></td>
+                        <td><code>ui/theme/Color.kt</code></td>
+                        <td>Definisi warna aplikasi</td>
+                        <td>Warna dasar Material Theme 3.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/Theme.kt</code></td>
+                        <td>Konfigurasi tema</td>
+                        <td>MaterialTheme dengan dukungan dynamic color.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/Type.kt</code></td>
+                        <td>Typography aplikasi</td>
+                        <td>Pengaturan font dasar.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2"><strong>Config & Build</strong></td>
+                        <td><code>app/build.gradle.kts</code></td>
+                        <td>Konfigurasi build dan dependency</td>
+                        <td>Room, ViewModel Compose, Coroutines, Compose UI.</td>
+                    </tr>
+                    <tr>
+                        <td><code>res/values/strings.xml</code></td>
+                        <td>Resource string aplikasi</td>
+                        <td>Nama aplikasi dan string dasar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>5. Penjelasan Detail Setiap Bagian Kode MainActivity.kt</h2>
+
+        <h3>5.1 Struktur Umum MainActivity</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            MainActivity berfungsi sebagai entry point aplikasi. Di sini dilakukan inisialisasi database, pembuatan ViewModel, serta rendering UI Compose dengan tema aplikasi.
+        </p>
+
+        <h3>5.2 Bagian 1: Package dan Import</h3>
+        <pre><code>package com.example.pertemuan13
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
+import com.example.pertemuan13.data.AppDatabase
+import com.example.pertemuan13.ui.MainScreen
+import com.example.pertemuan13.ui.theme.Pertemuan13Theme
+import com.example.pertemuan13.viewmodel.StudentViewModel</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            Import berisi komponen Activity modern, Compose, database, UI screen, tema, serta ViewModel.
+        </p>
+
+        <h3>5.3 Bagian 2: Class Declaration dan onCreate()</h3>
+        <pre><code>class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            MainActivity mewarisi ComponentActivity agar kompatibel dengan Compose. Method onCreate digunakan sebagai titik awal lifecycle Activity.
+        </p>
+
+        <h3>5.4 Bagian 3: Inisialisasi Database dan DAO</h3>
+        <pre><code>val dao = AppDatabase.getDatabase(applicationContext).siswaDao()</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            Database Room dibuat melalui singleton AppDatabase, lalu diambil DAO untuk mengakses tabel siswa.
+        </p>
+
+        <h3>5.5 Bagian 4: ViewModel Factory</h3>
+        <pre><code>val factory = StudentViewModel.factory(dao)
+val viewModel: StudentViewModel by viewModels { factory }</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            ViewModel membutuhkan parameter DAO, sehingga digunakan factory agar ViewModel dapat dibuat dengan dependency yang benar.
+        </p>
+
+        <h3>5.6 Bagian 5: SetContent dan Render UI</h3>
+        <pre><code>enableEdgeToEdge()
+setContent {
+    Pertemuan13Theme {
+        MainScreen(viewModel = viewModel)
+    }
+}</code></pre>
+        <p style="text-align: justify; text-indent: 40px;">
+            UI Compose dirender dengan tema aplikasi, lalu MainScreen ditampilkan sebagai layar utama.
+        </p>
+
+        <hr>
+
+        <h2>6. Tree Struktur Folder Aplikasi dan Alur Lalu Lintas Data</h2>
+
+        <h3>6.1 Struktur Folder Aplikasi</h3>
+        <pre><code>Pertemuan 13/
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+│       └── main/
+│           ├── AndroidManifest.xml
+│           ├── java/com/example/pertemuan13/
+│           │   ├── MainActivity.kt
+│           │   ├── data/
+│           │   │   ├── AppDatabase.kt
+│           │   │   ├── Siswa.kt
+│           │   │   └── SiswaDao.kt
+│           │   ├── viewmodel/
+│           │   │   └── StudentViewModel.kt
+│           │   └── ui/
+│           │       ├── FormInput.kt
+│           │       ├── MainScreen.kt
+│           │       ├── StudentItem.kt
+│           │       └── theme/
+│           │           ├── Color.kt
+│           │           ├── Theme.kt
+│           │           └── Type.kt
+│           └── res/
+│               ├── values/
+│               │   ├── strings.xml
+│               │   └── themes.xml
+│               ├── mipmap-*/
+│               │   └── ic_launcher.webp
+│               └── xml/
+│                   ├── backup_rules.xml
+│                   └── data_extraction_rules.xml
+├── build.gradle.kts (root)
+├── settings.gradle.kts
+└── gradle/</code></pre>
+
+        <h3>6.2 Penjelasan Struktur Folder</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Folder/File</th>
+                        <th>Kegunaan</th>
+                        <th>Penjelasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>data/</code></td>
+                        <td>Layer data</td>
+                        <td>Menampung Entity, DAO, dan konfigurasi Room Database.</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewmodel/</code></td>
+                        <td>Layer ViewModel</td>
+                        <td>Mengelola state dan logika bisnis aplikasi.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/</code></td>
+                        <td>Layer UI</td>
+                        <td>Composable untuk form input, daftar siswa, dan item siswa.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/</code></td>
+                        <td>Styling dan tema</td>
+                        <td>Konfigurasi warna, tema, dan typography aplikasi.</td>
+                    </tr>
+                    <tr>
+                        <td><code>res/values/</code></td>
+                        <td>Resource dasar</td>
+                        <td>Strings dan tema XML untuk kebutuhan Android.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.3 Alur Lalu Lintas Data (Data Flow)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Data mengalir secara terstruktur mulai dari input user sampai ditampilkan kembali dalam daftar siswa:
+        </p>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>User Input (View):</strong> User mengisi nama dan email pada form.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Event ke ViewModel:</strong> MainScreen memanggil fungsi tambah atau edit.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>ViewModel Processing:</strong> ViewModel menjalankan operasi DAO di coroutine.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>DAO Query:</strong> DAO mengubah data di Room Database.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Room Result:</strong> Data terbaru di-emit sebagai Flow.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>State Update:</strong> StateFlow diperbarui dan UI recomposition otomatis.</p></li>
+        </ol>
+
+        <hr>
+
+        <h2>7. Cara Pengujian di Android Studio</h2>
+
+        <h3>7.1 Persiapan Sebelum Testing</h3>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Buka Project:</strong> Buka folder Pertemuan 13 di Android Studio dan tunggu indexing selesai.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Gradle Sync:</strong> Pastikan semua dependency ter-download dengan benar.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Check Build:</strong> Pastikan tidak ada error di Build Console.</p></li>
+        </ol>
+
+        <h3>7.2 Langkah-Langkah Testing</h3>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Clean & Build:</strong> Jalankan Build > Clean Project, lalu Build > Rebuild Project.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Jalankan Emulator/Device:</strong> Siapkan emulator atau device fisik.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Run App:</strong> Tekan tombol Run dan pilih device target.</p></li>
+        </ol>
+
+        <h3>7.3 Scenario Testing</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Skenario</th>
+                        <th>Input</th>
+                        <th>Aksi</th>
+                        <th>Expected Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Tambah Siswa</td>
+                        <td>Nama dan email valid</td>
+                        <td>Isi form lalu klik Tambah Siswa</td>
+                        <td>Data tersimpan dan tampil di daftar siswa.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Edit Siswa</td>
+                        <td>Nama/email baru</td>
+                        <td>Klik tombol Edit, ubah data, simpan</td>
+                        <td>Data siswa berubah sesuai input.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Hapus Siswa</td>
+                        <td>-</td>
+                        <td>Klik Hapus lalu konfirmasi</td>
+                        <td>Data siswa terhapus dari daftar.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Validasi Input</td>
+                        <td>Nama/email kosong atau email tanpa &quot;@&quot;</td>
+                        <td>Klik Tambah Siswa</td>
+                        <td>Data tidak disimpan.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>8. Hasil Pengujian dan Area Placeholder untuk Screenshot</h2>
+        <p style="text-align: justify; text-indent: 40px;">
+            Berikut ringkasan hasil observasi dari beberapa kondisi uji utama.
+        </p>
+
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Kondisi Uji</th>
+                        <th>Hasil Observasi</th>
+                        <th>Screenshot Hasil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kondisi 1:<br>Dashboard Kosong</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Daftar siswa masih kosong</li>
+                                <li>Pesan ajakan menambah data muncul</li>
+                                <li>Form input siap digunakan</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;">
+                                <a href="screenshot/Dashboard%20Kosong.png" style="display: block; padding: 1em 0; text-align: center; ">
+                                    <img alt="Dashboard Kosong" border="0" height="400" src="screenshot/Dashboard%20Kosong.png"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 2:<br>Data Bertambah</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Beberapa siswa berhasil ditambahkan</li>
+                                <li>Daftar menampilkan banyak item dan bisa di-scroll</li>
+                                <li>Avatar inisial muncul untuk tiap siswa</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;">
+                                <a href="screenshot/Dashboard%20dengan%20Scroll.png" style="display: block; padding: 1em 0; text-align: center; ">
+                                    <img alt="Dashboard Scroll" border="0" height="400" src="screenshot/Dashboard%20dengan%20Scroll.png"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 3:<br>Edit Data</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Form masuk mode edit</li>
+                                <li>Tombol Simpan dan Batal muncul</li>
+                                <li>Data diperbarui setelah disimpan</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;">
+                                <a href="screenshot/Edit.png" style="display: block; padding: 1em 0; text-align: center; ">
+                                    <img alt="Edit Data" border="0" height="400" src="screenshot/Edit.png"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 4:<br>Konfirmasi Hapus</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Dialog konfirmasi muncul</li>
+                                <li>User dapat memilih batal atau hapus</li>
+                                <li>Data terhapus jika dikonfirmasi</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;">
+                                <a href="screenshot/Konfirmasi%20Hapus.png" style="display: block; padding: 1em 0; text-align: center; ">
+                                    <img alt="Konfirmasi Hapus" border="0" height="400" src="screenshot/Konfirmasi%20Hapus.png"/>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>9. Kesimpulan</h2>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Project Registrasi Siswa pada Pertemuan 13 berhasil mengimplementasikan proses CRUD yang lengkap dengan Room Database, sekaligus menerapkan arsitektur MVVM agar kode lebih rapi dan mudah dikembangkan. Integrasi Flow dan StateFlow membuat data tampil secara reaktif tanpa refresh manual, sedangkan Compose mempermudah pembuatan UI yang modern dan konsisten.
+        </p>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Dari project ini, saya memperoleh pemahaman yang lebih baik tentang manajemen data lokal, validasi input sederhana, serta workflow pengembangan Android yang profesional. Aplikasi ini dapat menjadi dasar untuk pengembangan fitur lanjutan seperti pencarian, filtering, atau sinkronisasi dengan backend.
+        </p>
+
+    </div>
+</body>
+</html>
