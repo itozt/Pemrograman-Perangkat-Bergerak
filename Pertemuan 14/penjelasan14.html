@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjelasan Project Aplikasi Berita - Pertemuan 14</title>
+    <style>
+        /* Container utama */
+        .blog-wrapper {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        /* Bagian Profil/Detail Diri */
+        .student-info {
+            margin-bottom: 30px;
+            padding: 15px;
+            border-left: 4px solid #b8860b;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+        .student-info p {
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        .student-info span {
+            color: #ffd700;
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+
+        /* Tabel Perkembangan Teknologi */
+        .tech-table-container {
+            overflow-x: auto;
+        }
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: transparent;
+            border: 1px solid #b8860b;
+        }
+        .tech-table thead {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-bottom: 2px solid #b8860b;
+        }
+        .tech-table th {
+            padding: 12px 15px;
+            text-align: left;
+            color: #ffd700;
+            border: 1px solid #b8860b;
+            text-transform: uppercase;
+            font-size: 13px;
+        }
+        .tech-table td {
+            padding: 12px 15px;
+            border: 1px solid #b8860b;
+            vertical-align: top;
+            font-size: 14px;
+        }
+        .tech-table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        .tech-table tbody tr:hover {
+            background-color: rgba(184, 134, 11, 0.2);
+            transition: 0.3s;
+        }
+
+        /* Gambar di dalam tabel */
+        .table-img {
+            max-width: 100px;
+            max-height: 100px;
+            width: auto;
+            height: auto;
+            border-radius: 6px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+            border: 1px solid #b8860b;
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        /* Code styling */
+        pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 13px;
+            border-left: 3px solid #b8860b;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            color: #c8d6e5;
+        }
+
+        h1, h2, h3 {
+            color: #b6a271;
+        }
+
+        hr {
+            border-color: #b8860b;
+            margin: 30px 0;
+        }
+
+        ul {
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="blog-wrapper">
+        <h1>Aplikasi Berita Mobile dengan REST API dan Jetpack Compose</h1>
+
+        <div class="student-info">
+            <p><span>Nama</span>: Christoforus Indra Bagus Pratama</p>
+            <p><span>NRP</span>: 5025231124</p>
+            <p><span>Mata Kuliah</span>: Pemrograman Perangkat Bergerak</p>
+            <p><span>Tanggal</span>: 3 Juni 2026</p>
+            <p><span>Pertemuan</span>: 14</p>
+            <p><span>Link</span>: </p>
+        </div>
+
+        <hr>
+        <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHuznBfp9lGImNMSztinyRgk2zx4IFIaaqeKi5zWEiIRtT0sLS_4MZ_LBUDhn01UM6jFJyRZUBEbKu0r90g5rFtqssqXuDvU1XCkSTjbWAA5kMwYohuNcsH9wswDsBdKSx7l-zP7i_nG2WVRMEn2KlhjJxC4rC_-38aGD0w6VPOlxXD1DY_jeGHA6BweM/s1280/Semua%20Orang.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" width="600" data-original-height="720" data-original-width="1280" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgHuznBfp9lGImNMSztinyRgk2zx4IFIaaqeKi5zWEiIRtT0sLS_4MZ_LBUDhn01UM6jFJyRZUBEbKu0r90g5rFtqssqXuDvU1XCkSTjbWAA5kMwYohuNcsH9wswDsBdKSx7l-zP7i_nG2WVRMEn2KlhjJxC4rC_-38aGD0w6VPOlxXD1DY_jeGHA6BweM/s600/Semua%20Orang.png"/></a></div>
+        <hr>
+
+        <h2>1. Deskripsi Aplikasi dan Tujuan Pembuatan</h2>
+
+        <h3>1.1 Deskripsi Umum</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Project Pertemuan 14 berfokus pada pembuatan aplikasi Berita Mobile berbasis Android. Aplikasi ini memungkinkan pengguna untuk melihat berita terkini dari berbagai sumber, mencari berita berdasarkan keyword, melihat detail artikel lengkap, dan melakukan refresh data secara manual melalui pull-to-refresh. Aplikasi menggunakan NewsAPI sebagai sumber data real-time, Retrofit untuk komunikasi HTTP, dan Jetpack Compose untuk antarmuka pengguna modern yang responsif.
+        </p>
+
+        <h3>1.2 Tujuan Pembuatan</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Tujuan utama pembuatan aplikasi ini adalah memperdalam konsep berikut:
+        </p>
+        <ul>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Integrasi REST API:</strong> Mempelajari cara berkomunikasi dengan API eksternal menggunakan Retrofit dan menangani response JSON dengan Gson.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Arsitektur MVVM dengan API:</strong> Memahami pola MVVM yang menghubungkan UI dengan data dari server melalui Repository dan ViewModel.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Manajemen State Asynchronous:</strong> Menggunakan Sealed Class dan StateFlow untuk mengelola state Loading, Success, dan Error.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Navigation Compose yang Kompleks:</strong> Menerapkan navigation dengan parameter kompleks melalui URL encoding untuk passing data antar screen.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Pull-to-Refresh dan Loading States:</strong> Menerapkan user experience yang baik dengan indikator loading dan kemampuan refresh manual.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Async Image Loading:</strong> Menggunakan Coil library untuk memuat gambar dari URL dengan efficient caching.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Penerapan HCI Principles:</strong> Merancang UI yang user-friendly, minimalis, modern, dengan proper spacing dan typography sesuai Material Design 3.</p></li>
+        </ul>
+
+        <hr>
+
+        <h2>2. Arsitektur Aplikasi (MVVM + Retrofit)</h2>
+
+        <h3>2.1 Penjelasan Pola MVVM dengan API</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            MVVM (Model-View-ViewModel) pada project ini memiliki struktur yang berbeda dengan project berbasis database lokal. View menampilkan UI dan menerima input dari user, ViewModel mengelola state aplikasi dan mengkoordinasikan data flow, Repository mengatur komunikasi dengan API melalui Retrofit, dan API Service mendefinisikan endpoint-endpoint yang digunakan.
+        </p>
+
+        <h3>2.2 Empat Lapisan dalam Aplikasi Ini</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Lapisan</th>
+                        <th>File/Class</th>
+                        <th>Tanggung Jawab</th>
+                        <th>Penjelasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>View</strong></td>
+                        <td><code>HomeNewsScreen.kt</code>, <code>SearchNewsScreen.kt</code>, <code>DetailNewsScreen.kt</code>, <code>NewsCard.kt</code></td>
+                        <td>Menampilkan UI dan menerima input user</td>
+                        <td>Composable untuk home dengan pull-to-refresh, search screen, detail artikel, dan card item berita.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ViewModel</strong></td>
+                        <td><code>NewsViewModel.kt</code></td>
+                        <td>Mengelola state UI dan logika bisnis</td>
+                        <td>Mengatur state untuk top headlines dan search results menggunakan StateFlow, memanggil repository untuk fetch data.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Repository</strong></td>
+                        <td><code>NewsRepository.kt</code></td>
+                        <td>Mediator data dari API</td>
+                        <td>Mengatur komunikasi dengan API Service, menangani error, dan menyediakan data ke ViewModel.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API & Model</strong></td>
+                        <td><code>NewsApiService.kt</code>, <code>RetrofitInstance.kt</code>, <code>Article.kt</code>, <code>NewsResponse.kt</code></td>
+                        <td>Komunikasi HTTP dan struktur data</td>
+                        <td>Service mendefinisikan endpoint, Retrofit mengelola HTTP client, Model mendefinisikan struktur JSON.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>2.3 Alur Data Aplikasi</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Alur data mengikuti pola MVVM yang jelas: <strong>UI (Compose) → ViewModel → Repository → Retrofit/API → Server</strong>, kemudian hasilnya dikembalikan sebagai state dan UI ter-update secara otomatis melalui StateFlow. Khusus untuk NewsAPI yang memiliki keterbatasan konten, hanya preview artikel yang diterima, sementara URL penuh tersedia untuk membuka artikel lengkap.
+        </p>
+
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Tahap</th>
+                        <th>Komponen</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>User / UI</td>
+                        <td>User membuka app atau menginput keyword pencarian.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>View Layer</td>
+                        <td>Compose screen memanggil ViewModel untuk fetch data.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>ViewModel</td>
+                        <td>Set state ke Loading, memanggil repository method.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Repository</td>
+                        <td>Memanggil API Service untuk get headlines atau search.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Retrofit/HTTP</td>
+                        <td>Mengirim request ke NewsAPI.org dengan parameter.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>NewsAPI Server</td>
+                        <td>Memproses request dan mengembalikan JSON response.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Gson Converter</td>
+                        <td>Mengkonversi JSON ke Kotlin data class (Article, NewsResponse).</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>ViewModel</td>
+                        <td>Update state ke Success(articles) atau Error(message).</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>UI (StateFlow)</td>
+                        <td>UI observe StateFlow dan melakukan recomposition dengan data terbaru.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>3. Fitur-Fitur Aplikasi</h2>
+
+        <h3>3.1 Home News Screen (Halaman Utama)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Home News Screen menampilkan daftar berita terkini dari NewsAPI endpoint top-headlines. Fitur utama meliputi: (1) TopAppBar dengan title "News App" dan search icon di sebelah kanan, (2) Pull-to-Refresh untuk refresh data manual dengan gesture tarik ke bawah, (3) LazyColumn untuk menampilkan artikel dalam bentuk NewsCard yang dapat di-scroll, (4) CircularProgressIndicator saat loading, (5) Pesan error dengan tombol retry jika terjadi kesalahan, (6) Pesan kosong jika tidak ada berita tersedia.
+        </p>
+
+        <h3>3.2 Search News Screen (Halaman Pencarian)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Search News Screen memungkinkan user mencari berita berdasarkan keyword. User dapat mengetik keyword di OutlinedTextField yang mempunyai search icon di sebelah kiri. Pencarian dilakukan real-time saat user mengetik (dengan debouncing implisit melalui user action). Hasil pencarian ditampilkan dalam LazyColumn dengan NewsCard yang sama. State loading dan error juga ditangani dengan baik untuk memberikan feedback visual kepada user.
+        </p>
+
+        <h3>3.3 Detail News Screen (Halaman Detail Artikel)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Detail News Screen menampilkan informasi lengkap tentang sebuah artikel. Layout terdiri dari: (1) AsyncImage untuk gambar artikel dengan aspect ratio 16:9 yang fixed di atas (tidak ikut scroll), (2) Scrollable content area berisi source name, publish date, title, author, description, dan content (jika ada), (3) Tombol "Buka Artikel Lengkap" untuk membuka URL artikel di browser, (4) TopAppBar dengan back button untuk kembali ke screen sebelumnya.
+        </p>
+
+        <h3>3.4 NewsCard Component (Komponen Kartu Berita)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            NewsCard menampilkan preview artikel dalam bentuk horizontal card layout. Komposisi: (1) AsyncImage 90x90 pixel di sebelah kiri dengan rounded corner, (2) Kolom teks di sebelah kanan dengan: source name (11sp), title (13sp dengan max 2 lines), dan publish date (11sp), (3) Padding dan elevation untuk visual yang ringan dan modern sesuai HCI principles, (4) Clickable modifier untuk navigate ke detail screen.
+        </p>
+
+        <hr>
+
+        <h2>4. Langkah-Langkah Pembuatan Aplikasi (Detail Implementasi)</h2>
+
+        <h3>4.1 Langkah 1: Persiapan Project dan Dependency</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Project dibuat di Android Studio dengan nama "Pertemuan 14" dan package "com.example.pertemuan14". Pada build.gradle.kts, ditambahkan dependency utama: Retrofit dan OkHttp untuk HTTP client, Gson untuk JSON deserialization, Coil untuk async image loading, Coroutines untuk async operations, Compose Navigation untuk routing antar screen, dan Material Compose untuk UI components.
+        </p>
+
+        <h3>4.2 Langkah 2: Membuat Data Models</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Data models dibuat dengan @SerializedName annotation untuk mapping JSON field. Article.kt memiliki field: source (object), author, title, description, url, urlToImage, publishedAt, dan content. NewsResponse.kt membungkus response API dengan field status, totalResults, dan articles list. Source.kt adalah sub-object dengan field id dan name.
+        </p>
+
+        <h3>4.3 Langkah 3: Konfigurasi Retrofit dan API Service</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            RetrofitInstance.kt mengatur singleton Retrofit dengan base URL NewsAPI (https://newsapi.org/v2/). NewsApiService.kt mendefinisikan dua endpoint: getTopHeadlines() menggunakan "top-headlines" endpoint untuk fetch berita terkini dengan parameter country=us, dan searchNews(query) menggunakan "everything" endpoint dengan parameter sortBy=relevancy untuk pencarian yang lebih relevan.
+        </p>
+
+        <h3>4.4 Langkah 4: Membuat Repository</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            NewsRepository.kt menyediakan abstraksi untuk data operations. Repository menyimpan API key sebagai constant dan menyediakan dua suspend function: getTopHeadlines() dan searchNews(query). Kedua fungsi menangani error exception dan memberikan pesan error yang jelas kepada user.
+        </p>
+
+        <h3>4.5 Langkah 5: Membuat ViewModel dengan State Management</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            NewsViewModel.kt mendefinisikan sealed class NewsUiState dengan tiga state: Loading (saat fetch data), Success(articles) (saat berhasil), dan Error(message) (saat gagal). ViewModel menyediakan StateFlow untuk uiState (berita terkini) dan searchResults (hasil pencarian). Method loadTopHeadlines(), searchNews(query), dan retryLoadNews() mengelola state transitions dengan memanggil repository dalam viewModelScope.
+        </p>
+
+        <h3>4.6 Langkah 6: Membuat Navigation Structure</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            NewsAppNavigation.kt mengatur tiga route: Home (home), Search (search), dan Detail (detail/{articleJson}). Detail route menggunakan Gson untuk serialize/deserialize Article object melalui URL parameter dengan URLEncoder/URLDecoder untuk safe transmission. NavHost diatur dengan Home sebagai startDestination.
+        </p>
+
+        <h3>4.7 Langkah 7: Membuat UI Screens dengan Jetpack Compose</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Tiga screen utama dibuat: HomeNewsScreen dengan pull-to-refresh dan error handling, SearchNewsScreen dengan OutlinedTextField dan real-time search, DetailNewsScreen dengan fixed image dan scrollable content. Setiap screen mengunakan Scaffold untuk konsistensi layout, TopAppBar untuk header, dan state management melalui ViewModel.
+        </p>
+
+        <h3>4.8 Langkah 8: Setup MainActivity dan Theme</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            MainActivity.kt menggunakan ComponentActivity dengan setContent untuk render Compose UI. NavController dibuat dengan rememberNavController() dan NewsAppNavigation ditampilkan dalam Pertemuan14Theme. Theme mengikuti Material 3 dengan color scheme yang konsisten.
+        </p>
+
+        <hr>
+
+        <h2>5. Penjelasan File-File Utama dan Tujuan Masing-Masing</h2>
+
+        <h3>5.1 Tabel Ringkasan File-File Utama</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>File</th>
+                        <th>Tujuan</th>
+                        <th>Isi Kode Utama</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2"><strong>Entry Point</strong></td>
+                        <td><code>MainActivity.kt</code></td>
+                        <td>Activity utama aplikasi</td>
+                        <td>Setup NavController, render NewsAppNavigation dalam theme.</td>
+                    </tr>
+                    <tr>
+                        <td><code>AndroidManifest.xml</code></td>
+                        <td>Konfigurasi manifest</td>
+                        <td>MainActivity sebagai launcher, permission INTERNET untuk API calls.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4"><strong>UI/View Layer</strong></td>
+                        <td><code>ui/screen/HomeNewsScreen.kt</code></td>
+                        <td>Layar utama berita terkini</td>
+                        <td>TopAppBar 64dp, pull-to-refresh, LazyColumn dengan NewsCard, state handling.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/screen/SearchNewsScreen.kt</code></td>
+                        <td>Layar pencarian berita</td>
+                        <td>OutlinedTextField dengan search icon, real-time search, hasil dalam LazyColumn.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/screen/DetailNewsScreen.kt</code></td>
+                        <td>Layar detail artikel</td>
+                        <td>Fixed AsyncImage top (16:9 ratio), scrollable content, "Buka Artikel Lengkap" button.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/component/NewsCard.kt</code></td>
+                        <td>Komponen kartu berita</td>
+                        <td>Horizontal layout dengan image 90x90, text info, clickable untuk detail.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>Navigation</strong></td>
+                        <td><code>ui/navigation/NewsAppNavigation.kt</code></td>
+                        <td>Routing antar screen</td>
+                        <td>NavHost dengan tiga route, Article serialization via Gson dan URL encoding.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>ViewModel Layer</strong></td>
+                        <td><code>viewmodel/NewsViewModel.kt</code></td>
+                        <td>State management dan logika</td>
+                        <td>Sealed class NewsUiState, StateFlow untuk uiState dan searchResults, method load/search/retry.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Data Layer - API</strong></td>
+                        <td><code>api/NewsApiService.kt</code></td>
+                        <td>Retrofit interface untuk API</td>
+                        <td>@GET endpoints untuk top-headlines dan everything dengan query parameters.</td>
+                    </tr>
+                    <tr>
+                        <td><code>api/RetrofitInstance.kt</code></td>
+                        <td>Konfigurasi Retrofit instance</td>
+                        <td>Singleton Retrofit dengan base URL dan GsonConverterFactory.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/NewsRepository.kt</code></td>
+                        <td>Repository untuk data operations</td>
+                        <td>Suspend function getTopHeadlines() dan searchNews(), error handling.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Data Layer - Models</strong></td>
+                        <td><code>data/Article.kt</code></td>
+                        <td>Model artikel dari API</td>
+                        <td>@SerializedName annotations untuk mapping JSON, Serializable untuk navigation.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/NewsResponse.kt</code></td>
+                        <td>Model response API</td>
+                        <td>Wrapper dengan status, totalResults, articles list.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/Source.kt</code></td>
+                        <td>Model source berita</td>
+                        <td>Object dengan id dan name dari JSON response.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="3"><strong>Theme & Resources</strong></td>
+                        <td><code>ui/theme/Color.kt</code></td>
+                        <td>Definisi warna Material 3</td>
+                        <td>Primary, secondary, error colors untuk light dan dark theme.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/Theme.kt</code></td>
+                        <td>Konfigurasi MaterialTheme</td>
+                        <td>Material 3 theme dengan dynamic color support.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/Type.kt</code></td>
+                        <td>Typography aplikasi</td>
+                        <td>Font family dan predefined text styles.</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="1"><strong>Config & Build</strong></td>
+                        <td><code>build.gradle.kts</code></td>
+                        <td>Konfigurasi build dan dependency</td>
+                        <td>Retrofit, OkHttp, Coroutines, Coil, Compose Navigation, Gson.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>6. Struktur Folder dan Alur Komunikasi Data dengan API</h2>
+
+        <h3>6.1 Struktur Folder Aplikasi</h3>
+        <pre><code>Pertemuan 14/
+├── app/
+│   ├── build.gradle.kts
+│   └── src/
+│       └── main/
+│           ├── AndroidManifest.xml
+│           ├── java/com/example/pertemuan14/
+│           │   ├── MainActivity.kt
+│           │   ├── api/
+│           │   │   ├── NewsApiService.kt
+│           │   │   └── RetrofitInstance.kt
+│           │   ├── data/
+│           │   │   ├── Article.kt
+│           │   │   ├── NewsResponse.kt
+│           │   │   ├── Source.kt
+│           │   │   └── NewsRepository.kt
+│           │   ├── viewmodel/
+│           │   │   ├── NewsUiState.kt
+│           │   │   └── NewsViewModel.kt
+│           │   └── ui/
+│           │       ├── screen/
+│           │       │   ├── HomeNewsScreen.kt
+│           │       │   ├── SearchNewsScreen.kt
+│           │       │   └── DetailNewsScreen.kt
+│           │       ├── component/
+│           │       │   └── NewsCard.kt
+│           │       ├── navigation/
+│           │       │   └── NewsAppNavigation.kt
+│           │       └── theme/
+│           │           ├── Color.kt
+│           │           ├── Theme.kt
+│           │           └── Type.kt
+│           └── res/
+│               ├── values/
+│               │   ├── strings.xml
+│               │   ├── colors.xml
+│               │   └── themes.xml
+│               ├── drawable/
+│               │   ├── ic_launcher_background.xml
+│               │   └── ic_launcher_foreground.xml
+│               └── mipmap-*/
+│                   └── ic_launcher.webp
+├── build.gradle.kts (root)
+├── settings.gradle.kts
+└── gradle/</code></pre>
+
+        <h3>6.2 Penjelasan Struktur Folder</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Folder/File</th>
+                        <th>Kegunaan</th>
+                        <th>Penjelasan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>api/</code></td>
+                        <td>HTTP Communication</td>
+                        <td>Retrofit service interface dan instance singleton untuk komunikasi dengan NewsAPI.</td>
+                    </tr>
+                    <tr>
+                        <td><code>data/</code></td>
+                        <td>Data Models & Repository</td>
+                        <td>Entity classes (Article, NewsResponse, Source) dan Repository yang mengatur data flow dari API.</td>
+                    </tr>
+                    <tr>
+                        <td><code>viewmodel/</code></td>
+                        <td>State Management</td>
+                        <td>NewsViewModel yang mengelola state UI, sealed class NewsUiState, dan interaksi dengan Repository.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/screen/</code></td>
+                        <td>UI Screens</td>
+                        <td>Composable screens untuk Home, Search, dan Detail berita dengan state handling.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/component/</code></td>
+                        <td>Reusable UI Components</td>
+                        <td>NewsCard component untuk tampilan artikel dalam list.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/navigation/</code></td>
+                        <td>Navigation Setup</td>
+                        <td>NavHost configuration dan route definitions dengan parameter passing.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ui/theme/</code></td>
+                        <td>Styling & Theme</td>
+                        <td>Color palette, Material 3 theme, dan typography definitions.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>6.3 Alur Komunikasi Data dengan API (Data Flow)</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Alur komunikasi data mengikuti proses berikut secara terstruktur:
+        </p>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>User Action:</strong> User membuka app atau menginput keyword pencarian di HomeNewsScreen atau SearchNewsScreen.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>ViewModel Request:</strong> Screen memanggil ViewModel method (loadTopHeadlines atau searchNews).</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>State Loading:</strong> ViewModel set state ke NewsUiState.Loading untuk menampilkan progress indicator.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Repository Call:</strong> ViewModel memanggil Repository suspend function dengan viewModelScope.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>API Request:</strong> Repository memanggil NewsApiService endpoint dengan parameter (country=us, atau query string).</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>HTTP Communication:</strong> Retrofit mengirim HTTP request ke NewsAPI.org dengan API key di parameter.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>JSON Response:</strong> Server mengirim JSON response dengan articles array.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Deserialization:</strong> Gson converter mengubah JSON ke Kotlin data class (NewsResponse dan Article).</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>State Success/Error:</strong> Repository mengembalikan result ke ViewModel. ViewModel set state ke Success(articles) atau Error(message).</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>UI Update:</strong> UI observe StateFlow dan melakukan recomposition otomatis dengan data/error message.</p></li>
+        </ol>
+
+        <hr>
+
+        <h2>7. Cara Pengujian di Android Studio</h2>
+
+        <h3>7.1 Persiapan Sebelum Testing</h3>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Buka Project:</strong> Buka folder Pertemuan 14 di Android Studio dan tunggu Gradle indexing selesai.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Gradle Sync:</strong> Pastikan semua dependency Retrofit, Coil, Coroutines ter-download dengan benar.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Network Access:</strong> Pastikan emulator/device memiliki akses internet untuk komunikasi dengan NewsAPI.org.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Build Check:</strong> Jalankan Build → Make Project (Ctrl+F9) dan pastikan tidak ada compilation error.</p></li>
+        </ol>
+
+        <h3>7.2 Langkah-Langkah Testing</h3>
+        <ol>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Clean & Build:</strong> Jalankan Build → Clean Project, dilanjutkan Build → Rebuild Project.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Setup Device:</strong> Siapkan Android Emulator atau connect device fisik yang sudah enable developer mode.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Run Application:</strong> Tekan tombol Run (Shift+F10) dan pilih target device untuk menjalankan aplikasi.</p></li>
+            <li><p style="text-align: justify; text-indent: 40px;"><strong>Verify Installation:</strong> Tunggu app terinstall dan launch, pastikan tidak ada crash saat startup.</p></li>
+        </ol>
+
+        <h3>7.3 Skenario Testing Fungsional</h3>
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Skenario</th>
+                        <th>Aksi</th>
+                        <th>Expected Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Load Berita Terkini</td>
+                        <td>Buka app, HomeNewsScreen tampil</td>
+                        <td>Loading indicator muncul, kemudian daftar berita terkini ter-display dengan NewsCard.</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Pull-to-Refresh</td>
+                        <td>Drag layar ke bawah dari atas</td>
+                        <td>Refresh animation muncul, data di-refresh dari API.</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Buka Detail Artikel</td>
+                        <td>Klik salah satu NewsCard</td>
+                        <td>Navigate ke DetailNewsScreen dengan image, title, author, description, content, dan button.</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Scroll Detail Content</td>
+                        <td>Drag konten ke atas di DetailNewsScreen</td>
+                        <td>Hanya konten teks yang scroll, image tetap fix di atas.</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Buka Artikel Lengkap</td>
+                        <td>Klik button "Buka Artikel Lengkap"</td>
+                        <td>Browser terbuka dengan URL artikel di website sumber.</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Cari Berita</td>
+                        <td>Klik search icon, input keyword "technology"</td>
+                        <td>SearchNewsScreen tampil, hasil pencarian ter-display sesuai keyword.</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Search Real-time</td>
+                        <td>Ketik lebih banyak character di search bar</td>
+                        <td>Hasil search ter-update real-time sesuai input.</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Error Handling</td>
+                        <td>Disconnect network, try refresh atau search</td>
+                        <td>Error message ter-display dengan tombol retry untuk mencoba lagi.</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Back Navigation</td>
+                        <td>Dari DetailNewsScreen, klik back button</td>
+                        <td>Kembali ke HomeNewsScreen atau SearchNewsScreen sebelumnya.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>8. Hasil Pengujian</h2>
+        <p style="text-align: justify; text-indent: 40px;">
+            Berikut ringkasan hasil observasi dari beberapa kondisi uji utama.
+        </p>
+
+        <div class="tech-table-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Kondisi Uji</th>
+                        <th>Hasil Observasi</th>
+                        <th>Screenshot Hasil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Kondisi 1:<br>Home Screen - Loading</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>CircularProgressIndicator muncul di tengah screen</li>
+                                <li>TopAppBar menampilkan "News App" dengan search icon</li>
+                                <li>User experience smooth saat loading data</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihZo1Q6JiZ4MMjTZeDIYdITT_bJAANJUmP7X70nf6Ef0UkJJ4jnSfA-LA_H9_JCrlKAppovdD7pyriFE4rLZwM4qzckzcxNl7z7aOaxBlbjj4EPn5GWgO-KT0AMySKB0ZhFXkdfq_mV08nmvj3m5_vLaIq1R7oG2WJznym2K6y8QyAGP3J4b7yOrkQSkI/s2400/Screenshot_20260603_135834.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="400" data-original-height="2400" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEihZo1Q6JiZ4MMjTZeDIYdITT_bJAANJUmP7X70nf6Ef0UkJJ4jnSfA-LA_H9_JCrlKAppovdD7pyriFE4rLZwM4qzckzcxNl7z7aOaxBlbjj4EPn5GWgO-KT0AMySKB0ZhFXkdfq_mV08nmvj3m5_vLaIq1R7oG2WJznym2K6y8QyAGP3J4b7yOrkQSkI/s400/Screenshot_20260603_135834.png"/></a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 2:<br>Home Screen - Data Loaded</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Daftar berita terkini ter-display dengan NewsCard</li>
+                                <li>Setiap card menampilkan thumbnail 90x90, source, title, dan date</li>
+                                <li>List dapat di-scroll untuk melihat berita lainnya</li>
+                                <li>Pull-to-refresh gesture dapat dilakukan</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmUa67XADwHktWt0mNWWD5YvmCg0zGCDFG6a-IWVH6e3fwUhMsCiMsoNZoNQOiTmi60mZpfuePKl8gkuIZqe9RFzZQSYOSLg8-ETwzVj1z9hPGnH4SHsuAas1pktDPOm9SrNI6XxnXiymNyNEU5ayEZ3-IqPIxb-Pz7NZMgm2USDEoOAvb7fEMgS5xZC0/s2400/Screenshot_20260603_135518.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="400" data-original-height="2400" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjmUa67XADwHktWt0mNWWD5YvmCg0zGCDFG6a-IWVH6e3fwUhMsCiMsoNZoNQOiTmi60mZpfuePKl8gkuIZqe9RFzZQSYOSLg8-ETwzVj1z9hPGnH4SHsuAas1pktDPOm9SrNI6XxnXiymNyNEU5ayEZ3-IqPIxb-Pz7NZMgm2USDEoOAvb7fEMgS5xZC0/s400/Screenshot_20260603_135518.png"/></a></div>
+                        </td>
+                    </tr>
+                  <tr>
+                        <td><strong>Kondisi 3:<br>Detail Screen</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                
+                                <li>Konten artikel (title, author, description, content) dapat di-scroll</li>
+                                <li>Button "Buka Artikel Lengkap" tersedia di bawah</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVUgtdtz8arvnPhtjfH3ewZGpxxu_yTGSKEebqDYI8rtpwD6Xh0M1tMn6sx-cVAKmZ7ZksiyR1_zn04cDb5vBRYB0CJ4lWZJCJ0gzfjfYh2izkYFvkWFr5pcNeS5RJP4ijOkb4XvkQksCzGKkcy9iaHQlwvnvXgZXbGwoJjpraAAlKAAVHuKUMHqmUwpM/s2400/Screenshot_20260603_135529.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="400" data-original-height="2400" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjVUgtdtz8arvnPhtjfH3ewZGpxxu_yTGSKEebqDYI8rtpwD6Xh0M1tMn6sx-cVAKmZ7ZksiyR1_zn04cDb5vBRYB0CJ4lWZJCJ0gzfjfYh2izkYFvkWFr5pcNeS5RJP4ijOkb4XvkQksCzGKkcy9iaHQlwvnvXgZXbGwoJjpraAAlKAAVHuKUMHqmUwpM/s400/Screenshot_20260603_135529.png"/></a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 4:<br>Search Screen</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>OutlinedTextField dengan search icon di sebelah kiri</li>
+                                <li>Placeholder "Cari berita..." terbaca dengan jelas</li>
+                                <li>Hasil pencarian ter-display real-time saat user mengetik</li>
+                                <li>Layout dan styling sesuai HCI principles</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgde2JpdRotJwfsxvNDggVodAQSTXvtxO9bIyg7ViPoyNkyVsDzle0uW3PvP-hHslDHRFpM3OZMwfFzyTmbKOAEYPSzVU67oeuFQ_Qz25YGG-RHr9vsYhQ0JkY8wkv4-w7tYUuTW932EJQEksJfs31W-52JLc3HVSqgpzn0CJm3ePTAmNCeBSNUaCwQRBY/s2400/Screenshot_20260603_135540.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="400" data-original-height="2400" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgde2JpdRotJwfsxvNDggVodAQSTXvtxO9bIyg7ViPoyNkyVsDzle0uW3PvP-hHslDHRFpM3OZMwfFzyTmbKOAEYPSzVU67oeuFQ_Qz25YGG-RHr9vsYhQ0JkY8wkv4-w7tYUuTW932EJQEksJfs31W-52JLc3HVSqgpzn0CJm3ePTAmNCeBSNUaCwQRBY/s400/Screenshot_20260603_135540.png"/></a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Kondisi 5:<br>Error State</strong></td>
+                        <td>
+                            <ul style="text-align: left; line-height: 1.6; padding-left: 16px;">
+                                <li>Error message ter-display dengan jelas</li>
+                                <li>Tombol "Retry" tersedia untuk mencoba lagi</li>
+                                <li>User dapat memahami penyebab error</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8haDSCGRY7d5LB-fMmq-tXhORdOn293fm7gMcPrp0QUCP7wmFI4C1yJ0evJ-ixpRdZXOYj_CnHvwiH1_EzILauEFH8tMn9R-3weDK68ATfRfxcy8hpp1s5ZkrtjsRQktnAX9AKXpYhOeXJM1zoaYOI0YTcyKsjrbXLtm81wOeKCaqguXY5FHCRgdeAXI/s2400/Screenshot_20260603_135912.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="400" data-original-height="2400" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh8haDSCGRY7d5LB-fMmq-tXhORdOn293fm7gMcPrp0QUCP7wmFI4C1yJ0evJ-ixpRdZXOYj_CnHvwiH1_EzILauEFH8tMn9R-3weDK68ATfRfxcy8hpp1s5ZkrtjsRQktnAX9AKXpYhOeXJM1zoaYOI0YTcyKsjrbXLtm81wOeKCaqguXY5FHCRgdeAXI/s400/Screenshot_20260603_135912.png"/></a></div><div class="separator" style="clear: both;"><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioAyJoPsa2PI2ZXriKMN98AXetWizG93gnJMgUU2jETGLws9189vQPTKnYWKW3JfZJAnvIuuvN72C10gNzwYq9L3jyf1AqrY7JhEEmI9lajBrwwzwcXI3j9dVjtktSDL0HG-1lY7-GylhHOiJMRcNvi7CH3zdEVSo4oUrxR-08ZZs2XQiAmqGY6aFme-k/s2400/Screenshot_20260603_135924.png" style="display: block; padding: 1em 0; text-align: center; "><img alt="" border="0" height="400" data-original-height="2400" data-original-width="1080" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEioAyJoPsa2PI2ZXriKMN98AXetWizG93gnJMgUU2jETGLws9189vQPTKnYWKW3JfZJAnvIuuvN72C10gNzwYq9L3jyf1AqrY7JhEEmI9lajBrwwzwcXI3j9dVjtktSDL0HG-1lY7-GylhHOiJMRcNvi7CH3zdEVSo4oUrxR-08ZZs2XQiAmqGY6aFme-k/s400/Screenshot_20260603_135924.png"/></a></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+
+        <h2>9. Catatan Teknis dan Keterbatasan</h2>
+
+        <h3>9.1 Keterbatasan API NewsAPI</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            NewsAPI memiliki beberapa keterbatasan yang perlu diketahui. Pertama, field "content" dari API hanya memberikan preview artikel sekitar 160 karakter dan diakhiri dengan "[+...]" atau "[XXXX+ chars]" sebagai truncation marker. Ini adalah design dari NewsAPI untuk melindungi hak cipta dan mendorong traffic ke website asli. Kedua, field "description" juga terbatas hingga sekitar 200 karakter. Solusi yang diterapkan adalah menampilkan button "Buka Artikel Lengkap" yang membuka URL asli di browser untuk membaca artikel lengkap.
+        </p>
+
+        <h3>9.2 Implementasi Content Cleaning</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Untuk menangani truncation marker, diterapkan regex cleaning pada DetailNewsScreen menggunakan `.replace(Regex("\\s*\\[\\d+\\s+chars?\\]$"), "")`. Ini menghapus suffix seperti "[5215 char]" atau "[+...]" yang muncul di akhir content field.
+        </p>
+
+        <h3>9.3 Search API Parameters</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Search menggunakan endpoint "everything" dengan sortBy=relevancy untuk menampilkan hasil paling relevan terhadap keyword, dan pageSize=50 untuk menampilkan lebih banyak hasil. Ini memastikan user mendapatkan hasil pencarian yang akurat dan relevan dengan query mereka.
+        </p>
+
+        <h3>9.4 HCI Implementation</h3>
+        <p style="text-align: justify; text-indent: 40px;">
+            Desain aplikasi menerapkan prinsip HCI (Human-Computer Interaction) modern: proper touch target sizes (56dp untuk search bar), minimalist design dengan lightweight components, modern aesthetic menggunakan Material 3, consistent spacing dan typography, dan visual feedback yang jelas (loading indicators, error messages, pull-to-refresh animation).
+        </p>
+
+        <hr>
+
+        <h2>10. Kesimpulan</h2>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Project Aplikasi Berita pada Pertemuan 14 berhasil mengimplementasikan pola MVVM yang kompleks dengan integrasi REST API, state management asynchronous, serta navigation yang sophisticated. Aplikasi mendemonstrasikan kemampuan untuk berkomunikasi dengan API eksternal, menangani berbagai state (Loading, Success, Error), menampilkan data secara real-time, dan memberikan user experience yang baik melalui pull-to-refresh, search functionality, dan detail view yang interaktif.
+        </p>
+
+        <p style="text-align: justify; text-indent: 40px;">
+            Dari project ini, diperoleh pemahaman mendalam tentang arsitektur aplikasi Android modern, networking dengan Retrofit, JSON handling dengan Gson, async image loading dengan Coil, navigation Compose dengan parameter passing, dan penerapan HCI principles dalam desain UI. Aplikasi ini menunjukkan best practices dalam Android development dan dapat dikembangkan lebih lanjut dengan fitur seperti pagination, offline caching, dan bookmarking artikel.
+        </p>
+
+    </div>
+</body>
+</html>
